@@ -1,11 +1,11 @@
 ﻿=== Country Based Restrictions for WooCommerce ===
-Contributors: zorem,kuldipzorem,gaurav1092,eranzorem,gehorsam
+Contributors: zorem,kuldipzorem,gaurav1092
 Donate link: 
 Tags: woocommerce, country restrictions
 Requires at least: 5.3
 Requires PHP: 7.0
 Tested up to: 6.6
-Stable tag: 3.6.6
+Stable tag: 3.6.7
 License: GPLv2 
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -60,6 +60,9 @@ Yes
 
 
 == Changelog ==
+
+= 3.6.7 =
+* Enhancement - Added a admin message for return plugin
 
 = 3.6.6 =
 * Dev - WP tested upto 6.6
