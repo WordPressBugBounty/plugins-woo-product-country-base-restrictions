@@ -60,6 +60,9 @@ class CBR_Admin_Notice {
 
 		add_action( 'admin_notices', array( $this, 'cbr_return_for_woocommerce_notice' ) );
 		add_action( 'admin_init', array( $this, 'cbr_return_for_woocommerce_notice_ignore' ) );
+
+		add_action( 'admin_notices', array( $this, 'cbr_black_friday_admin_notice' ) );
+		add_action( 'admin_init', array( $this, 'cbr_black_friday_notice_ignore' ) );
 	}
 
 	/*
@@ -131,8 +134,80 @@ class CBR_Admin_Notice {
 
 			<p><strong>Act fast!</strong> For a limited time, you can enjoy an exclusive <strong>40% discount</strong> on Zorem Returns Plugin with the coupon code <strong>RETURNS40</strong>. Don’t miss out—the offer expires 2 weeks after installing this plugin or update.</p>
 			
-			<a class="button-primary alp_notice_btn" target="blank" href="<?php echo esc_url( 'https://www.zorem.com/product/zorem-returns/' ); ?>">Unlock 40% Off</a>
-			<a class="button-primary alp_notice_btn" href="<?php esc_html_e( $dismissable_url ); ?>">Dismiss</a>				
+			<a class="button-primary cbr_notice_btn" target="blank" href="<?php echo esc_url( 'https://www.zorem.com/product/zorem-returns/' ); ?>">Unlock 40% Off</a>
+			<a class="button-primary cbr_notice_btn" href="<?php esc_html_e( $dismissable_url ); ?>">Dismiss</a>				
+		</div>	
+		<?php 				
+	}
+
+	/*
+	* Dismiss admin notice for black friday
+	*/
+	public function cbr_black_friday_notice_ignore() {
+		if ( isset( $_GET['cbr-black-friday-notice'] ) ) {
+			
+			if (isset($_GET['nonce'])) {
+				$nonce = sanitize_text_field($_GET['nonce']);
+				if (wp_verify_nonce($nonce, 'cbr_black_friday_dismiss_notice')) {
+					update_option('cbr_black_friday_notice_ignore', 'true');
+				}
+			}
+			
+		}
+	}
+
+	/*
+	* Display admin notice for black friday on plugin install or update
+	*/
+	public function cbr_black_friday_admin_notice() { 		
+		
+		$return_installed = ( function_exists( 'Country_Based_Restrictions_PRO' ) ) ? true : false;
+		if ( $return_installed ) {
+			return;
+		}
+		
+		if ( get_option('cbr_black_friday_notice_ignore') || strtotime( current_time('Y-m-d') ) > strtotime('2024-12-03') ) {
+			return;
+		}	
+		
+		$nonce = wp_create_nonce('cbr_black_friday_dismiss_notice');
+		$dismissable_url = esc_url(add_query_arg(['cbr-black-friday-notice' => 'true', 'nonce' => $nonce]));
+
+		?>
+		<style>		
+		.wp-core-ui .notice.cbr-dismissable-notice{
+			position: relative;
+			padding-right: 38px;
+			border-left-color: #005B9A;
+		}
+		.wp-core-ui .notice.cbr-dismissable-notice h3{
+			margin-bottom: 5px;
+		} 
+		.wp-core-ui .notice.cbr-dismissable-notice a.notice-dismiss{
+			padding: 9px;
+			text-decoration: none;
+		} 
+		.wp-core-ui .button-primary.cbr_notice_btn {
+			background: #005B9A;
+			color: #fff;
+			border-color: #005B9A;
+			text-transform: uppercase;
+			padding: 0 11px;
+			font-size: 12px;
+			height: 30px;
+			line-height: 28px;
+			margin: 5px 0 15px;
+		}
+		.cbr-dismissable-notice strong{
+			font-weight: bold;
+		}
+		</style>
+		<div class="notice updated notice-success cbr-dismissable-notice">			
+			<a href="<?php esc_html_e( $dismissable_url ); ?>" class="notice-dismiss"><span class="screen-reader-text">Dismiss this notice.</span></a>			
+			<h3>Black Friday & Cyber Monday: 40% Off All Plugins!</h3>
+			<p>Get 40% off all plugins from November 27th to December 2nd on the Zorem website. Don’t miss our biggest sale of the year to boost your store’s performance!</p>	
+			<a class="button-primary cbr_notice_btn" target="blank" href="<?php echo esc_url( 'https://www.zorem.com/products/' ); ?>">Shop Now</a>
+			<a class="button-primary cbr_notice_btn" href="<?php esc_html_e( $dismissable_url ); ?>">Dismiss</a>			
 		</div>	
 		<?php 				
 	}

@@ -205,7 +205,7 @@ class CBR_Admin_Settings {
 									</a>
 								</li>            
 								<li class="woocommerce-list__item has-action">
-									<a href="https://www.zorem.com/docs/country-based-restrictions-for-woocommerce/?utm_source=wp-admin&utm_medium=CBRDOCU&utm_campaign=add-ons" class="woocommerce-list__item-inner" target="_blank">
+									<a href="https://docs.zorem.com/docs/country-based-restrictions-free/?utm_source=wp-admin&utm_medium=CBRDOCU&utm_campaign=add-ons" class="woocommerce-list__item-inner" target="_blank">
 										<div class="woocommerce-list__item-before">
 											<img src="<?php echo esc_url($fzpcr->plugin_dir_url(__FILE__) . 'assets/images/documentation-icon.svg'); ?>">
 										</div>

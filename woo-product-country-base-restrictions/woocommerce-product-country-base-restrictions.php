@@ -5,10 +5,11 @@
 * Description: Restrict WooCommerce products in specific countries
 * Author: zorem
 * Author URI: https://www.zorem.com/
-* Version: 3.6.7
+* Version: 3.6.8
 * Text Domain: woo-product-country-base-restrictions
 * WC requires at least: 4.0
-* WC tested up to: 9.2.3
+* WC tested up to: 9.4.2
+* Requires Plugins: woocommerce
 */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -26,7 +27,7 @@ class ZH_Product_Country_Restrictions {
 	 * @since 1.0.0
 	 * @var string
 	 */
-	public $version = '3.6.7';
+	public $version = '3.6.8';
 	public $toolbar;
 	public $restriction;
 	public $plugin_path;
