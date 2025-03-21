@@ -49,13 +49,12 @@ jQuery(document).ready(function(){
 	jQuery("#wpcbr_choose_the_page_to_redirect").select2();
 	jQuery('#cbrw_border_color, #cbrw_background_color, #cbrw_font_color, #cbrwl_box_background_color, #cbrwl_background_color').wpColorPicker();
 	
-	jQuery('.product_visibility:checked').parent().find('span').css("color", "#00ab6f");
-	jQuery('.product_visibility:checked').parent().parent().parent().parent().parent().css("background", "#fff");
-	
 	jQuery('#wpcbr_choose_the_page_to_redirect').parent().parent().parent().hide();
 	if( jQuery("#wpcbr_redirect_404_page").is(":checked") === true ){
 		jQuery('#wpcbr_choose_the_page_to_redirect').parent().parent().parent().show();
 	}
+
+	jQuery(".product_visibility:checked").trigger("click");
 	
 	jQuery('#wpcbr_hide_product_price1').parent().parent().parent().parent().hide();
 	if( jQuery("#wpcbr_make_non_purchasable1").is(":checked") === true ){
@@ -71,42 +70,6 @@ jQuery(document).ready(function(){
 		jQuery(".restricted_countries").hide();
 	}
 	
-});
-
-jQuery(document).on("click", ".accordion", function(){
-	"use strict";
-		
-	if (jQuery(this).next('.panel').hasClass('active')) {
-		//
-		jQuery(".accordion").css('border-color','');
-		jQuery(".accordion").removeClass('active');
-		jQuery(".accordion").next('.panel').removeClass('active').slideUp("slow");
-		jQuery(".accordion").css('cursor', '');
-		jQuery(".accordion").find('span.cbr-btn').hide();
-		jQuery(".accordion").find('span.dashicons').addClass('dashicons-arrow-right-alt2');
-		jQuery(".accordion").find('label').css('color','');
-	} else {
-		jQuery(".accordion").css('border-color','');
-		jQuery(".accordion").removeClass('active');
-		jQuery(".accordion").next('.panel').removeClass('active').slideUp("slow");
-		jQuery(".accordion").css('cursor', '');
-		jQuery(".accordion").find('span.cbr-btn').hide();
-		jQuery(".accordion").find('span.dashicons').addClass('dashicons-arrow-right-alt2');
-		jQuery(".accordion").find('label').css('color','');
-		jQuery(this).addClass('active');
-		jQuery(this).css('cursor', 'default');
-		jQuery(this).find('span.cbr-btn').show();
-		jQuery(this).find('span.dashicons').removeClass('dashicons-arrow-right-alt2');
-		jQuery(this).find('label').css('color','#212121');
-		jQuery(this).next('.panel').addClass('active').slideDown( 'slow', function() {
-			var visible = jQuery(this).isInViewport();
-			if ( !visible ) {
-				jQuery('html, body').animate({
-					scrollTop: jQuery(this).prev().offset().top - 35
-				}, 1000);	
-			}			
-		} );
-	}
 });
 
 (function( $ ){
@@ -131,16 +94,11 @@ jQuery(document).on("click", ".accordion", function(){
 jQuery(document).on("click", ".catelog_visibility", function(){
 	"use strict";
 	
-	var hasClass = jQuery(this).parent().hasClass("hide-child-panel");
-	
+	var InsideClass = jQuery(".catelog_visibility").parent().find(".inside");
+	var hasClass = InsideClass.hasClass("active");
+	InsideClass.removeClass("active");
 	if(hasClass === true ){
-		jQuery(".catelog_visibility").parent().addClass("hide-child-panel");
-		jQuery(".catelog_visibility").find('span').css("color", "#bdbdbd");
-		jQuery('.catelog_visibility').css('background','');
-		jQuery(this).parent().removeClass("hide-child-panel");
-		jQuery(this).find('input.product_visibility').trigger("click");
-		jQuery(this).css('background','#fff');
-		jQuery(this).find('span').css("color", "#00ab6f");
+		jQuery(this).parent().find(".inside").addClass("active");
 	}
 });
 

@@ -167,60 +167,57 @@ class CBR_Admin_Settings {
 			<h1 class="page_heading">
 				<a href="javascript:void(0)"><?php esc_html_e( 'Country Based Restriction', 'advanced-local-pickup-for-woocommerce' ); ?></a> <span class="dashicons dashicons-arrow-right-alt2"></span> <span class="breadcums_page_heading"><?php 'go-pro' == $tab ? esc_html_e( 'Go Pro', 'advanced-local-pickup-for-woocommerce' ) : esc_html_e( 'Settings', 'advanced-local-pickup-for-woocommerce' ); ?></span>
 			</h1>	
-			<img class="zorem-layout__header-logo" src="<?php echo esc_url($fzpcr->plugin_dir_url() . 'assets/images/cbr-icon.png'); ?>">
+			<img class="zorem-layout__header-logo" src="<?php echo esc_url($fzpcr->plugin_dir_url() . 'assets/images/zorem-logo.png'); ?>">
 		</div>
 		<?php do_action( 'cbr_settings_admin_notice' ); ?>
 		<div class="woocommerce cbr_admin_layout">
-		<div class="woocommerce-layout__activity-panel">
+			<div class="woocommerce-layout__activity-panel">
 				<div class="woocommerce-layout__activity-panel-tabs">
 					<button type="button" id="activity-panel-tab-help" class="components-button woocommerce-layout__activity-panel-tab">
 						<span class="dashicons dashicons-menu-alt"></span> 
 					</button>
-				</div>
-				<div class="woocommerce-layout__activity-panel-wrapper">
-					<div class="woocommerce-layout__activity-panel-content" id="activity-panel-true">
-						<div class="woocommerce-layout__activity-panel-header">
-							<div class="woocommerce-layout__inbox-title">
-								<p class="css-activity-panel-Text">Documentation</p>            
-							</div>								
-						</div>
-						<div>
-							<ul class="woocommerce-list woocommerce-quick-links__list">
-								<li class="woocommerce-list__item has-action">
-									<?php
-									$support_link = 'https://wordpress.org/support/plugin/woo-product-country-base-restrictions/#new-topic-0' ;
-									?>
-									<a href="<?php echo esc_url( $support_link ); ?>" class="woocommerce-list__item-inner" target="_blank" >
-										<div class="woocommerce-list__item-before">
-											<img src="<?php echo esc_url($fzpcr->plugin_dir_url(__FILE__) . 'assets/images/get-support-icon.svg'); ?>">	
-										</div>
-										<div class="woocommerce-list__item-text">
-											<span class="woocommerce-list__item-title">
-												<div class="woocommerce-list-Text">Get Support</div>
-											</span>
-										</div>
-										<div class="woocommerce-list__item-after">
-											<span class="dashicons dashicons-arrow-right-alt2"></span>
-										</div>
-									</a>
-								</li>            
-								<li class="woocommerce-list__item has-action">
-									<a href="https://docs.zorem.com/docs/country-based-restrictions-free/?utm_source=wp-admin&utm_medium=CBRDOCU&utm_campaign=add-ons" class="woocommerce-list__item-inner" target="_blank">
-										<div class="woocommerce-list__item-before">
-											<img src="<?php echo esc_url($fzpcr->plugin_dir_url(__FILE__) . 'assets/images/documentation-icon.svg'); ?>">
-										</div>
-										<div class="woocommerce-list__item-text">
-											<span class="woocommerce-list__item-title">
-												<div class="woocommerce-list-Text">Documentation</div>
-											</span>
-										</div>
-										<div class="woocommerce-list__item-after">
-											<span class="dashicons dashicons-arrow-right-alt2"></span>
-										</div>
-									</a>
-								</li>
-							</ul>
-						</div>
+					<div class="woocommerce-layout__activity-panel-wrapper">
+						<ul class="woocommerce-list woocommerce-quick-links__list">
+							<li class="woocommerce-list__item has-action">
+								<?php
+								$support_link = 'https://wordpress.org/support/plugin/woo-product-country-base-restrictions/#new-topic-0' ;
+								?>
+								<a href="<?php echo esc_url( $support_link ); ?>" class="woocommerce-list__item-inner" target="_blank" >
+									<div class="woocommerce-list__item-before">
+										<img src="<?php echo esc_url($fzpcr->plugin_dir_url(__FILE__) . 'assets/images/support.png'); ?>">	
+									</div>
+									<div class="woocommerce-list__item-text">
+										<span class="woocommerce-list__item-title">
+											<div class="woocommerce-list-Text">Get Support</div>
+										</span>
+									</div>
+								</a>
+							</li>            
+							<li class="woocommerce-list__item has-action">
+								<a href="https://docs.zorem.com/docs/country-based-restrictions-free/?utm_source=wp-admin&utm_medium=CBRDOCU&utm_campaign=add-ons" class="woocommerce-list__item-inner" target="_blank">
+									<div class="woocommerce-list__item-before">
+										<img src="<?php echo esc_url($fzpcr->plugin_dir_url(__FILE__) . 'assets/images/document.png'); ?>">
+									</div>
+									<div class="woocommerce-list__item-text">
+										<span class="woocommerce-list__item-title">
+											<div class="woocommerce-list-Text">Documentation</div>
+										</span>
+									</div>
+								</a>
+							</li>
+							<li class="woocommerce-list__item has-action">
+								<a href="https://www.zorem.com/product/country-based-restriction-pro/?utm_source=wp-admin&utm_medium=CBR&utm_campaign=add-ons" class="woocommerce-list__item-inner" target="_blank">
+									<div class="woocommerce-list__item-before">
+										<img src="<?php echo esc_url($fzpcr->plugin_dir_url(__FILE__) . 'assets/images/upgrade.png'); ?>">
+									</div>
+									<div class="woocommerce-list__item-text">
+										<span class="woocommerce-list__item-title">
+											<div class="woocommerce-list-Text">Upgrade to Pro</div>
+										</span>
+									</div>
+								</a>
+							</li>
+						</ul>
 					</div>
 				</div>
 			</div>
@@ -239,10 +236,13 @@ class CBR_Admin_Settings {
 				<?php require_once( 'views/cbr_setting_tab.php' ); ?>
 				<?php require_once( 'views/cbr_addons_tab.php' ); ?>
 			</div>
+			<div id="cbr-toast-example" aria-live="assertive" aria-atomic="true" aria-relevant="text" class="mdl-snackbar mdl-js-snackbar">
+				<div class="mdl-snackbar__text"></div>
+				<button type="button" class="mdl-snackbar__action"></button>
+			</div>
 		</div>
-		<div id="cbr-toast-example" aria-live="assertive" aria-atomic="true" aria-relevant="text" class="mdl-snackbar mdl-js-snackbar">
-			<div class="mdl-snackbar__text"></div>
-			<button type="button" class="mdl-snackbar__action"></button>
+		<div class="zorem-layout__footer">
+			<span>Powered by</span> <img class="zorem-layout__footer-logo" src="<?php echo esc_url($fzpcr->plugin_dir_url() . 'assets/images/zorem-logo.png'); ?>">
 		</div>
 	   <?php
 	}
@@ -264,7 +264,7 @@ class CBR_Admin_Settings {
 				'id'		=> 'wpcbr_force_geo_location',
 				'class'		=> 'checkbox-left',
 				'label'		=> 'Enable plugin',
-				'tooltip'		=> __( 'Enable this option to detect the customer country only by the WooCommerce geo-location and to ignore the customer shipping country (if logged in)', 'woo-product-country-base-restrictions' ),
+				'tooltip'		=> __( 'Detect the customer’s country using WooCommerce’s geolocation feature, ignoring the shipping address (if logged in)', 'woo-product-country-base-restrictions' ),
 			),
 			'wpcbr_debug_mode' => array(
 				'title'		=> __( 'Enable Debug Toolbar', 'woo-product-country-base-restrictions' ),
@@ -274,7 +274,7 @@ class CBR_Admin_Settings {
 				'id'		=> 'wpcbr_debug_mode',
 				'class'		=> 'checkbox-left',
 				'label'		=> 'Enable plugin',
-				'tooltip'		=> __( 'Enable this option to show detected geo-location country top of header in frontend.', 'woo-product-country-base-restrictions' ),
+				'tooltip'		=> __( 'Show the detected geolocation country at the top of the header on the frontend', 'woo-product-country-base-restrictions' ),
 			),
 		);
 		return  $settings;
@@ -291,7 +291,7 @@ class CBR_Admin_Settings {
 		$settings = array(
 			'wpcbr_default_message' => array(
 				'title'		=> __( 'Product restriction message', 'woo-product-country-base-restrictions' ),
-				'tooltip'	=> __( 'This message show on product page when product is not purchasable. Default message : Sorry, this product is not available in your country.', 'woo-product-country-base-restrictions' ),
+				'tooltip'	=> __( 'Displayed on the product page when a product is not purchasable. Default: ‘Sorry, this product is not available in your country.’', 'woo-product-country-base-restrictions' ),
 				'placeholder'	=> __( 'Sorry, this product is not available to purchase in your country.', 'woo-product-country-base-restrictions' ),
 				'type'		=> 'textarea',
 				'show'		=> true,
@@ -300,7 +300,7 @@ class CBR_Admin_Settings {
 			),
 			'wpcbr_message_position' => array(
 				'title'		=> __( 'Product restriction message position', 'woo-product-country-base-restrictions' ),
-				'tooltip'		=> __( 'Default : After add to cart. This message will show on product page when product is not purchasable.', 'woo-product-country-base-restrictions'),
+				'tooltip'		=> __( 'Choose where to display the restriction message on the product page. Default: ‘After add to cart.’', 'woo-product-country-base-restrictions'),
 				'desc_tip'	=> __( 'Use the shortcode [cbr_message_position] in your product template.', 'woo-product-country-base-restrictions' ),
 				'type'		=> 'dropdown',
 				'show'		=> true,
@@ -340,7 +340,7 @@ class CBR_Admin_Settings {
 			  'class'     => 'pro-feature',
 			  'id'		=> 'wpcbr_redirect_404_page',
 			  'label'		=> 'Enable plugin',
-			  'tooltip'     => __( 'Enable this option to redirect 404 error page to shop page.', 'woo-product-country-base-restrictions'),
+			  'tooltip'     => __( 'Enable this option to redirect the 404 error page to the shop page', 'woo-product-country-base-restrictions'),
 			),
 			'wpcbr_choose_the_page_to_redirect' => array(
 			  'type'		=> 'dropdown',
@@ -351,7 +351,7 @@ class CBR_Admin_Settings {
 			  'id'		=> 'wpcbr_choose_the_page_to_redirect',
 			  'label'		=> 'Enable plugin',
 			  'options'	=> $page_list,
-			  'tooltip'     => __( 'Choose the page for redirect 404 error page to selected page.', 'woo-product-country-base-restrictions'),
+			  'tooltip'     => __( 'Select the page to redirect the 404 error page', 'woo-product-country-base-restrictions'),
 			),
 		);
 		return  $settings;
@@ -374,7 +374,7 @@ class CBR_Admin_Settings {
 				'id'		=> 'wpcbr_hide_restricted_product_variation',
 				'class'		=> '',
 				'label'		=> 'Enable plugin',
-				'tooltip'		=> __( 'Enable this option to hide the restricted product variations form the product variations selection on variable product page.', 'woo-product-country-base-restrictions' ),
+				'tooltip'		=> __( 'Enable this option to hide restricted product variations from the product selection on variable product pages', 'woo-product-country-base-restrictions' ),
 			),
 			'wpcbr_make_non_purchasable' => array(
 				'title'		=> __( 'Make non-purchasable', 'woo-product-country-base-restrictions' ),
@@ -384,7 +384,7 @@ class CBR_Admin_Settings {
 				'id'		=> 'wpcbr_make_non_purchasable',
 				'class'		=> '',
 				'label'		=> 'Enable plugin',
-				'tooltip'		=> __( "Enable this option to make products non-purchasable (i.e. product can't be added to the cart).", 'woo-product-country-base-restrictions' ),
+				'tooltip'		=> __( "Enable this option to make products non-purchasable (i.e., cannot be added to the cart)", 'woo-product-country-base-restrictions' ),
 			),
 		);
 		$settings = apply_filters( 'cbr_hide_catelog_option_data_array', $settings );
@@ -429,6 +429,84 @@ class CBR_Admin_Settings {
 		return  $settings;
 	}
 	
+	/*
+	* Get html of fields
+	*
+	* @since 1.0.0
+	*/
+	public function get_html_visibility_setting( $arrays ) {
+		$checked = '';
+		?>
+		<table class="form-table">
+			<tbody>
+				<?php 
+				foreach ( (array) $arrays as $id => $array ) {
+					if ($array['show']) {
+						?>
+						<tr valign="top" class="<?php echo esc_html($array['class']); ?> border_1">
+						<?php if ( 'checkbox' == $array['type'] ) {
+							if (isset($array['id']) && get_option($array['id'])) {
+								$checked = 'checked';
+							} else {
+								$checked = '';
+							}
+							if (isset($array['disabled']) && true == $array['disabled']) {
+								$disabled = 'disabled';
+								$checked = '';
+							} else {
+								$disabled = '';
+							}							
+							?>
+							<td>
+							<input type="hidden" name="<?php echo esc_html($id); ?>" value="0"/>
+							<input class="checkobox-input" id="<?php echo esc_html($id); ?>" name="<?php echo esc_html($id); ?>" type="checkbox" <?php echo esc_html($checked); ?> value="1" <?php echo esc_html($disabled); ?>/>
+							<label class="checkbox-label" for="<?php echo esc_html($id); ?>"><?php echo ( isset($array['title']) ) ? esc_html($array['title']) : ''; ?></label>
+							<?php if ( isset($array['tooltip']) ) { ?>
+								<span class="woocommerce-help-tip tipTip" title="<?php echo esc_html($array['tooltip']); ?>"></span>
+							<?php } ?>
+						</td>
+						<?php } elseif ( isset( $array['type'] ) && 'dropdown' == $array['type'] ) { ?>
+							<?php
+							if ( isset($array['multiple']) ) {
+								$multiple = 'multiple';
+								$field_id = $array['multiple'];
+							} else {
+								$multiple = '';
+								$field_id = $id;
+							}
+							?>
+							<td>
+							<label class="select-label" for="<?php echo esc_html($id); ?>"><?php echo ( isset($array['title']) ) ? esc_html($array['title']) : ''; ?></label>
+							<?php if ( isset($array['tooltip']) ) { ?>
+								<span class="woocommerce-help-tip tipTip" title="<?php echo esc_html($array['tooltip']); ?>"></span>
+							<?php } ?>
+							<fieldset>
+								<select class="select" id="<?php echo esc_html($field_id); ?>" name="<?php echo esc_html($id); ?>" <?php echo esc_html($multiple); ?>>
+									<?php foreach ((array) $array['options'] as $key => $val ) { ?>
+										<?php
+										$selected = '';
+										if ( isset($array['multiple']) ) {
+											if ( in_array($key, (array) $this->data->$field_id ) ) {
+												$selected = 'selected';
+											}
+										} else {
+											if ( get_option($array['id']) == (string) $key ) {
+												$selected = 'selected';
+											}
+										}
+										?>
+										<option value="<?php echo esc_html($key); ?>" <?php echo esc_html($selected); ?> ><?php echo esc_html($val); ?></option>
+									<?php } ?>
+								</select><p class="description"><?php echo ( isset($array['desc_tip']) ) ? esc_html($array['desc_tip']) : ''; ?></p>
+							</fieldset>
+									</td>
+						<?php }
+					}
+				} ?>
+			</tbody>
+		</table>
+		<?php
+	}
 	
 	/*
 	* Get html of fields
@@ -470,7 +548,7 @@ class CBR_Admin_Settings {
 			</tr>
 			<?php } elseif ( 'textarea' == $array['type'] ) { ?>
 				<tr valign="top" class="border_1 <?php echo esc_html($array['class']); ?>">
-					<th scope="row" class="titledesc" >
+					<th scope="row" class="titledesc" colspan="2">
 						<label for="<?php echo esc_html($id); ?>">
 							<?php echo esc_html($array['title']); ?>
 							<?php
@@ -482,19 +560,14 @@ class CBR_Admin_Settings {
 								<span class="woocommerce-help-tip tipTip" title="<?php echo esc_html($array['tooltip']); ?>"></span>
 							<?php } ?>
 						</label>
-					</th>
-					<td class="forminp"
-						<?php if ('desc' == $array['type']) { ?> 
-							colspan=2
-						<?php } ?>>
 						<fieldset>
 						<textarea rows="3" cols="20" class="input-text regular-input" type="textarea" name="<?php echo esc_html($id); ?>" id="<?php echo esc_html($id); ?>" style="" placeholder="<?php echo ( !empty($array['placeholder']) ) ? esc_html($array['placeholder']) : ''; ?>"><?php echo ( !empty(get_option($array['id'])) ) ? esc_html(stripslashes(get_option($array['id']))) : ''; ?></textarea>
 						</fieldset><p class="description"><?php echo ( isset($array['desc_tip']) ) ? esc_html($array['desc_tip']) : ''; ?></p>
-					</td>
+					</th>
 				</tr>
 			<?php } elseif ( isset( $array['type'] ) && 'dropdown' == $array['type'] ) { ?>
 				<tr valign="top" class="border_1 <?php echo esc_html($array['class']); ?>">
-					<th scope="row" class="titledesc" >
+					<th scope="row" class="titledesc" colspan="2">
 						<label for="<?php echo esc_html($id); ?>">
 							<?php echo esc_html($array['title']); ?>
 							<?php
@@ -506,40 +579,34 @@ class CBR_Admin_Settings {
 								<span class="woocommerce-help-tip tipTip" title="<?php echo esc_html($array['tooltip']); ?>"></span>
 							<?php } ?>
 						</label>
+						<?php if ( isset($array['multiple']) ) {
+							$multiple = 'multiple';
+							$field_id = $array['multiple'];
+						} else {
+							$multiple = '';
+							$field_id = $id;
+						}
+						?>
+						<fieldset>
+							<select class="select" id="<?php echo esc_html($field_id); ?>" name="<?php echo esc_html($id); ?>" <?php echo esc_html($multiple); ?>>
+								<?php foreach ( (array) $array['options'] as $key => $val ) { ?>
+									<?php
+									$selected = '';
+									if ( isset($array['multiple']) ) {
+										if ( in_array($key, (array) $this->data->$field_id )) {
+											$selected = 'selected';
+										}
+									} else {
+										if ( get_option($array['id']) == (string) $key ) {
+											$selected = 'selected'; 
+										}
+									}
+									?>
+									<option value="<?php echo esc_html($key); ?>" <?php echo esc_html($selected); ?> ><?php echo esc_html($val); ?></option>
+								<?php } ?>
+							</select><p class="description"><?php echo ( isset($array['desc_tip']) ) ? esc_html($array['desc_tip']) : ''; ?></p>
+						</fieldset>
 					</th>
-					<td class="forminp"
-					<?php if ('desc' == $array['type']) { ?> 
-						colspan=2 
-					<?php } ?>>
-					<?php
-					if ( isset($array['multiple']) ) {
-						$multiple = 'multiple';
-						$field_id = $array['multiple'];
-					} else {
-						$multiple = '';
-						$field_id = $id;
-					}
-					?>
-					<fieldset>
-						<select class="select" id="<?php echo esc_html($field_id); ?>" name="<?php echo esc_html($id); ?>" <?php echo esc_html($multiple); ?>>
-							<?php foreach ( (array) $array['options'] as $key => $val ) { ?>
-								<?php
-								$selected = '';
-								if ( isset($array['multiple']) ) {
-									if ( in_array($key, (array) $this->data->$field_id )) {
-										$selected = 'selected';
-									}
-								} else {
-									if ( get_option($array['id']) == (string) $key ) {
-										$selected = 'selected'; 
-									}
-								}
-								?>
-								<option value="<?php echo esc_html($key); ?>" <?php echo esc_html($selected); ?> ><?php echo esc_html($val); ?></option>
-							<?php } ?><p class="description"><?php echo ( isset($array['desc']) ) ? esc_html($array['desc']) : ''; ?></p>
-						</select><p class="description"><?php echo ( isset($array['desc_tip']) ) ? esc_html($array['desc_tip']) : ''; ?></p>
-					</fieldset>
-					</td>
 				</tr>
 			<?php } ?>
 		<?php } } ?>
