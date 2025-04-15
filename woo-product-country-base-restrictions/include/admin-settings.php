@@ -165,7 +165,7 @@ class CBR_Admin_Settings {
 		?>
 		<div class="zorem-layout__header">
 			<h1 class="page_heading">
-				<a href="javascript:void(0)"><?php esc_html_e( 'Country Based Restriction', 'advanced-local-pickup-for-woocommerce' ); ?></a> <span class="dashicons dashicons-arrow-right-alt2"></span> <span class="breadcums_page_heading"><?php 'go-pro' == $tab ? esc_html_e( 'Go Pro', 'advanced-local-pickup-for-woocommerce' ) : esc_html_e( 'Settings', 'advanced-local-pickup-for-woocommerce' ); ?></span>
+				<a href="javascript:void(0)"><?php esc_html_e( 'Country Based Restriction', 'woo-product-country-base-restrictions' ); ?></a> <span class="dashicons dashicons-arrow-right-alt2"></span> <span class="breadcums_page_heading"><?php 'go-pro' == $tab ? esc_html_e( 'Go Pro', 'woo-product-country-base-restrictions' ) : esc_html_e( 'Settings', 'woo-product-country-base-restrictions' ); ?></span>
 			</h1>	
 			<img class="zorem-layout__header-logo" src="<?php echo esc_url($fzpcr->plugin_dir_url() . 'assets/images/zorem-logo.png'); ?>">
 		</div>
