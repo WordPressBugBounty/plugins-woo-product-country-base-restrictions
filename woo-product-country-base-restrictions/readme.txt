@@ -5,7 +5,7 @@ Tags: woocommerce, country restrictions
 Requires at least: 5.3
 Requires PHP: 7.0
 Tested up to: 6.7.2
-Stable tag: 3.7.1
+Stable tag: 3.7.2
 License: GPLv2 
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -61,6 +61,8 @@ Yes
 
 == Changelog ==
 
+= 3.7.2 =
+* Fix - Removed the .htaccess files
 = 3.7.1 =
 * Enhancement - Added a review request admin notice
 * Dev - WC Compatibility added upto 9.8.1
