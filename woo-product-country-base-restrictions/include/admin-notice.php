@@ -147,9 +147,9 @@ class CBR_Admin_Notice {
 		</style>
 		<div class="notice updated notice-success cbr-dismissable-notice">
 			<a href="<?php echo $dismissable_url; ?>" class="notice-dismiss"><span class="screen-reader-text">Dismiss this notice.</span></a>
-			<h2>🌍 Expand Your Control with Country Based Restrictions PRO!</h2>
-			<p>Upgrade to <strong><a href="https://www.zorem.com/product/country-based-restriction-pro/">Country Based Restrictions PRO</a></strong> and easily restrict products and payment gateways by country, apply bulk restriction rules, and customize the shopping experience for different regions.</p>
-			<p><strong>🎉 Get 20% Off*!</strong> Use code <strong>CBRPRO20</strong> at checkout.</p>
+			<h2>🌍 Upgrade to Country Based Restrictions PRO & Take Full Control!</h2>
+			<p>Enhance your WooCommerce store with <strong><a href="https://www.zorem.com/product/country-based-restriction-pro/">Country Based Restrictions PRO</a></strong>. Apply bulk restriction rules by category, tag, or shipping class, and control payment gateways based on customer country—perfect for geo-targeted selling and compliance.</p>
+			<p><strong>🎉 Get 20% Off!</strong> for new customers only. Use code <strong>CBRPRO20</strong> at checkout.</p>
 			<p>
 				<a href="https://www.zorem.com/product/country-based-restriction-pro/" class="button-primary cbr_notice_btn">Upgrade Now</a>
 				<a class="button-primary cbr_notice_btn" href="<?php echo $dismissable_url; ?>">Dismiss</a>
