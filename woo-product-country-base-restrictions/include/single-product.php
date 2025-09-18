@@ -112,7 +112,7 @@ class CBR_Single_Product {
 				'style'			=> 'max-width:350px;width:100%;',
 				'class'         => 'availability cbr_restricted_type',
 				'options'       => array(
-					'all'       => __( 'Product Available for all countries', 'woo-product-country-base-restrictions' ),
+					'all'       => __( 'Select a Rule', 'woo-product-country-base-restrictions' ),
 					'specific'  => __( 'Product Available for selected countries', 'woo-product-country-base-restrictions' ),
 					'excluded'  => __( 'Product not Available for selected countries', 'woo-product-country-base-restrictions' ),
 				)
@@ -168,7 +168,7 @@ class CBR_Single_Product {
 				'style'			=> 'max-width:350px;width:100%;',
 				'value'         => get_post_meta( $variation->ID, '_fz_country_restriction_type', true ),
 				'options'       => array(
-					'all'       => __( 'Product Available for all countries', 'woo-product-country-base-restrictions' ),
+					'all'       => __( 'Select a Rule', 'woo-product-country-base-restrictions' ),
 					'specific'  => __( 'Product Available for selected countries', 'woo-product-country-base-restrictions' ),
 					'excluded'  => __( 'Product not Available for selected countries', 'woo-product-country-base-restrictions' ),
 				)

@@ -128,11 +128,18 @@ class CBR_Admin_Notice {
 		</style>
 		<div class="notice updated notice-success cbr-dismissable-notice">
 			<a href="<?php echo $dismissable_url; ?>" class="notice-dismiss"><span class="screen-reader-text">Dismiss this notice.</span></a>
-			<h2>🔁 Simplify Returns with Zorem Returns for WooCommerce!</h2>
-			<p>Let your customers easily request returns or exchanges directly from their account. With features like return approvals, customizable return reasons, and automated status updates, the Zorem Returns plugin helps you manage post-purchase experiences more efficiently.</p>
-			<p><strong>🎁 Special Offer:</strong> Get <strong>20% OFF</strong> with coupon code <strong>RETURNS20</strong>!</p>
+			<h2>🌍 Upgrade to Country Based Restrictions PRO – Gain Full Control Over Who Sees What!</h2>
+			<p>Enhance your store's flexibility with CBR PRO:</p>
+			<ul>
+				<li>✅ Restrict product visibility by country, category, tag, or shipping class</li>
+				<li>✅ Show or hide prices, payment gateways, and checkout options by location</li>
+				<li>✅ Use a frontend country detection widget</li>
+				<li>✅ Bulk import restrictions with a CSV file</li>
+				<li>✅ Enable debug mode and customize restrictions with ease</li>
+			</ul>
+			<p>🎁 Special Offer: Get 20% OFF with coupon code CBRPRO20 – limited time only!</p>
 			<p>
-				<a href="https://www.zorem.com/product/zorem-returns/" class="button-primary cbr_notice_btn">👉 Learn More & Get Zorem Returns</a>
+				<a href="https://www.zorem.com/product/zorem-returns/" class="button-primary cbr_notice_btn">👉 Upgrade to CBR PRO</a>
 				<a class="button-primary cbr_notice_btn" href="<?php echo $dismissable_url; ?>">Dismiss</a>
 			</p>
 		</div>
