@@ -316,13 +316,13 @@ class CBR_Product_Restriction {
 		remove_action( 'pre_get_posts', array( $this, 'product_by_country_pre_get_posts' ) );
 		
 		$post__not_in = $query->get( 'post__not_in' );
-
+		
 		$args = $query->query_vars;
 		$args['fields'] = 'ids';
 		$args['posts_per_page'] = '-1';
 		$loop = new WP_Query( $args );
-
-		foreach ( $loop->posts as $product_id ) { 
+		
+		foreach ( $loop->posts as $product_id ) {
 			if ( $this->is_restricted_by_id( $product_id ) ) {
 				$post__not_in[] = $product_id;
 			}
@@ -336,7 +336,6 @@ class CBR_Product_Restriction {
 		
 		add_action( 'pre_get_posts', array( $this, 'product_by_country_pre_get_posts' ) );
 	}
-	
 	
 	/*
 	* Query args modify for Visual Composser products of restricted
@@ -462,4 +461,3 @@ class CBR_Product_Restriction {
 	}
 	
 }
-
