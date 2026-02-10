@@ -5,10 +5,10 @@
 * Description: Restrict WooCommerce products in specific countries
 * Author: zorem
 * Author URI: https://www.zorem.com/
-* Version: 3.7.6
+* Version: 3.7.7
 * Text Domain: woo-product-country-base-restrictions
 * WC requires at least: 4.0
-* WC tested up to: 10.3.5
+* WC tested up to: 10.5.0
 * Requires Plugins: woocommerce
 */
 
@@ -27,7 +27,7 @@ class ZH_Product_Country_Restrictions {
 	 * @since 1.0.0
 	 * @var string
 	 */
-	public $version = '3.7.6';
+	public $version = '3.7.7';
 	public $toolbar;
 	public $restriction;
 	public $plugin_path;
@@ -142,7 +142,7 @@ class ZH_Product_Country_Restrictions {
 	*/
 	public function cbr_plugin_update_hook( $upgrader_object, $options ) {		
 		// Check if the update is for a specific plugin
-		if ( isset( $options['action'] ) && $options['action'] === 'update' && isset( $options['type'] ) && $options['type'] === 'plugin' ) {
+		if ( isset( $options['action'] ) && 'update' === $options['action'] && isset( $options['type'] ) && 'plugin' === $options['type'] ) {
 			// Check if the updated plugin is your plugin
 			$plugin_slug = 'woo-product-country-base-restrictions/woocommerce-product-country-base-restrictions.php';
 			if ( is_array( $options['plugins'] ) && in_array( $plugin_slug, $options['plugins'] ) ) {
@@ -320,10 +320,10 @@ add_action( 'before_woocommerce_init', function() {
 } );
 
 if ( ! function_exists( 'zorem_tracking' ) ) {
-    function zorem_tracking() {
-        require_once dirname(__FILE__) . '/zorem-tracking/zorem-tracking.php';
+	function zorem_tracking() {
+		require_once dirname(__FILE__) . '/zorem-tracking/zorem-tracking.php';
 		$plugin_name = "Country Based Restrictions for WooCommerce";
-        $plugin_slug = "woo-product-country-base-restrictions-woocommerce";
+		$plugin_slug = "woo-product-country-base-restrictions-woocommerce";
 		$user_id = "1";
 		$setting_page_type = "submenu";
 		$setting_page_location =  "A submenu under other plugin's top level menu";
@@ -335,6 +335,6 @@ if ( ! function_exists( 'zorem_tracking' ) ) {
 
 
 		return $zorem_tracking;
-    }
-    zorem_tracking();
+	}
+	zorem_tracking();
 }

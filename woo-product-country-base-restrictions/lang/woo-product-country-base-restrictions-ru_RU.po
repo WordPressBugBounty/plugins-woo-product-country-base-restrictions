@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: WooCommerce Product Country Base Restrictions\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-10-21 05:43+0000\n"
-"PO-Revision-Date: 2021-01-18 10:07+0000\n"
+"PO-Revision-Date: 2026-02-10 10:08+0000\n"
 "Last-Translator: Kuldip\n"
 "Language-Team: Russian\n"
 "Language: ru_RU\n"
@@ -15,115 +15,369 @@ msgstr ""
 "X-Generator: Loco https://localise.biz/\n"
 "X-Loco-Version: 2.4.3; wp-5.5.1"
 
-#: include/admin-settings.php:163 include/admin-settings.php:164
-msgid "Add-ons"
-msgstr ""
-"Дополнения\n"
+#: include/views/cbr_addons_tab.php:242
+msgid "Active"
+msgstr "Активный"
 
-#: include/views/cbr_setting_tab.php:24 include/views/cbr_setting_tab.php:40
-#: include/views/cbr_setting_tab.php:57
-msgid "Advanced"
-msgstr ""
-"Продвинутый\n"
+#: include/views/cbr_payment_restrictions_tab.php:52
+#: include/views/cbr_catalog_restrictions_tab.php:54
+msgid "Add New Restriction Rule"
+msgstr "Добавить новое правило ограничения"
 
-#: include/admin-settings.php:243
+#: include/views/cbr_addons_tab.php:144
+msgid "Advanced Debug"
+msgstr "Расширенная отладка"
+
+#: include/views/cbr_addons_tab.php:95
+msgid "Advanced Detection"
+msgstr "Расширенное обнаружение"
+
+#: include/admin-settings.php:377
 msgid "After add to cart"
 msgstr ""
 "После добавления в корзину\n"
 
-#: include/admin-settings.php:244
+#: include/admin-settings.php:378
 msgid "After meta"
 msgstr ""
 "После мета\n"
 
-#: include/admin-settings.php:241
+#: include/admin-settings.php:375
 msgid "After price"
 msgstr ""
 "После цены\n"
 
-#: include/admin-settings.php:245
+#: include/admin-settings.php:379
 msgid "After sharing"
 msgstr ""
 "После обмена\n"
 
-#: include/admin-settings.php:242
+#: include/admin-settings.php:376
 msgid "After short description"
 msgstr ""
 "После краткого описания\n"
 
-#: include/admin-settings.php:240
+#: include/admin-settings.php:374
 msgid "After title"
 msgstr ""
 "После заголовка\n"
 
-#: include/admin-settings.php:239
+#: include/views/cbr_setting_tab.php:105
+msgid "Allow Add To Cart"
+msgstr "Разрешить добавление в корзину"
+
+#: include/views/cbr_addons_tab.php:155
+msgid ""
+"Allow specific users or user roles to bypass country-based restrictions."
+msgstr ""
+"Предоставьте определенным пользователям или ролям пользователей возможность "
+"обходить ограничения, установленные для каждой страны."
+
+#: include/views/cbr_addons_tab.php:32
+msgid ""
+"AST Pro provides powerful features to easily add tracking information to "
+"WooCommerce orders, automate fulfillment workflows, and keep your customers "
+"happy and informed."
+msgstr ""
+"AST Pro предоставляет мощные функции для простого добавления информации об "
+"отслеживании заказов WooCommerce, автоматизации рабочих процессов выполнения "
+"заказов и обеспечения удовлетворенности и информированности ваших клиентов."
+
+#: include/views/cbr_setting_tab.php:194
+msgid "Available variable: {Product_Name}, {Product_name_with_link}"
+msgstr "Доступные переменные: {Product_Name}, {Product_name_with_link}"
+
+#: include/views/cbr_addons_tab.php:108
+msgid "Basic"
+msgstr "Базовый"
+
+#: include/admin-settings.php:373
 msgid "Before title"
 msgstr ""
 "Перед названием\n"
 
-#: include/single-product.php:137
-msgid "before you can choose country restrictions"
-msgstr ""
-"прежде чем вы сможете выбрать ограничения страны\n"
+#: include/views/cbr_addons_tab.php:162
+msgid "Built-in support for WPML, Polylang, and other popular plugins."
+msgstr "Встроенная поддержка WPML, Polylang и других популярных плагинов."
 
-#: include/views/cbr_setting_tab.php:9
+#: include/views/cbr_addons_tab.php:130
+msgid "Bulk Import"
+msgstr "Импорт навалом"
+
+#: include/views/cbr_addons_tab.php:126
+msgid "Bulk Import Restrictions"
+msgstr "Ограничения на оптовый импорт"
+
+#: include/views/cbr_catalog_restrictions_tab.php:26
+msgid "By Categories"
+msgstr "По категориям"
+
+#: include/views/cbr_catalog_restrictions_tab.php:39
+msgid "By Tags"
+msgstr "По тегам"
+
+#: include/views/cbr_setting_tab.php:161
+msgid "Bypass Restriction for Specific Users"
+msgstr "Обход ограничений для определенных пользователей"
+
+#: include/admin-settings.php:279
+msgid "Bypass restrictions for specific users"
+msgstr "Обход ограничений для определенных пользователей"
+
+#: include/views/cbr_addons_tab.php:154
+msgid "Bypass Restrictions for Users"
+msgstr "Обход ограничений для пользователей"
+
+#: include/admin-settings.php:280
+msgid "Cart & category restriction messages"
+msgstr "Сообщения об ограничениях в корзине и категориях"
+
+#: include/views/cbr_setting_tab.php:184
+msgid "Cart restriction message"
+msgstr "Сообщение об ограничении корзины"
+
+#: include/views/cbr_addons_tab.php:112
+msgid "Catalog Restriction Rules"
+msgstr "Правила ограничений каталога"
+
+#: include/admin-settings.php:276
+msgid "Catalog restriction rules by category"
+msgstr "Правила ограничения каталога по категориям"
+
+#: include/admin-settings.php:166 include/admin-settings.php:236
+#: include/admin-settings.php:243
+#: include/views/cbr_catalog_restrictions_tab.php:10
+msgid "Catalog Restrictions"
+msgstr "Ограничения каталога"
+
+#: include/views/cbr_addons_tab.php:105 include/views/cbr_setting_tab.php:17
 msgid "Catalog Visibility"
 msgstr ""
 "Видимость каталога\n"
 
-#: include/views/cbr_setting_tab.php:57
+#: include/views/cbr_setting_tab.php:77
 msgid "Catalog Visible (non purchasable)"
 msgstr ""
 "Каталог виден (нельзя купить)\n"
 
-#: include/admin-settings.php:281
-msgid "Choose the page for redirect 404 error page to selected page."
-msgstr ""
-"Выберите страницу для перенаправления страницы с ошибкой 404 на выбранную "
-"страницу.\n"
+#: include/views/cbr_setting_tab.php:201
+msgid "Category restriction message"
+msgstr "сообщение об ограничении по категории"
 
-#: include/admin-settings.php:274
+#: include/views/cbr_addons_tab.php:116
+msgid "Category Rules"
+msgstr "Правила категорий"
+
+#: include/views/cbr_addons_tab.php:81
+msgid "CBR FREE"
+msgstr "CBR БЕСПЛАТНО"
+
+#: include/views/cbr_addons_tab.php:85
+msgid "CBR PRO"
+msgstr "CBR PRO"
+
+#: include/admin-settings.php:290
+msgid ""
+"Check our documentation or contact our support team if you have any "
+"questions."
+msgstr ""
+"Если у вас возникнут вопросы, ознакомьтесь с нашей документацией или "
+"свяжитесь с нашей службой поддержки."
+
+#: include/views/cbr_addons_tab.php:151
+msgid "Checkout Control"
+msgstr "Управление кассой"
+
+#: include/admin-settings.php:409
 msgid "Choose the page to redirect"
 msgstr ""
 "Выберите страницу для перенаправления\n"
 
-#: include/admin-settings.php:146
+#: include/admin-settings.php:365
+msgid ""
+"Choose where to display the restriction message on the product page. Default:"
+" ‘After add to cart.’"
+msgstr ""
+"Выберите, где на странице товара будет отображаться сообщение об ограничении."
+" По умолчанию: «После добавления в корзину»."
+
+#: include/views/cbr_addons_tab.php:161
+msgid "Compatible with Popular Plugins"
+msgstr "Совместимо с популярными плагинами."
+
+#: include/views/cbr_setting_tab.php:27
+msgid "Completely hide restricted products from your store."
+msgstr "Полностью скройте запрещенные товары в вашем магазине."
+
+#: include/admin-settings.php:177
+msgid "Country Based Restriction"
+msgstr "Ограничения по странам"
+
+#. Name of the plugin
+msgid "Country Based Restrictions for WooCommerce"
+msgstr "Ограничения для WooCommerce в зависимости от страны"
+
+#: include/views/cbr_addons_tab.php:133 include/views/cbr_setting_tab.php:238
+msgid "Country Detection Widget"
+msgstr "Виджет определения страны"
+
+#: include/admin-settings.php:278
+msgid "Country detection widget & customizer"
+msgstr "Виджет определения страны и настройка параметров"
+
+#: include/single-product.php:89
 msgid "Country Restrictions"
 msgstr ""
 "Ограничения по странам\n"
 
-#: include/single-product.php:81
-msgid "Country restrictions"
-msgstr ""
-"Страновые ограничения\n"
-
-#: include/admin-settings.php:231
+#: include/views/cbr_catalog_restrictions_tab.php:11
 msgid ""
-"Default : After add to cart. This message will show on product page when "
-"product is not purchasable."
+"Create bulk restriction rules to restrict products by categories, tags, "
+"attributes, and shipping classes for specific countries. Upgrade to PRO to "
+"unlock this feature."
 msgstr ""
-"По умолчанию: после добавления в корзину. Это сообщение будет отображаться "
-"на странице товара, когда товар недоступен для покупки.\n"
+"Создавайте правила массового ограничения для товаров по категориям, тегам, "
+"атрибутам и классам доставки для определенных стран. Для разблокировки этой "
+"функции необходимо перейти на версию PRO."
 
-#: include/admin-settings.php:149
-msgid "Docs"
-msgstr "Документы"
+#: include/views/cbr_addons_tab.php:113
+msgid ""
+"Create restriction rules by product categories and apply to multiple "
+"countries at once."
+msgstr ""
+"Создавайте правила ограничений по категориям товаров и применяйте их "
+"одновременно к нескольким странам."
 
-#: include/admin-settings.php:199
+#: include/views/cbr_addons_tab.php:80
+msgid "Current"
+msgstr "Текущий"
+
+#: include/views/cbr_addons_tab.php:39
+msgid ""
+"Customer Email Verification helps WooCommerce store owners reduce "
+"registration spam and fraudulent orders by requiring customers to verify "
+"their email address when registering an account or before placing an order."
+msgstr ""
+"Подтверждение адреса электронной почты клиента помогает владельцам магазинов "
+"WooCommerce сократить количество спама при регистрации и мошеннических "
+"заказов, требуя от клиентов подтверждения адреса электронной почты при "
+"регистрации учетной записи или перед оформлением заказа."
+
+#: include/views/cbr_setting_tab.php:251
+msgid "Customize the country detection widget"
+msgstr "Настройте виджет определения страны."
+
+#: include/views/cbr_addons_tab.php:140
+msgid "Debug Mode"
+msgstr "Режим отладки"
+
+#: include/views/cbr_addons_tab.php:92
+msgid ""
+"Detect customer country using WooCommerce geolocation or shipping address."
+msgstr ""
+"Определяйте страну клиента с помощью геолокации WooCommerce или адреса "
+"доставки."
+
+#: include/admin-settings.php:329
+msgid ""
+"Detect the customer’s country using WooCommerce’s geolocation feature, "
+"ignoring the shipping address (if logged in)"
+msgstr ""
+"Определите страну клиента с помощью функции геолокации WooCommerce, "
+"игнорируя адрес доставки (если пользователь авторизован)."
+
+#: include/views/cbr_addons_tab.php:134
+msgid ""
+"Display a country detection widget on the frontend with customizer support."
+msgstr ""
+"Отобразите виджет определения страны на внешнем интерфейсе с поддержкой "
+"настройки."
+
+#: include/views/cbr_setting_tab.php:219
+msgid ""
+"Display a custom message on product listing pages (shop, category, tag, or "
+"search results) when all products are restricted for the customer's detected "
+"country."
+msgstr ""
+"Отображать пользовательское сообщение на страницах со списком товаров "
+"(магазин, категория, тег или результаты поиска), когда все товары недоступны "
+"для страны, указанной покупателем."
+
+#: include/views/cbr_setting_tab.php:78
+msgid ""
+"Display restricted products in your catalog but make them non-purchasable."
+msgstr ""
+"Разместите в каталоге товары с ограничениями, но сделайте их недоступными "
+"для покупки."
+
+#: include/views/cbr_setting_tab.php:202
+msgid ""
+"Displayed on category/tag pages when restricted. Default: 'Sorry, products "
+"from this category are not available in your country.'"
+msgstr ""
+"Отображается на страницах категорий/тегов при наличии ограничений. По "
+"умолчанию: «Извините, товары из этой категории недоступны в вашей стране»."
+
+#: include/views/cbr_setting_tab.php:185
+msgid ""
+"Displayed on the cart page when a product is removed due to country "
+"restrictions."
+msgstr ""
+"Отображается на странице корзины, когда товар удаляется из-за ограничений по "
+"стране."
+
+#: include/admin-settings.php:356
+msgid ""
+"Displayed on the product page when a product is not purchasable. Default: "
+"‘Sorry, this product is not available in your country.’"
+msgstr ""
+"Отображается на странице товара, когда товар недоступен для покупки. По "
+"умолчанию: «Извините, этот товар недоступен в вашей стране»."
+
+#: include/admin-settings.php:294
+msgid "Documentation"
+msgstr "Документация"
+
+#: include/admin-settings.php:332
 msgid "Enable Debug Toolbar"
 msgstr ""
 "Включить панель инструментов отладки\n"
 
-#: include/admin-settings.php:196
+#: include/views/cbr_setting_tab.php:106
 msgid ""
-"Enable this option to detect the customer country only by the WooCommerce "
-"geo-location and to ignore the customer shipping country (if logged in)"
+"Enable this option to allow add to cart the restricted products but the "
+"customer can't process to checkout."
 msgstr ""
-"Включите эту опцию, чтобы определять страну клиента только по "
-"географическому местоположению WooCommerce и игнорировать страну доставки "
-"клиента (если залогинен)\n"
+"Включите эту опцию, чтобы разрешить добавление в корзину товаров с "
+"ограничениями, но при этом покупатель не сможет перейти к оформлению заказа."
 
-#: include/admin-settings.php:304 include/admin-settings.php:337
+#: include/views/cbr_setting_tab.php:141
+msgid ""
+"Enable this option to apply country-based restriction only when the customer "
+"clicks the Place Order button on the checkout page."
+msgstr ""
+"Включите эту опцию, чтобы ограничения по странам применялись только тогда, "
+"когда покупатель нажимает кнопку «Оформить заказ» на странице оформления "
+"заказа."
+
+#: include/views/cbr_setting_tab.php:93
+msgid "Enable this option to hide prices for restricted products."
+msgstr ""
+"Включите эту опцию, чтобы скрыть цены на товары с ограниченным доступом."
+
+#: include/views/cbr_setting_tab.php:59
+msgid "Enable this option to hide restricted product price."
+msgstr "Включите эту опцию, чтобы скрыть цену товара с ограничениями."
+
+#: include/admin-settings.php:439
+msgid ""
+"Enable this option to hide restricted product variations from the product "
+"selection on variable product pages"
+msgstr ""
+"Включите эту опцию, чтобы скрыть ограниченные варианты товаров из выбора на "
+"страницах товаров с вариантами."
+
+#: include/admin-settings.php:473
 msgid ""
 "Enable this option to hide the restricted product variations form the "
 "product variations selection on variable product page."
@@ -131,190 +385,511 @@ msgstr ""
 "Включите эту опцию, чтобы скрыть ограниченные варианты продукта из выбора "
 "вариантов продукта на странице переменного продукта.\n"
 
-#: include/admin-settings.php:314
+#: include/admin-settings.php:449
+#| msgid ""
+#| "Enable this option to make products non-purchasable (i.e. product can't "
+#| "be added to the cart)."
 msgid ""
-"Enable this option to make products non-purchasable (i.e. product can't be "
-"added to the cart)."
+"Enable this option to make products non-purchasable (i.e., cannot be added "
+"to the cart)"
 msgstr ""
-"Включите эту опцию, чтобы сделать товары недоступными для покупки (то есть "
-"товар не может быть добавлен в корзину).\n"
+"Включите эту опцию, чтобы сделать товары недоступными для покупки (т.е., их "
+"нельзя было добавить в корзину)."
 
-#: include/admin-settings.php:270
-msgid "Enable this option to redirect 404 error page to shop page."
+#: include/admin-settings.php:405
+#| msgid "Enable this option to redirect 404 error page to shop page."
+msgid "Enable this option to redirect the 404 error page to the shop page"
 msgstr ""
-"Включите эту опцию, чтобы перенаправить страницу ошибки 404 на страницу "
-"магазина.\n"
+"Включите эту опцию, чтобы перенаправлять страницу ошибки 404 на страницу "
+"магазина."
 
-#: include/admin-settings.php:206
-msgid ""
-"Enable this option to show detected geo-location country top of header in "
-"frontend."
-msgstr ""
-"Включите эту опцию, чтобы показать обнаруженную страну с географическим "
-"местоположением в верхней части заголовка во внешнем интерфейсе.\n"
+#: include/views/cbr_addons_tab.php:221
+msgid "Extend your store's capabilities with our ecosystem"
+msgstr "Расширьте возможности своего магазина с помощью нашей экосистемы."
 
-#: include/admin-settings.php:189
+#: include/views/cbr_addons_tab.php:78
+msgid "Feature Comparison"
+msgstr "Сравнение характеристик"
+
+#: include/admin-settings.php:322
 msgid "Force Geolocation"
 msgstr ""
 "Принудительная геолокация\n"
 
-#: include/views/cbr_setting_tab.php:75
-#| msgid "General Setting"
-msgid "General Settings"
-msgstr ""
-"Общие настройки\n"
+#: include/views/cbr_addons_tab.php:109
+msgid "Full Control"
+msgstr "Полный контроль"
 
-#: include/single-product.php:137
-msgid "HERE"
-msgstr ""
-"ВОТ\n"
+#: include/views/cbr_addons_tab.php:165
+msgid "Full Integration"
+msgstr "Полная интеграция"
 
-#: include/views/cbr_setting_tab.php:40
+#: include/views/cbr_addons_tab.php:102
+msgid "Full Restrictions"
+msgstr "Полные ограничения"
+
+#: include/views/cbr_addons_tab.php:137
+msgid "Full Widget"
+msgstr "Полный виджет"
+
+#: include/views/cbr_addons_tab.php:123
+msgid "Gateway Control"
+msgstr "Управление шлюзом"
+
+#: include/views/cbr_addons_tab.php:91
+msgid "GeoLocation Detection"
+msgstr "Определение геолокации"
+
+#: include/views/cbr_addons_tab.php:208
+msgid "GET STARTED WITH PRO"
+msgstr "НАЧНИТЕ С PRO"
+
+#: include/admin-settings.php:170 include/admin-settings.php:252
+#: include/admin-settings.php:259
+msgid "Go Pro"
+msgstr "Go Pro"
+
+#: include/views/cbr_setting_tab.php:43
 msgid "Hide catalog visibility"
 msgstr ""
 "Скрыть видимость каталога\n"
 
-#: include/views/cbr_setting_tab.php:24
+#: include/views/cbr_setting_tab.php:26
 msgid "Hide Completely"
 msgstr ""
 "Полностью спрятаться\n"
 
-#: include/admin-settings.php:297 include/admin-settings.php:330
+#: include/views/cbr_addons_tab.php:106
+msgid "Hide or show products in your catalog based on the customer's country."
+msgstr ""
+"Скрывайте или отображайте товары в каталоге в зависимости от страны "
+"покупателя."
+
+#: include/admin-settings.php:432 include/admin-settings.php:466
 msgid "Hide Product Variations"
 msgstr ""
 "Скрыть варианты продукта\n"
 
-#: include/admin-settings.php:307
+#: include/views/cbr_setting_tab.php:58 include/views/cbr_setting_tab.php:92
+msgid "Hide Restricted Product Price"
+msgstr "Скрыть цену товара с ограничениями"
+
+#: include/views/cbr_setting_tab.php:44
+msgid ""
+"Hide restricted products from your shop and search results. Products remain "
+"accessible via direct links."
+msgstr ""
+"Скройте товары с ограниченным доступом из вашего магазина и результатов "
+"поиска. Товары останутся доступными по прямым ссылкам."
+
+#. Author URI of the plugin
+msgid "https://www.zorem.com/"
+msgstr "https://www.zorem.com/"
+
+#. URI of the plugin
+msgid ""
+"https://www.zorem.com/shop/woocommerce-product-country-based-restrictions/"
+msgstr ""
+"https://www.zorem.com/shop/woocommerce-product-country-based-restrictions/"
+
+#: include/views/cbr_addons_tab.php:127
+msgid ""
+"Import product restrictions in bulk via CSV for efficient store management."
+msgstr ""
+"Импортируйте ограничения на товары оптом через CSV-файлы для эффективного "
+"управления магазином."
+
+#: include/views/cbr_addons_tab.php:209
+msgid "Join store owners optimizing their country restrictions"
+msgstr ""
+"Присоединяйтесь к владельцам магазинов, оптимизирующим ограничения по "
+"странам."
+
+#: include/views/cbr_addons_tab.php:18
+msgid ""
+"Keep your customers informed by sending them automated SMS text messages "
+"with order and delivery updates. You can send SMS notifications to customers "
+"when the order status is updated or when the shipment is out for delivery "
+"and more."
+msgstr ""
+"Информируйте своих клиентов, отправляя им автоматические SMS-сообщения с "
+"обновлениями статуса заказа и доставки. Вы можете отправлять SMS-уведомления "
+"клиентам об изменении статуса заказа, о начале доставки и многом другом."
+
+#: include/views/cbr_addons_tab.php:244
+msgid "Learn More"
+msgstr "Узнать больше"
+
+#: include/views/cbr_addons_tab.php:164
+msgid "Limited Support"
+msgstr "Ограниченная поддержка"
+
+#: include/admin-settings.php:442
 msgid "Make non-purchasable"
 msgstr ""
 "Сделать не покупаемым\n"
 
-#: woocommerce-product-country-base-restrictions.php:193
-#, php-format
-msgid ""
-"Please install and activate %sWooCommerce%s for Country Based Restrictions "
-"for WooCommerce!"
-msgstr ""
-"Пожалуйста, установите и активируйте% sWooCommerce% s для ограничений по "
-"стране для WooCommerce!\n"
+#: include/views/cbr_setting_tab.php:119
+msgid "Move restricted products to the end of product listings."
+msgstr "Переместите товары с ограниченным доступом в конец списка товаров."
 
-#: include/single-product.php:106 include/single-product.php:160
-msgid "Product Available for all countries"
-msgstr ""
-"Продукт доступен для всех стран\n"
+#: include/admin-settings.php:289
+msgid "Need help?"
+msgstr "Нужна помощь?"
 
-#: include/single-product.php:107 include/single-product.php:161
+#: include/views/cbr_addons_tab.php:115 include/views/cbr_addons_tab.php:122
+#: include/views/cbr_addons_tab.php:129 include/views/cbr_addons_tab.php:136
+#: include/views/cbr_addons_tab.php:150 include/views/cbr_addons_tab.php:157
+msgid "Not Available"
+msgstr "Нет в наличии"
+
+#: include/views/cbr_addons_tab.php:119
+msgid "Payment Gateway by Country"
+msgstr "Платежный шлюз по странам"
+
+#: include/admin-settings.php:277
+msgid "Payment gateway restrictions by country"
+msgstr "Ограничения платежных шлюзов в зависимости от страны"
+
+#: include/views/cbr_payment_restrictions_tab.php:25
+msgid "Payment Restriction Rule 1"
+msgstr "Правило ограничения платежей 1"
+
+#: include/views/cbr_payment_restrictions_tab.php:37
+msgid "Payment Restriction Rule 2"
+msgstr "Правило 2 об ограничении платежей"
+
+#: include/admin-settings.php:168 include/admin-settings.php:244
+#: include/admin-settings.php:251
+#: include/views/cbr_payment_restrictions_tab.php:10
+msgid "Payment Restrictions"
+msgstr "Ограничения на платежи"
+
+#: include/views/cbr_addons_tab.php:220
+msgid "Powerful Add-ons"
+msgstr "Мощные дополнения"
+
+#: include/views/cbr_addons_tab.php:168
+msgid "Premium Support"
+msgstr "Премиум-поддержка"
+
+#: include/views/cbr_addons_tab.php:172
+msgid "Priority Support"
+msgstr "Приоритетная поддержка"
+
+#: include/views/cbr_addons_tab.php:169
+msgid "Priority ticket handling and dedicated help center access."
+msgstr ""
+"Приоритетное рассмотрение заявок и доступ к выделенному центру поддержки."
+
+#: include/admin-settings.php:243 include/admin-settings.php:251
+#: include/views/cbr_payment_restrictions_tab.php:10
+#: include/views/cbr_setting_tab.php:61 include/views/cbr_setting_tab.php:95
+#: include/views/cbr_setting_tab.php:108 include/views/cbr_setting_tab.php:121
+#: include/views/cbr_setting_tab.php:138 include/views/cbr_setting_tab.php:165
+#: include/views/cbr_setting_tab.php:188 include/views/cbr_setting_tab.php:205
+#: include/views/cbr_setting_tab.php:222 include/views/cbr_setting_tab.php:240
+#: include/views/cbr_catalog_restrictions_tab.php:10
+msgid "PRO"
+msgstr "ПРО"
+
+#: include/single-product.php:116 include/single-product.php:172
 msgid "Product Available for selected countries"
 msgstr ""
 "Продукт доступен для выбранных стран\n"
 
-#: woocommerce-product-country-base-restrictions.php:204
+#: woocommerce-product-country-base-restrictions.php:260
 msgid "Product Country Restrictions requires WooCommerce 3.0 or newer"
 msgstr ""
 "Ограничения по стране для продукта требуют WooCommerce 3.0 или новее\n"
 
-#: include/single-product.php:108 include/single-product.php:162
+#: include/views/cbr_setting_tab.php:218
+msgid "Product Listing Restriction Message"
+msgstr "Сообщение об ограничении размещения товара"
+
+#: include/single-product.php:117 include/single-product.php:173
 msgid "Product not Available for selected countries"
 msgstr ""
 "Продукт недоступен для выбранных стран\n"
 
-#: include/admin-settings.php:221
+#: include/admin-settings.php:355
 msgid "Product restriction message"
 msgstr ""
 "Сообщение об ограничении продукта\n"
 
-#: include/admin-settings.php:230
+#: include/admin-settings.php:364
 msgid "Product restriction message position"
 msgstr ""
 "Позиция сообщения об ограничении продукта\n"
 
-#: include/admin-settings.php:264
+#: include/views/cbr_addons_tab.php:98
+msgid "Product Restrictions"
+msgstr "Ограничения на продукцию"
+
+#: include/views/cbr_addons_tab.php:84
+msgid "Recommended"
+msgstr "Рекомендуется"
+
+#: include/admin-settings.php:399
 msgid "Redirect the 404 page"
 msgstr ""
 "Перенаправить страницу 404\n"
+
+#: include/admin-settings.php:281 include/views/cbr_addons_tab.php:147
+msgid "Restrict on Place Order (Checkout)"
+msgstr "Ограничение на размещение заказа (оформление покупки)"
+
+#: include/views/cbr_payment_restrictions_tab.php:11
+msgid ""
+"Restrict payment methods based on the customer billing or shipping country. "
+"Create rules to include or exclude specific payment gateways for specific "
+"countries. Upgrade to PRO to unlock this feature."
+msgstr ""
+"Ограничивайте способы оплаты в зависимости от страны выставления счетов или "
+"страны доставки клиента. Создавайте правила для включения или исключения "
+"определенных платежных шлюзов для конкретных стран. Для разблокировки этой "
+"функции необходимо перейти на версию PRO."
+
+#: include/views/cbr_setting_tab.php:136
+msgid "Restrict product only on Place Order (Checkout)"
+msgstr ""
+"Ограничение на продажу товара только при оформлении заказа (на странице "
+"оформления покупки)."
+
+#: include/views/cbr_addons_tab.php:148
+msgid ""
+"Restrict products at checkout based on the customer's billing/shipping "
+"country."
+msgstr ""
+"Настройте ограничение доступа к товарам при оформлении заказа в зависимости "
+"от страны выставления счетов/доставки клиента."
+
+#: include/views/cbr_addons_tab.php:120
+msgid "Restrict specific payment gateways based on the customer's country."
+msgstr ""
+"Ограничьте доступ к определенным платежным шлюзам в зависимости от страны "
+"клиента."
+
+#: include/views/cbr_addons_tab.php:99
+msgid "Restrict specific products from being purchased in certain countries."
+msgstr "Ограничить продажу определенных товаров в некоторых странах."
 
 #. Description of the plugin
 msgid "Restrict WooCommerce products in specific countries"
 msgstr ""
 "Ограничить продукты WooCommerce в определенных странах\n"
 
-#: include/single-product.php:101 include/single-product.php:154
+#: include/single-product.php:110 include/single-product.php:165
 msgid "Restriction rule"
 msgstr ""
 "Правило ограничения\n"
 
-#: include/admin-notice.php:123
+#: include/views/cbr_setting_tab.php:150
+msgid "Restriction Settings"
+msgstr "Настройки ограничений"
+
+#: include/views/cbr_catalog_restrictions_tab.php:25
+msgid "Restrictions Rule 1"
+msgstr "Правило ограничений 1"
+
+#: include/views/cbr_catalog_restrictions_tab.php:38
+msgid "Restrictions Rule 2"
+msgstr "Правило ограничений 2"
+
+#: include/views/cbr_addons_tab.php:46
 msgid ""
-"Save time by applying bulk country restrictions by the product categories, "
-"tags, attributes and shipping classes. Enable and disable payment gateways "
-"by the customer billing or shipping country and more..."
+"Sales Report Email Pro helps you understand how well your store is "
+"performing and how your products are selling by sending daily, weekly, or "
+"monthly sales reports directly from your WooCommerce store to your email."
 msgstr ""
-"Экономьте время, применяя групповые ограничения по категориям товаров, тегам,"
-" атрибутам и классам доставки. Включение и отключение платежных шлюзов в "
-"зависимости от страны выставления счета или доставки и многое другое ...\n"
+"Sales Report Email Pro поможет вам понять, насколько хорошо работает ваш "
+"магазин и как продаются ваши товары, отправляя ежедневные, еженедельные или "
+"ежемесячные отчеты о продажах непосредственно из вашего магазина WooCommerce "
+"на вашу электронную почту."
 
-#: include/single-product.php:122 include/single-product.php:176
-msgid "Select countries"
+#: include/views/cbr_setting_tab.php:170
+msgid "Search for users..."
+msgstr "Поиск пользователей..."
+
+#: include/single-product.php:115 include/single-product.php:171
+msgid "Select a Rule"
+msgstr "Выберите правило"
+
+#: include/views/cbr_setting_tab.php:162
+msgid ""
+"Select individual users who should be exempt from all country-based "
+"restrictions. These users will see all products and can purchase without "
+"restriction regardless of their detected country."
 msgstr ""
-"Выберите страны\n"
+"Выберите отдельных пользователей, на которых должны распространяться все "
+"ограничения, установленные для каждой страны. Эти пользователи увидят все "
+"товары и смогут совершать покупки без ограничений независимо от указанной "
+"страны."
 
-#: include/admin-settings.php:223 include/products-restriction.php:223
+#: include/admin-settings.php:416
+msgid "Select the page to redirect the 404 error page"
+msgstr ""
+"Выберите страницу, на которую будет перенаправлена страница с ошибкой 404."
+
+#: include/admin-settings.php:172 include/admin-settings.php:234
+#: include/admin-settings.php:235
+msgid "Settings"
+msgstr "Настройки"
+
+#: include/views/cbr_addons_tab.php:141
+msgid "Show geolocation country in the frontend toolbar for easy debugging."
+msgstr ""
+"Отображение страны по геолокации на панели инструментов фронтенда для "
+"удобства отладки."
+
+#: include/views/cbr_setting_tab.php:252
+msgid ""
+"Show the detected country and allow customers to change their shipping "
+"country on any page."
+msgstr ""
+"Отобразить обнаруженную страну и позволить клиентам изменить страну доставки "
+"на любой странице."
+
+#: include/admin-settings.php:339
+msgid ""
+"Show the detected geolocation country at the top of the header on the "
+"frontend"
+msgstr ""
+"Отображайте страну, указанную в геолокации, в верхней части заголовка на "
+"фронтенде."
+
+#: include/views/cbr_setting_tab.php:228
+msgid "Shown when no products are available due to country-based restrictions."
+msgstr ""
+"Отображается в случаях, когда товары недоступны из-за ограничений, "
+"действующих в конкретной стране."
+
+#: include/views/cbr_setting_tab.php:226
+msgid "Sorry, products are not available in your country."
+msgstr "К сожалению, данный товар недоступен в вашей стране."
+
+#: include/views/cbr_setting_tab.php:209
+msgid ""
+"Sorry, products from this category are not available to purchase in your "
+"country."
+msgstr ""
+"К сожалению, товары из этой категории недоступны для покупки в вашей стране."
+
+#: include/products-restriction.php:235 include/admin-settings.php:357
 msgid "Sorry, this product is not available to purchase in your country."
 msgstr ""
 "К сожалению, этот продукт недоступен для покупки в вашей стране.\n"
 
-#: include/admin-settings.php:222
+#: include/views/cbr_setting_tab.php:118
+msgid "Sort products by availability (Available → Restricted)"
+msgstr "Сортировка товаров по наличию (В наличии → Ограничено)"
+
+#: include/views/cbr_addons_tab.php:171
+msgid "Standard Only"
+msgstr "Только стандартный"
+
+#: include/views/cbr_addons_tab.php:70
 msgid ""
-"This message show on product page when product is not purchasable. Default "
-"message : Sorry, this product is not available in your country."
+"Stop limiting your store with basic restrictions. Switch from a <strong>"
+"basic setup</strong> to a <a href=\"https://www.zorem.com/product/country-"
+"based-restriction-pro/?utm_source=wp-admin&utm_medium=CBRPRO&utm_campaign=go-"
+"pro\" target=\"_blank\">fully advanced restriction powerhouse</a>."
 msgstr ""
-"Это сообщение отображается на странице товара, когда товар недоступен для "
-"покупки. Сообщение по умолчанию: Извините, этот продукт недоступен в вашей "
-"стране.\n"
+"Прекратите ограничивать свой магазин базовыми ограничениями. Перейдите от "
+"<strong>простой настройки</strong> к <a href=\"https://www.zorem."
+"com/product/country-based-restriction-pro/?utm_source=wp-"
+"admin&utm_medium=CBRPRO&utm_campaign=go-pro\" target=\"_blank\">мощной и "
+"продвинутой системе ограничений</a> ."
 
-#: include/views/cbr_setting_tab.php:30
+#: include/views/cbr_addons_tab.php:11
 msgid ""
-"This option will completely hide restricted products and product variations "
-"from your store (including a direct link)"
+"Take control of your post-shipping workflows, reduce time spent on customer "
+"service and provide a superior post-purchase experience to your customers. "
+"Beyond automatic shipment tracking, TrackShip brings a branded tracking "
+"experience into your store."
 msgstr ""
-"Эта опция полностью скрывает ограниченные товары и варианты товаров из "
-"вашего магазина (включая прямую ссылку)\n"
+"Возьмите под контроль процессы после отправки, сократите время, "
+"затрачиваемое на обслуживание клиентов, и обеспечьте своим покупателям "
+"превосходное качество обслуживания после покупки. Помимо автоматического "
+"отслеживания отправлений, TrackShip предоставляет вашему магазину фирменный "
+"сервис отслеживания."
 
-#: include/views/cbr_setting_tab.php:63
+#: include/views/cbr_addons_tab.php:68
+msgid "Take Your Country Restrictions to the Next Level"
+msgstr "Выведите ограничения по странам на новый уровень."
+
+#: include/views/cbr_addons_tab.php:25
 msgid ""
-"This option will display your products and product variations on the shop "
-"but not purchasable."
+"The Advanced Local Pickup (ALP) helps you manage local pickup order "
+"workflows more conveniently by extending the WooCommerce Local Pickup "
+"shipping method. The Pro version lets you set up multiple pickup locations, "
+"split business hours, and apply discounts by pickup location."
 msgstr ""
-"Эта опция будет отображать ваши товары и варианты товаров в магазине, но их "
-"нельзя приобрести.\n"
+"Расширенная функция самовывоза (Advanced Local Pickup, ALP) помогает удобнее "
+"управлять процессами обработки заказов с самовывозом, расширяя возможности "
+"метода доставки WooCommerce Local Pickup. Версия Pro позволяет настроить "
+"несколько пунктов самовывоза, разделить рабочие часы и применять скидки в "
+"зависимости от пункта самовывоза."
 
-#: include/views/cbr_setting_tab.php:47
+#: include/admin-settings.php:273
+msgid "Unlock Advanced Country Based Restrictions with CBR PRO"
+msgstr "Разблокируйте расширенные ограничения по странам с помощью CBR PRO."
+
+#: include/admin-settings.php:283
+msgid "UPGRADE TO CBR PRO"
+msgstr "ОБНОВИТЬ ДО CBR PRO"
+
+#: include/admin-settings.php:274
 msgid ""
-"This option will hide restricted products and product variations from your "
-"shop and search results, however these products will still be accessible and "
-"purchasable via direct link."
+"Upgrade to CBR PRO to extend your country-based restrictions beyond the "
+"basics."
 msgstr ""
-"Эта опция будет скрывать товары с ограниченным ассортиментом и их "
-"разновидности от вашего магазина и результатов поиска, однако эти продукты "
-"будут по-прежнему доступны и доступны для покупки по прямой ссылке.\n"
+"Перейдите на CBR PRO, чтобы расширить действие ограничений по странам за "
+"пределы базовых."
 
-#: include/admin-settings.php:151
-#| msgid "Upgrade to Pro"
-msgid "UPGRADE TO PRO"
-msgstr ""
-"Перейти на Pro\n"
+#: include/views/cbr_payment_restrictions_tab.php:12
+#: include/views/cbr_catalog_restrictions_tab.php:12
+#| msgid "UPGRADE TO PRO"
+msgid "Upgrade To PRO"
+msgstr "Перейти на PRO"
 
-#: include/admin-settings.php:246
+#: include/views/cbr_setting_tab.php:255
+msgid "Upgrade to PRO"
+msgstr "Перейти на PRO"
+
+#: include/admin-settings.php:380
 msgid "Use shortcode"
 msgstr ""
 "Используйте шорткод\n"
 
-#: include/admin-settings.php:232
+#: include/admin-settings.php:366
 msgid "Use the shortcode [cbr_message_position] in your product template."
 msgstr ""
 "Используйте короткий код [cbr_message_position] в шаблоне вашего продукта.\n"
 
-#: include/single-product.php:137
-msgid "You need to setup shipping locations in WooCommerce settings "
+#: include/views/cbr_addons_tab.php:158
+msgid "User Bypass"
+msgstr "Обход пользователя"
+
+#: include/views/cbr_setting_tab.php:211
+msgid "You can use shortcode [cbr_category_message] in your category template."
 msgstr ""
-"Вам нужно настроить места доставки в настройках WooCommerce\n"
+"Вы можете использовать шорткод [cbr_category_message] в шаблоне категории."
+
+#. Author of the plugin
+msgid "zorem"
+msgstr "зорем"
+
+#: include/views/cbr_setting_tab.php:192
+msgid ""
+"{Product_Name} has been removed from your cart since it is not available for "
+"purchase to your Country."
+msgstr ""
+"Товар {Product_Name} был удален из вашей корзины, поскольку он недоступен "
+"для покупки в вашей стране."
+
+#: include/views/admin_message_panel.php:3
+msgid "🌍 Expand Your Control with Country Based Restrictions PRO!"
+msgstr ""
+"🌍 Расширьте свои возможности контроля с помощью Country Based Restrictions "
+"PRO!"

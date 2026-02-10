@@ -162,10 +162,19 @@ class CBR_Admin_Settings {
 	public function woocommerce_product_country_restrictions_page_callback() {
 		global $fzpcr;
 		$tab = isset( $_GET['tab'] ) ? sanitize_text_field($_GET['tab']) : '';
+		if ( 'catalog-restrictions' == $tab ) {
+			$breadcumps_page_heading = esc_html__( 'Catalog Restrictions', 'woo-product-country-base-restrictions' );
+		} else if ( 'payment-restrictions' == $tab ) {
+			$breadcumps_page_heading = esc_html__( 'Payment Restrictions', 'woo-product-country-base-restrictions' );
+		} else if ( 'go-pro' == $tab ) {
+			$breadcumps_page_heading = esc_html__( 'Go Pro', 'woo-product-country-base-restrictions' );
+		} else {
+			$breadcumps_page_heading = esc_html__( 'Settings', 'woo-product-country-base-restrictions' );
+		}
 		?>
 		<div class="zorem-layout__header">
 			<h1 class="page_heading">
-				<a href="javascript:void(0)"><?php esc_html_e( 'Country Based Restriction', 'woo-product-country-base-restrictions' ); ?></a> <span class="dashicons dashicons-arrow-right-alt2"></span> <span class="breadcums_page_heading"><?php 'go-pro' == $tab ? esc_html_e( 'Go Pro', 'woo-product-country-base-restrictions' ) : esc_html_e( 'Settings', 'woo-product-country-base-restrictions' ); ?></span>
+				<a href="javascript:void(0)"><?php esc_html_e( 'Country Based Restriction', 'woo-product-country-base-restrictions' ); ?></a> <span class="dashicons dashicons-arrow-right-alt2"></span> <span class="breadcums_page_heading"><?php echo esc_html( $breadcumps_page_heading ); ?></span>
 			</h1>	
 			<img class="zorem-layout__header-logo" src="<?php echo esc_url($fzpcr->plugin_dir_url() . 'assets/images/zorem-logo.png'); ?>">
 		</div>
@@ -222,8 +231,24 @@ class CBR_Admin_Settings {
 				</div>
 			</div>
 			<div class="cbr_admin_content">
-				<input id="tab1" type="radio" name="tabs" class="cbr_tab_input" data-tab="settings" data-label="<?php esc_html_e('Settings', 'woocommerce'); ?>" checked>
-				<label for="tab1" class="cbr_tab_label first_label" ><?php esc_html_e('Settings', 'woocommerce'); ?></label>
+				<input id="tab1" type="radio" name="tabs" class="cbr_tab_input" data-tab="settings" data-label="<?php esc_html_e('Settings', 'woo-product-country-base-restrictions'); ?>" checked>
+				<label for="tab1" class="cbr_tab_label first_label" ><?php esc_html_e('Settings', 'woo-product-country-base-restrictions'); ?></label>
+				<input id="tab5" type="radio" name="tabs" class="cbr_tab_input" data-tab="catalog-restrictions" data-label="<?php esc_html_e('Catalog Restrictions', 'woo-product-country-base-restrictions'); ?>"
+				<?php
+				if ('catalog-restrictions' == $tab) {
+					echo 'checked';
+				}
+				?>
+				>
+				<label for="tab5" class="cbr_tab_label cbr-pro-tab-label"><?php esc_html_e('Catalog Restrictions', 'woo-product-country-base-restrictions'); ?> <span class="cbr-pro-badge"><?php esc_html_e('PRO', 'woo-product-country-base-restrictions'); ?></span></label>
+				<input id="tab6" type="radio" name="tabs" class="cbr_tab_input" data-tab="payment-restrictions" data-label="<?php esc_html_e('Payment Restrictions', 'woo-product-country-base-restrictions'); ?>"
+				<?php
+				if ('payment-restrictions' == $tab) {
+					echo 'checked';
+				}
+				?>
+				>
+				<label for="tab6" class="cbr_tab_label cbr-pro-tab-label"><?php esc_html_e('Payment Restrictions', 'woo-product-country-base-restrictions'); ?> <span class="cbr-pro-badge"><?php esc_html_e('PRO', 'woo-product-country-base-restrictions'); ?></span></label>
 				<input id="tab4" type="radio" name="tabs" class="cbr_tab_input" data-tab="go-pro" data-label="<?php esc_html_e('Go Pro', 'woo-product-country-base-restrictions'); ?>"
 				<?php
 				if ('go-pro' == $tab) {
@@ -233,8 +258,45 @@ class CBR_Admin_Settings {
 				>
 				<label for="tab4" class="cbr_tab_label" ><?php esc_html_e('Go Pro', 'woo-product-country-base-restrictions'); ?></label>
 				<div class="menu_devider"></div>
-				<?php require_once( 'views/cbr_setting_tab.php' ); ?>
-				<?php require_once( 'views/cbr_addons_tab.php' ); ?>
+				<div class="cbr-admin-main-wrapper">
+					<div class="cbr-sections-wrapper">
+						<?php require_once( 'views/cbr_setting_tab.php' ); ?>
+						<?php require_once( 'views/cbr_catalog_restrictions_tab.php' ); ?>
+						<?php require_once( 'views/cbr_payment_restrictions_tab.php' ); ?>
+						<?php require_once( 'views/cbr_addons_tab.php' ); ?>
+					</div>
+					<div class="cbr-pro-sidebar">
+						<div class="cbr-pro-sidebar__upgrade">
+							<div class="cbr-pro-sidebar__icon">
+								<img src="<?php echo esc_url($fzpcr->plugin_dir_url() . 'assets/images/cbr-icon.png'); ?>" alt="CBR PRO" />
+							</div>
+							<h3 class="cbr-pro-sidebar__title"><?php esc_html_e( 'Unlock Advanced Country Based Restrictions with CBR PRO', 'woo-product-country-base-restrictions' ); ?></h3>
+							<p class="cbr-pro-sidebar__desc"><?php esc_html_e( 'Upgrade to CBR PRO to extend your country-based restrictions beyond the basics.', 'woo-product-country-base-restrictions' ); ?></p>
+							<ul class="cbr-pro-sidebar__features">
+								<li><span class="cbr-check">✓</span><?php esc_html_e( 'Catalog restriction rules by category', 'woo-product-country-base-restrictions' ); ?></li>
+								<li><span class="cbr-check">✓</span><?php esc_html_e( 'Payment gateway restrictions by country', 'woo-product-country-base-restrictions' ); ?></li>
+								<li><span class="cbr-check">✓</span><?php esc_html_e( 'Country detection widget & customizer', 'woo-product-country-base-restrictions' ); ?></li>
+								<li><span class="cbr-check">✓</span><?php esc_html_e( 'Bypass restrictions for specific users', 'woo-product-country-base-restrictions' ); ?></li>
+								<li><span class="cbr-check">✓</span><?php esc_html_e( 'Cart & category restriction messages', 'woo-product-country-base-restrictions' ); ?></li>
+								<li><span class="cbr-check">✓</span><?php esc_html_e( 'Restrict on Place Order (Checkout)', 'woo-product-country-base-restrictions' ); ?></li>
+							</ul>
+							<a href="https://www.zorem.com/product/country-based-restriction-pro/" class="cbr-pro-sidebar__btn" target="_blank"><?php esc_html_e( 'UPGRADE TO CBR PRO', 'woo-product-country-base-restrictions' ); ?> &rarr;</a>
+						</div>
+						<div class="cbr-pro-sidebar__help">
+							<div class="cbr-pro-sidebar__help-icon">
+								<span class="dashicons dashicons-editor-help"></span>
+							</div>
+							<h4 class="cbr-pro-sidebar__help-title"><?php esc_html_e( 'Need help?', 'woo-product-country-base-restrictions' ); ?></h4>
+							<p class="cbr-pro-sidebar__help-desc"><?php esc_html_e( 'Check our documentation or contact our support team if you have any questions.', 'woo-product-country-base-restrictions' ); ?></p>
+							<div class="cbr-pro-sidebar__help-links">
+								<a href="https://docs.zorem.com/docs/country-based-restrictions-pro/" target="_blank" class="cbr-pro-sidebar__help-link">
+									<img src="<?php echo esc_url($fzpcr->plugin_dir_url() . 'assets/images/documentation-icon.svg'); ?>" alt="" />
+									<?php esc_html_e( 'Documentation', 'woo-product-country-base-restrictions' ); ?>
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
 			<div id="cbr-toast-example" aria-live="assertive" aria-atomic="true" aria-relevant="text" class="mdl-snackbar mdl-js-snackbar">
 				<div class="mdl-snackbar__text"></div>
@@ -384,7 +446,7 @@ class CBR_Admin_Settings {
 				'id'		=> 'wpcbr_make_non_purchasable',
 				'class'		=> '',
 				'label'		=> 'Enable plugin',
-				'tooltip'		=> __( "Enable this option to make products non-purchasable (i.e., cannot be added to the cart)", 'woo-product-country-base-restrictions' ),
+				'tooltip'		=> __( 'Enable this option to make products non-purchasable (i.e., cannot be added to the cart)', 'woo-product-country-base-restrictions' ),
 			),
 		);
 		$settings = apply_filters( 'cbr_hide_catelog_option_data_array', $settings );
@@ -444,7 +506,8 @@ class CBR_Admin_Settings {
 					if ($array['show']) {
 						?>
 						<tr valign="top" class="<?php echo esc_html($array['class']); ?> border_1">
-						<?php if ( 'checkbox' == $array['type'] ) {
+						<?php
+						if ( 'checkbox' == $array['type'] ) {
 							if (isset($array['id']) && get_option($array['id'])) {
 								$checked = 'checked';
 							} else {
@@ -500,9 +563,11 @@ class CBR_Admin_Settings {
 								</select><p class="description"><?php echo ( isset($array['desc_tip']) ) ? esc_html($array['desc_tip']) : ''; ?></p>
 							</fieldset>
 									</td>
-						<?php }
+						<?php
+						}
 					}
-				} ?>
+				}
+				?>
 			</tbody>
 		</table>
 		<?php
@@ -579,7 +644,8 @@ class CBR_Admin_Settings {
 								<span class="woocommerce-help-tip tipTip" title="<?php echo esc_html($array['tooltip']); ?>"></span>
 							<?php } ?>
 						</label>
-						<?php if ( isset($array['multiple']) ) {
+						<?php
+						if ( isset($array['multiple']) ) {
 							$multiple = 'multiple';
 							$field_id = $array['multiple'];
 						} else {

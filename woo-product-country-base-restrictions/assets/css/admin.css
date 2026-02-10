@@ -181,8 +181,9 @@
     display: block;
     padding: 20px;
     background-color: #fff;
-    box-shadow: 0 0 5px 0 #e0e0e0;
     position: relative;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
 }
 
 .admin-message-panel p {
@@ -367,12 +368,12 @@ label.cbr_tab_label {
     margin-right: 30px;
 }
 
-#tab1:checked~#cbr_content1,
-#tab2:checked~#cbr_content2,
-#tab3:checked~#cbr_content3,
-#tab4:checked~#cbr_content4,
-#tab_addons:checked~#content_tab_addons,
-#tab_license:checked~#content_tab_license {
+#tab1:checked ~ .cbr-admin-main-wrapper #cbr_content1,
+#tab2:checked ~ .cbr-admin-main-wrapper #cbr_content2,
+#tab3:checked ~ .cbr-admin-main-wrapper #cbr_content3,
+#tab4:checked ~ .cbr-admin-main-wrapper #cbr_content4,
+#tab_addons:checked ~ .cbr-admin-main-wrapper #content_tab_addons,
+#tab_license:checked ~ .cbr-admin-main-wrapper #content_tab_license {
     display: block;
 }
 
@@ -458,6 +459,7 @@ section.cbr_tab_section {
 
 .cbr_tab_inner_container .form-table td {
     padding: 0 20px 20px;
+    width: 100%;
 }
 
 .cbr_tab_inner_container .form-table.heading-table td.border_1 {
@@ -514,6 +516,7 @@ section.cbr_tab_section {
     border-top: 0;
     border-radius: 3px;
     background: #fff;
+    width: 100%;
 }
 
 .cbr_tab_inner_container .form-table fieldset {
@@ -619,7 +622,7 @@ span.fa.fa-circle {
     transition-duration: 1s;
     transition-timing-function: ease-in-out;
     padding-bottom: 10px;
-    padding: 0 25px;
+    padding: 0 0 0 25px;
 }
 
 #cbr_setting_tab_form .main-panel.hide-child-panel .inside {
@@ -790,7 +793,6 @@ span.fa.fa-circle {
 .cbr_tab_section .accordion {
     background: #fafafa;
     border: 1px solid #e0e0e0;
-    border-radius: 3px 3px 0 0;
     border-bottom: 0;
     font-weight: 600;
     font-size: 16px;
@@ -799,6 +801,12 @@ span.fa.fa-circle {
     padding: 15px;
 }
 
+#cbr_setting_tab_form .accordion:first-child {
+    border-radius: 8px 8px 0 0;
+}
+.cbr-pro-locked-section .accordion {
+    border-radius: 0 !important;
+}
 .cbr_tab_section .panel {
     border-radius: 0 0 3px 3px;
     border-top: 0;
@@ -1151,6 +1159,370 @@ table.cbr-license-form {
 
 /*addons tab end*/
 
+/* PRO feature locked styles */
+.cbr-pro-badge {
+    display: inline-block;
+    line-height: 1;
+    vertical-align: middle;
+    margin-left: 8px;
+    background: #3b64d3;
+    color: #FFFFFF;
+    font-size: 10px;
+    font-weight: 600;
+    padding: 3px 10px;
+    border-radius: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    line-height: 1.4;
+}
+
+.cbr-pro-lock {
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 6px;
+    color: #999;
+    font-size: 16px;
+    line-height: 18px;
+}
+
+.cbr-pro-lock .dashicons {
+    font-size: 16px;
+    width: 16px;
+    height: 16px;
+    line-height: 16px;
+    color: #999;
+}
+
+.cbr-pro-feature-row {
+    position: relative;
+    cursor: not-allowed !important;
+}
+
+.cbr-pro-feature-row::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 10;
+    cursor: not-allowed;
+}
+
+.cbr-pro-feature-row input,
+.cbr-pro-feature-row select,
+.cbr-pro-feature-row textarea,
+.cbr-pro-feature-row button {
+    pointer-events: none !important;
+}
+span.dashicons-plus {
+    font-size: 16px;
+    line-height: 36px;
+}
+
+/* PRO locked accordion section */
+.cbr-pro-locked-section {
+    position: relative;
+}
+
+.cbr-pro-locked-section .panel {
+    opacity: 0.6;
+    pointer-events: none;
+}
+
+.cbr-pro-locked-section .accordion .cbr-pro-badge {
+    float: right;
+    margin-top: 8px;
+    margin-right: 0;
+}
+
+.cbr-pro-locked-section .accordion .cbr-pro-lock {
+    float: right;
+    margin-top: 6px;
+}
+
+/* PRO locked tab */
+.cbr_tab_label.cbr-pro-tab-label {
+    position: relative;
+}
+
+.cbr-pro-tab-content {
+    position: relative;
+}
+
+table.form-table.country_detection_widget {
+    border-radius: 0 0 8px 8px;
+    border-collapse: unset;
+}
+
+.cbr-pro-tab-overlay {
+    background: #f5f7fb;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 40px 20px;
+    text-align: center;
+    opacity: 0.8;
+}
+.pro_feature {
+    opacity: 0.3;
+}
+.cbr-pro-tab-overlay h3 {
+    font-size: 18px;
+    color: #3c4758;
+    margin: 0 0 10px;
+}
+
+.cbr-pro-tab-overlay p {
+    color: #666;
+    font-size: 14px;
+    margin: 0 0 20px;
+}
+
+.cbr-pro-tab-overlay .button-primary {
+    background: #3b64d3;
+    text-shadow: none;
+    border-color: #3b64d3;
+    box-shadow: none;
+    font-size: 14px;
+    padding: 0 20px;
+    line-height: 35px;
+    text-decoration: none;
+}
+
+.cbr-pro-tab-overlay .button-primary:hover {
+    background: #2d4fa8;
+    border-color: #2d4fa8;
+}
+
+/* PRO locked toggle row */
+tr.cbr-pro-feature-row .cbr-pro-row-right {
+    float: right;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    pointer-events: auto;
+}
+
+tr.cbr-pro-feature-row th {
+    position: relative;
+}
+
+/* Style for PRO badge/lock in table rows - right aligned */
+.cbr-pro-row-actions {
+    float: right;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+/* PRO locked section heading badge alignment */
+.accordion.heading .cbr-pro-row-actions {
+    float: right;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    line-height: 38px;
+    margin-right: 10px;
+}
+
+#tab5:checked ~ .cbr-admin-main-wrapper #cbr_content5,
+#tab6:checked ~ .cbr-admin-main-wrapper #cbr_content6 {
+    display: block;
+}
+
+/* PRO feature inline with checkbox rows */
+.cbr-pro-feature-row .cbr-pro-row-actions {
+    pointer-events: auto;
+}
+
+/* Sidebar Layout */
+.cbr-admin-main-wrapper {
+    display: flex;
+    align-items: flex-start;
+}
+
+.cbr-admin-main-wrapper .cbr-sections-wrapper {
+    flex: 1;
+    min-width: 0;
+}
+
+.cbr-pro-sidebar {
+    width: 430px;
+    min-width: 430px;
+    position: sticky;
+    top: 32px;
+    padding-top: 20px;
+    padding-right: 20px;
+    display: none;
+}
+
+.cbr-pro-sidebar.cbr-sidebar-visible {
+    display: block;
+}
+
+/* Sidebar Upgrade Card */
+.cbr-pro-sidebar__upgrade {
+    background: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 24px 20px;
+    text-align: center;
+    margin-bottom: 16px;
+}
+
+.cbr-pro-sidebar__icon {
+    margin-bottom: 12px;
+}
+
+.cbr-pro-sidebar__icon img {
+    width: 40px;
+    height: 40px;
+}
+
+.cbr-pro-sidebar__title {
+    margin: 0 0 13px;
+    line-height: 1.4;
+    font-size: 22px;
+    color: #005b9a;
+    font-weight: 700;
+}
+
+.cbr-pro-sidebar__desc {
+    font-size: 16px;
+    color: #3c4758;
+    margin: 0 0 16px;
+    line-height: 1.5;
+}
+
+.cbr-pro-sidebar__features {
+    list-style: none;
+    margin: 0 0 20px;
+    padding: 0;
+    text-align: left;
+}
+
+.cbr-pro-sidebar__features li {
+    position: relative;
+    padding: 4px 0 4px 24px;
+    font-size: 13px;
+    color: #333;
+    line-height: 1.5;
+}
+
+.cbr-pro-sidebar__features li .cbr-check {
+    color: #3b64d3;
+    font-weight: bold;
+    margin-right: 8px;
+    font-size: 14px;
+    flex-shrink: 0;
+}
+
+.cbr-pro-sidebar__btn {
+    display: block;
+    background: #3b64d3;
+    color: #fff !important;
+    text-decoration: none !important;
+    font-size: 14px;
+    padding: 16px 20px;
+    border-radius: 8px;
+    text-align: center;
+    transition: background 0.2s ease;
+    letter-spacing: 0.3px;
+}
+
+.cbr-pro-sidebar__btn:hover {
+    background: #2d4fa8;
+    color: #fff !important;
+}
+
+.cbr-pro-sidebar__trusted {
+    font-size: 11px;
+    color: #999;
+    margin: 10px 0 0;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Sidebar Help Card */
+.cbr-pro-sidebar__help {
+    background: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 20px;
+}
+
+.cbr-pro-sidebar__help-icon {
+    margin-bottom: 8px;
+}
+
+.cbr-pro-sidebar__help-icon .dashicons {
+    font-size: 24px;
+    width: 24px;
+    height: 24px;
+    color: #3b64d3;
+}
+
+.cbr-pro-sidebar__help-title {
+    font-size: 15px;
+    font-weight: 600;
+    color: #1c1c1c;
+    margin: 0 0 6px;
+}
+
+.cbr-pro-sidebar__help-desc {
+    font-size: 13px;
+    color: #666;
+    margin: 0 0 14px;
+    line-height: 1.5;
+}
+
+.cbr-pro-sidebar__help-links {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.cbr-pro-sidebar__help-link {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #3b64d3 !important;
+    text-decoration: none !important;
+    font-size: 13px;
+    font-weight: 500;
+    padding: 6px 0;
+    transition: color 0.2s ease;
+}
+
+.cbr-pro-sidebar__help-link:hover {
+    color: #2d4fa8 !important;
+}
+
+.cbr-pro-sidebar__help-link img {
+    width: 18px;
+    height: 18px;
+}
+
+@media only screen and (max-width: 1200px) {
+    .cbr-pro-sidebar {
+        width: 260px;
+        min-width: 260px;
+    }
+}
+
+@media only screen and (max-width: 960px) {
+    .cbr-admin-main-wrapper {
+        flex-direction: column;
+    }
+
+    .cbr-pro-sidebar {
+        width: 100%;
+        min-width: 100%;
+        position: static;
+        padding-top: 0;
+    }
+}
+
 /* Snackbar CSS */
 
 /*save notification*/
@@ -1315,3 +1687,402 @@ table.cbr-license-form {
         margin-top: -120px;
     }
 }
+
+/* go pro  */
+.cbr-go-pro-v2 .gopro-hero {
+    text-align: center;
+    padding: 50px 20px 40px;
+}
+.cbr-go-pro-v2 .gopro-hero h1 {
+    font-size: 34px;
+    font-weight: 700;
+    color: #1a1a2e;
+    margin: 0 0 12px;
+    line-height: 1.25;
+}
+.cbr-go-pro-v2 .gopro-hero p {
+    font-size: 15px;
+    color: #555;
+    max-width: 560px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+.cbr-go-pro-v2 .gopro-hero p strong {
+    color: #333;
+}
+.cbr-go-pro-v2 .gopro-hero p a {
+    color: #2563eb;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+/* Comparison table */
+.cbr-go-pro-v2 .gopro-comparison {
+    margin: 0 auto 30px;
+    background: #fff;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    overflow: hidden;
+}
+/* Comparison header */
+.cbr-go-pro-v2 .gopro-comp-header {
+    display: grid;
+    grid-template-columns: 1fr 180px 180px;
+    align-items: center;
+    background: #f9fafb;
+    border-bottom: 1px solid #e5e7eb;
+}
+.cbr-go-pro-v2 .gopro-comp-header-label {
+    padding: 16px 24px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    font-size: 15px;
+    color: #1a1a2e;
+}
+.cbr-go-pro-v2 .gopro-comp-header-col {
+    text-align: center;
+    padding: 16px 12px;
+}
+.cbr-go-pro-v2 .gopro-comp-header-col .comp-header-badge {
+    display: inline-block;
+    font-size: 9px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    padding: 2px 8px;
+    border-radius: 4px;
+    margin-bottom: 4px;
+}
+.cbr-go-pro-v2 .gopro-comp-header-col .comp-header-badge.badge-current {
+    background: transparent;
+    color: #9ca3af;
+}
+.cbr-go-pro-v2 .gopro-comp-header-col .comp-header-badge.badge-recommended {
+    background: #16a34a;
+    color: #fff;
+}
+.cbr-go-pro-v2 .gopro-comp-header-col .comp-header-title {
+    display: block;
+    font-size: 15px;
+    font-weight: 700;
+    color: #1a1a2e;
+}
+.cbr-go-pro-v2 .gopro-comp-header-col.is-pro {
+    background: #f8fdf9;
+}
+
+/* Comparison rows */
+.cbr-go-pro-v2 .gopro-comp-row {
+    display: grid;
+    grid-template-columns: 1fr 180px 180px;
+    border-bottom: 1px solid #f0f1f3;
+    align-items: center;
+}
+.cbr-go-pro-v2 .gopro-comp-row:last-child {
+    border-bottom: 0;
+}
+.cbr-go-pro-v2 .gopro-comp-feature {
+    padding: 18px 24px;
+}
+.cbr-go-pro-v2 .gopro-comp-feature strong {
+    display: block;
+    font-size: 14px;
+    font-weight: 700;
+    color: #1a1a2e;
+    margin-bottom: 2px;
+}
+.cbr-go-pro-v2 .gopro-comp-feature span {
+    font-size: 12px;
+    color: #9ca3af;
+    line-height: 1.4;
+}
+.cbr-go-pro-v2 .gopro-comp-cell {
+    text-align: center;
+    padding: 18px 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+}
+.cbr-go-pro-v2 .gopro-comp-cell .comp-icon {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.cbr-go-pro-v2 .gopro-comp-cell .comp-icon svg {
+    width: 20px;
+    height: 20px;
+}
+.cbr-go-pro-v2 .gopro-comp-cell .comp-icon.icon-x {
+    background: #4b5563;
+}
+.cbr-go-pro-v2 .gopro-comp-cell .comp-icon.icon-check {
+    background: #dcfce7;
+}
+.cbr-go-pro-v2 .gopro-comp-cell .comp-status {
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    color: #9ca3af;
+}
+.cbr-go-pro-v2 .gopro-comp-cell.is-pro {
+    background: #f8fdf9;
+}
+.cbr-go-pro-v2 .gopro-comp-cell.is-pro .comp-status {
+    color: #16a34a;
+    font-size: 12px;
+}
+
+/* CTA */
+.cbr-go-pro-v2 .gopro-cta {
+    text-align: center;
+    padding: 0px 20px 10px;
+}
+.cbr-go-pro-v2 .gopro-cta-btn {
+    display: inline-block;
+    background: #3b64d3;
+    color: #fff !important;
+    font-size: 15px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    padding: 14px 40px;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: background 0.2s;
+    border: none;
+    cursor: pointer;
+}
+.cbr-go-pro-v2 .gopro-cta-btn:hover {
+    background: #2c4fb8;
+    color: #fff !important;
+}
+.cbr-go-pro-v2 .gopro-cta-sub {
+    margin-top: 14px;
+    font-size: 13px;
+    color: #9ca3af;
+}
+
+/* Benefit cards */
+.cbr-go-pro-v2 .gopro-benefit-card {
+    background: #fff;
+    border-radius: 8px;
+    padding: 28px 24px 24px;
+    border: 1px solid #e5e7eb;
+}
+.cbr-go-pro-v2 .gopro-benefit-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 18px;
+    border: 1px solid #e5e7eb;
+}
+.cbr-go-pro-v2 .gopro-benefit-icon svg {
+    width: 22px;
+    height: 22px;
+}
+.cbr-go-pro-v2 .gopro-benefit-icon.icon-blue {
+    background: #eff6ff;
+}
+.cbr-go-pro-v2 .gopro-benefit-icon.icon-purple {
+    background: #f3f0ff;
+}
+.cbr-go-pro-v2 .gopro-benefit-card h3 {
+    font-size: 17px;
+    font-weight: 700;
+    color: #1a1a2e;
+    margin: 0 0 16px;
+    line-height: 1.3;
+}
+.cbr-go-pro-v2 .gopro-benefit-row {
+    margin-bottom: 14px;
+}
+.cbr-go-pro-v2 .gopro-benefit-row:last-child {
+    margin-bottom: 0;
+}
+.cbr-go-pro-v2 .gopro-benefit-label {
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    margin-right: 6px;
+}
+.cbr-go-pro-v2 .gopro-benefit-label.label-before {
+    color: #dc2626;
+}
+.cbr-go-pro-v2 .gopro-benefit-label.label-after {
+    color: #16a34a;
+}
+.cbr-go-pro-v2 .gopro-benefit-text {
+    font-size: 13px;
+    color: #555;
+    line-height: 1.55;
+}
+
+/* Addons section */
+.cbr-go-pro-v2 .gopro-addons {
+    border-radius: 8px;
+    padding: 20px 0px 20px;
+}
+.cbr-go-pro-v2 .gopro-addons-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 24px;
+}
+.cbr-go-pro-v2 .gopro-addons-header h2 {
+    font-size: 22px;
+    font-weight: 700;
+    color: #1a1a2e;
+    margin: 0 0 4px;
+    line-height: 1.3;
+}
+.cbr-go-pro-v2 .gopro-addons-header p {
+    font-size: 14px;
+    color: #9ca3af;
+    margin: 0;
+}
+.cbr-go-pro-v2 .gopro-addons-track {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+.cbr-go-pro-v2 .gopro-addon-card {
+    background: #fff;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+}
+.cbr-go-pro-v2 .gopro-addon-card-top {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 20px 20px 0;
+}
+.cbr-go-pro-v2 .gopro-addon-card-icon {
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    border: 1px solid #e5e7eb;
+    width: 60px;
+    height: 60px;
+}
+.cbr-go-pro-v2 .gopro-addon-card-icon img {
+    width: 45px;
+    height: 45px;
+    object-fit: contain;
+}
+.cbr-go-pro-v2 .gopro-addon-card h3 {
+    font-size: 15px;
+    font-weight: 700;
+    color: #1a1a2e;
+    margin: 0;
+    line-height: 1.35;
+}
+.cbr-go-pro-v2 .gopro-addon-card-body {
+    padding: 14px 20px 0;
+    flex-grow: 1;
+}
+.cbr-go-pro-v2 .gopro-addon-card-body p {
+    font-size: 13px;
+    color: #6b7280;
+    line-height: 1.6;
+    margin: 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+.cbr-go-pro-v2 .gopro-addon-card-footer {
+    padding: 16px 20px 20px;
+}
+.cbr-go-pro-v2 .gopro-addon-card-btn {
+    display: block;
+    text-align: center;
+    padding: 10px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #2563eb;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    background: #fff;
+    text-decoration: none;
+    transition: border-color 0.2s, background 0.2s;
+}
+.cbr-go-pro-v2 .gopro-addon-card-btn:hover {
+    border-color: #2563eb;
+    background: #eff6ff;
+    color: #2563eb;
+}
+.cbr-go-pro-v2 .gopro-addon-card-btn.is-active {
+    color: #16a34a;
+    border-color: #bbf7d0;
+    background: #f0fdf4;
+    cursor: default;
+}
+
+@media (max-width: 960px) {
+    .cbr-go-pro-v2 .gopro-addons-track {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .cbr-go-pro-v2 .gopro-banner {
+        flex-direction: column;
+        text-align: center;
+    }
+    .cbr-go-pro-v2 .gopro-banner-img {
+        margin: 20px 0 0;
+    }
+}
+@media (max-width: 680px) {
+    .cbr-go-pro-v2 .gopro-hero h1 {
+        font-size: 26px;
+    }
+    .cbr-go-pro-v2 .gopro-comp-header {
+        grid-template-columns: 1fr 100px 100px;
+    }
+    .cbr-go-pro-v2 .gopro-comp-header-label {
+        padding: 12px;
+        font-size: 9px;
+    }
+    .cbr-go-pro-v2 .gopro-comp-header-col .comp-header-title {
+        font-size: 12px;
+    }
+    .cbr-go-pro-v2 .gopro-comp-row {
+        grid-template-columns: 1fr 100px 100px;
+    }
+    .cbr-go-pro-v2 .gopro-comp-feature {
+        padding: 14px 12px;
+    }
+    .cbr-go-pro-v2 .gopro-comp-feature strong {
+        font-size: 12px;
+    }
+    .cbr-go-pro-v2 .gopro-comp-feature span {
+        font-size: 10px;
+    }
+    .cbr-go-pro-v2 .gopro-comp-cell {
+        padding: 14px 6px;
+    }
+    .cbr-go-pro-v2 .gopro-comp-cell .comp-status {
+        font-size: 9px;
+    }
+    .cbr-go-pro-v2 .gopro-addons {
+        padding: 24px 0px 28px;
+    }
+    .cbr-go-pro-v2 .gopro-addons-track {
+        grid-template-columns: 1fr;
+    }
+}
+/* go pro end */

@@ -55,6 +55,12 @@ jQuery(document).ready(function(){
 	}
 
 	jQuery(".product_visibility:checked").trigger("click");
+
+	/* Show sidebar only on Settings tab on page load */
+	var activeTab = jQuery('.cbr_tab_input:checked').data('tab');
+	if (!activeTab || activeTab === 'settings') {
+		jQuery('.cbr-pro-sidebar').addClass('cbr-sidebar-visible');
+	}
 	
 	jQuery('#wpcbr_hide_product_price1').parent().parent().parent().parent().hide();
 	if( jQuery("#wpcbr_make_non_purchasable1").is(":checked") === true ){
@@ -169,5 +175,27 @@ jQuery(document).on("click", ".cbr_tab_input", function(){
 	jQuery('.zorem-layout__header .breadcums_page_heading').text(label);
 	var url = window.location.protocol + "//" + window.location.host + window.location.pathname+"?page=woocommerce-product-country-base-restrictions&tab="+tab;
 	window.history.pushState({path:url},'',url);
-	jQuery(window).trigger('resize');	
+	jQuery(window).trigger('resize');
+
+	/* Show sidebar only on Settings tab */
+	if (tab === 'settings') {
+		jQuery('.cbr-pro-sidebar').addClass('cbr-sidebar-visible');
+	} else {
+		jQuery('.cbr-pro-sidebar').removeClass('cbr-sidebar-visible');
+	}
+});
+
+/* PRO feature lock - prevent any interaction with locked elements */
+jQuery(document).on("click", ".cbr-pro-feature-row, .cbr-pro-feature-row input, .cbr-pro-feature-row select, .cbr-pro-feature-row textarea", function(e){
+	"use strict";
+	e.preventDefault();
+	e.stopPropagation();
+	return false;
+});
+
+jQuery(document).on("click", ".cbr-pro-locked-section .panel", function(e){
+	"use strict";
+	e.preventDefault();
+	e.stopPropagation();
+	return false;
 });

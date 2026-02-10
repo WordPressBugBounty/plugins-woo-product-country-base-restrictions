@@ -220,7 +220,7 @@ class CBR_Product_Restriction {
 
 		if ( $this->is_restricted($product) || apply_filters( 'cbr_is_restricted', false, $product ) ) {
 			if ( !$product->is_purchasable() ) {
-				echo $this->no_soup_for_you();
+				echo wp_kses_post( $this->no_soup_for_you() );
 			}
 		}
 	}
