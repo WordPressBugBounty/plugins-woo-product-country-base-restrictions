@@ -1,311 +1,159 @@
-﻿=== Country Based Restrictions for WooCommerce ===
-Contributors: zorem,kuldipzorem,gaurav1092
-Donate link: 
-Tags: woocommerce, country restrictions
+=== Country Based Restrictions for WooCommerce ===
+Contributors: zorem, kuldipzorem, gaurav1092
+Tags: country restriction, geolocation, product visibility, restrict products, woocommerce
 Requires at least: 5.3
 Requires PHP: 7.0
 Tested up to: 6.9.1
 Stable tag: 3.7.7
-License: GPLv2 
+License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Restrict your WooCommerce shop products to be purchasable only to specific countries!
+Restrict WooCommerce products by country — hide or block purchases using geolocation so only customers in allowed countries can buy.
 
 == Description ==
 
-If you have products that you want to be available to purchase only to customers to specific countries? Do you have products that you Do Not want to be available to purchase to specific countries?  The country based restrictions plugin by zorem works by the WooCommerce Geolocation or the shipping country added by the customer and allows you to restrict products on your store to sell or not to sell to specific countries 
+**Country Based Restrictions for WooCommerce (CBR)** lets you control which products customers can see and purchase based on their country. Whether you need to comply with regional regulations, limit shipping to certain destinations, or create country-specific catalogs, CBR gives you per-product control using WooCommerce's built-in geolocation.
 
-== Key Features ==
+If a product shouldn't be sold in a particular country — because of shipping limitations, legal requirements, licensing, or business strategy — CBR makes sure customers in that country either can't see it or can't buy it. No code required.
 
-* Restricted products to not be show completely 
-* Hide restricted products completely from the shop and search but let users enter them from a direct link.
-* Keep restricted products visible on the shop and search (but not purchasable)
-* Choose for each product the restriction rule (include or exclude) and choose the countries to apply the rule
+= Key Features =
 
-== PRO Features ==
+* **Hide Restricted Products Completely** — Remove products from your shop, search results, and catalog for customers in restricted countries. Products become invisible as if they don't exist.
+* **Hide from Catalog, Keep Direct Links** — Remove products from shop pages and search, but still allow access via a direct URL. Useful for wholesale or private distribution.
+* **Visible but Not Purchasable** — Keep products visible in your shop and search results, but disable the Add to Cart button for restricted countries. Customers can browse but not buy.
+* **Per-Product Include or Exclude Rules** — For each product, choose whether to allow it in specific countries (include) or block it in specific countries (exclude). Flexible enough for any restriction scenario.
+* **Automatic Country Detection** — Uses WooCommerce Geolocation (IP-based) and the customer's shipping address to determine their country — no manual input needed from the shopper.
+* **Translation Ready** — Fully translatable and compatible with multilingual stores.
 
-* Bulk restrict products by Category, Tags, Attributes, Shipping class, Global(All Products).
-* Bulk restrict products by CSV import
-* Disable Payment methods by restected countries.
-* Hide Product Price for Restricted Products
-* Remove Single product rule by Bulk Action.
+= Common Use Cases =
 
-[Get the Country Based Restrictions Pro >](https://www.zorem.com/product/country-based-restriction-pro/)
+* **Legal & Regulatory Compliance** — Block products that can't legally be sold in certain countries (alcohol, supplements, electronics, age-restricted items).
+* **Shipping Limitations** — Don't sell products in countries your logistics provider can't deliver to. Avoid failed deliveries and refund requests.
+* **Regional Licensing** — Restrict digital or licensed products to territories covered by your distribution agreement.
+* **Country-Specific Catalogs** — Show different product selections to different markets, creating a tailored shopping experience per region.
+* **Reduce Chargebacks & Wrong Orders** — Prevent customers from ordering products that can't be fulfilled in their location.
 
-[Documentation](https://docs.zorem.com/docs/country-based-restrictions-pro/)
+= How Country Detection Works =
 
-[Click Here Purchase License](https://www.zorem.com/products/country-based-restriction-pro/)
+CBR determines the customer's country in this order:
 
-== How it works ==
+1. If the visitor is a **logged-in customer** with a shipping address on file, CBR uses that shipping country.
+2. If no shipping country is set (or the visitor is a guest), CBR falls back to **WooCommerce Geolocation** (IP-based detection).
+3. You can optionally force the plugin to always use geolocation only.
 
-* Go to plugin settings and set up the general visibility options
-* For each product in your catalog you can set if to allow or disallow to a list of countries.
-* WooCommerce shipping country is used to determine what country the visitor is from a country which is restricted for a product, if a shipping country is not set, WooCommerce Geolocation is used.
+= Upgrade to Country Based Restrictions PRO =
 
-You will need WooCommerce 3.0 or newer.
-Does support translation.
+Need to manage restrictions at scale? [CBR PRO](https://www.zorem.com/product/country-based-restriction-pro/) adds powerful bulk tools and advanced controls:
 
-== Frequently Asked Questions == 
-= Can I sell a product in a specific country? =
-Yes
-= Can I restrict a product to sell in a specific country? =
-Yes
+* **Bulk Restrictions by Category, Tag, Attribute, or Shipping Class** — Apply country rules to entire groups of products at once instead of editing each product individually.
+* **Global (All Products) Restrictions** — Set a single rule that applies to your entire catalog.
+* **Disable Payment Methods by Country** — Control which payment gateways are available based on the customer's country.
+* **Hide Product Prices for Restricted Products** — Instead of hiding the product entirely, hide only the price and Add to Cart button.
+* **Remove Single Product Rules in Bulk** — Clean up individual product rules using bulk actions.
+* **Debug Mode** — Display a front-end toolbar (visible to admins only) showing the detected country, so you can test restrictions without affecting customers.
+* **Country Detection Widget** — Display the detected shipping country to shoppers and let them change their location while browsing.
+
+[Get Country Based Restrictions PRO](https://www.zorem.com/product/country-based-restriction-pro/)
+
+= Documentation & Support =
+
+Setup guides, configuration tutorials, and developer resources are available in the [CBR documentation](https://docs.zorem.com/docs/country-based-restrictions-pro/).
+
+Need help? Visit the [support forum](https://wordpress.org/support/plugin/woo-product-country-base-restrictions/).
+
+= More Plugins by Zorem =
+
+* [Advanced Shipment Tracking PRO](https://www.zorem.com/product/woocommerce-advanced-shipment-tracking/) — Add tracking numbers to orders and share them with customers automatically.
+* [SMS for WooCommerce](https://zorem.com/plugins/sms-for-woocommerce/) — Send SMS order notifications to customers.
+* [Zorem Local Pickup Pro](https://zorem.com/plugins/zorem-local-pickup-pro/) — Local pickup and store pickup for WooCommerce.
+* [Customer Email Verification for WooCommerce](https://zorem.com/plugins/customer-email-verification-for-woocommerce/) — Verify customer emails during registration.
+* [Zorem Returns](https://zorem.com/plugins/zorem-returns/) — Manage product returns and RMA requests.
+
+Explore all plugins at [zorem.com](https://www.zorem.com/).
 
 == Installation ==
 
-1. Upload the folder 'woo-product-country-base-restrictions` to the `/wp-content/plugins/` folder
-2. Activate the plugin through the 'Plugins' menu in WordPress
-3. Make sure you have set up "shipping countries" in WooCommerce general settings.
-4. Edit a product to see your new options
+1. Go to **Plugins > Add New** in your WordPress admin and search for "Country Based Restrictions".
+2. Click **Install Now**, then **Activate**.
+3. Navigate to **WooCommerce > Country Restrictions** to configure your general visibility settings.
+4. Edit any product, scroll to the **Country Restrictions** section, choose Include or Exclude, and select the countries to apply the rule.
 
+Make sure you have set up your selling and shipping countries in **WooCommerce > Settings > General**.
+
+== Frequently Asked Questions ==
+
+= How do I restrict a WooCommerce product to sell only in certain countries? =
+
+Edit the product, scroll to the Country Restrictions section, select "Include", and choose the countries where the product should be available. Customers outside those countries won't be able to purchase it (or won't see it, depending on your visibility settings).
+
+= How do I block a product from being sold in a specific country? =
+
+Edit the product, select "Exclude" in the Country Restrictions section, and choose the countries where the product should be blocked. The product will remain available everywhere else.
+
+= How does the plugin detect which country the customer is in? =
+
+CBR first checks if the visitor is a logged-in customer with a shipping address. If so, it uses that shipping country. For guests or customers without a shipping address, it uses WooCommerce's built-in geolocation (IP detection). You can also force the plugin to always use geolocation only.
+
+= What happens when a restricted product is in the customer's cart? =
+
+If a customer changes their shipping country at checkout to a restricted country, the product cannot be purchased. The exact behavior depends on your visibility settings — the product may be removed from the cart or the checkout will be blocked.
+
+= Can I hide products completely from restricted countries? =
+
+Yes. In the plugin settings, choose "Hide completely" as your visibility option. Restricted products will be removed from your shop pages, search results, and category pages for customers in those countries.
+
+= Can I keep products visible but prevent purchasing? =
+
+Yes. Choose the "Visible but not purchasable" option. Products will appear in your shop and search results, but the Add to Cart button will be disabled for customers in restricted countries.
+
+= Can I restrict entire product categories at once? =
+
+Bulk restrictions by category, tag, attribute, or shipping class are available in [CBR PRO](https://www.zorem.com/product/country-based-restriction-pro/). The free version supports per-product restrictions.
+
+= Does the plugin work with variable products and product variations? =
+
+Yes. You can set country restrictions on variable products, and the restrictions apply to all variations of that product.
+
+= Is the plugin compatible with caching plugins? =
+
+Country-based restrictions rely on detecting the visitor's location, which can conflict with full-page caching. If you use a caching plugin, make sure WooCommerce geolocation is set to "Geolocate (with page caching support)" in **WooCommerce > Settings > General**.
+
+= Does restricting products by country affect SEO? =
+
+No. Country-based restrictions are a standard practice for international stores. The plugin controls product visibility at the application level, so search engines can still index your products normally.
+
+== Screenshots ==
+
+1. Plugin settings page — configure general visibility options for restricted products.
+2. Per-product country restriction settings — choose Include or Exclude and select countries.
+3. Shop page showing products hidden from a restricted country.
+4. Product page with Add to Cart disabled for a customer in a restricted country.
 
 == Changelog ==
 
 = 3.7.7 =
-* Dev - WP tested upto 6.9.1.
-* Dev - WC Compatibility added upto 10.5.0.
+* Dev – WP tested up to 6.9.1.
+* Dev – WC Compatibility added up to 10.5.0.
 * Improved – Updated PRO promotional notice on the settings page UI.
 
 = 3.7.6 =
-* Dev - WP tested upto 6.8.3.
-* Dev - WC Compatibility added upto 10.3.5.
-* Fix – Update deprecated WooCommerce script handles to new handles (WC 10.3.0+).
+* Dev – WP tested up to 6.8.3.
+* Dev – WC Compatibility added up to 10.3.5.
+* Fix – Updated deprecated WooCommerce script handles to new handles (WC 10.3.0+).
 
 = 3.7.5 =
-* Improved - Updated the promotional notice.
-* Dev - WC Compatibility added upto 10.1.2
+* Improved – Updated the promotional notice.
+* Dev – WC Compatibility added up to 10.1.2.
 
 = 3.7.4 =
-* Improved - Updated the promotional notice.
-* Improved - Updated the settings page design
-* Dev - WP tested upto 6.8.2
-* Dev - WC Compatibility added upto 10.0.4
+* Improved – Updated the promotional notice.
+* Improved – Updated the settings page design.
+* Dev – WP tested up to 6.8.2.
+* Dev – WC Compatibility added up to 10.0.4.
 
 = 3.7.3 =
-* Improved - Updated the promotional notice.
-* Dev - WP tested upto 6.8.1
-* Dev - WC Compatibility added upto 9.8.5
+* Improved – Updated the promotional notice.
+* Dev – WP tested up to 6.8.1.
+* Dev – WC Compatibility added up to 9.8.5.
 
-= 3.7.2 =
-* Fix - Removed the .htaccess files
-
-= 3.7.1 =
-* Enhancement - Added a review request admin notice
-* Dev - WC Compatibility added upto 9.8.1
-
-= 3.7.0 =
-* Dev - WP tested upto 6.7.2
-* Dev - WC Compatibility added upto 9.7.1
-* Improved - Improved a New admin message design
-* Tweak - Updated the settings page design
-* Tweak - Updated the settings text and tooltips
-
-= 3.6.8 =
-* Dev - WP tested upto 6.7
-* Dev - WC Compatibility added upto 9.4.2
-* Enhancement - Added a black friday admin message
-
-= 3.6.7 =
-* Enhancement - Added a admin message for return plugin
-
-= 3.6.6 =
-* Dev - WP tested upto 6.6
-* Dev - WC Compatibility added upto 9.2.3
-* Dev - Added Compatibility with Advance search WOO plugin
-
-= 3.6.5 =
-* Dev - WC Compatibility added upto 9.0.2
-* Fix - Restriction not working on search products.
-
-= 3.6.4 =
-* Fix - The error is undefined $suffix varibale
-
-= 3.6.3 =
-* Fix - The error is jQuery(...).block is not a function
-
-= 3.6.2 =
-* Dev - WC Compatibility added upto 8.7.0
-* Dev - WP tested upto 6.5
-* Enhancement – Added UTM link for all the external links to zorem.com
-
-= 3.6.1 =
-* Dev - WC Compatibility added upto 8.5.2
-* Fix - Patched a vulnerability concerning nonces in admin notices
-
-= 3.6 =
-* Dev - Added Compatibility with Wholesale for Woocommerce plugin
-* Dev - WC Compatibility added upto 8.4.0
-* Dev - WP tested upto 6.4
-
-= 3.5 =
-* Dev - Added Compatibility with PHP 8.2
-* Dev - WC Compatibility added upto 8.2.1
-* Dev - WP tested upto 6.4
-
-= 3.4 =
-* Dev - WC Compatibility with HPOS
-* Dev - WC Compatibility added upto 7.8.1
-* Dev - WP tested upto 6.2
-
-= 3.3 =
-* Dev - WC Compatibility added upto 6.8
-* Dev - WP tested upto 6.0
-
-= 3.2 =
-* Dev - WC Compatibility added upto 6.3
-* Dev - WP tested upto 5.9
-* Enhancement - Added compatibility with Customer Reviews for WooCommerce
-* Enhancement - Added Docs and Review link on plugins page
-* Tweak - Updated the settings page design
-* Fix - bug on checkout when billing country change
-
-= 3.1 =
-* Dev - WC Compatibility added upto 5.6
-
-= 3.0 =
-* Dev - WC Compatibility added upto 5.5.2
-
-= 2.9.1 =
-* Dev - WP Compatibility added upto 5.8
-
-= 2.9.0 =
-* Fix - Error - Warning: in_array() expects parameter 2 to be array, null given
-* Fix - Fix the issue of Subscription variation restriction
-
-= 2.8.9 =
-* weak - updated settings design.
-* Dev - WC Compatibility added upto 5.1
-
-= 2.8.8 =
-* weak - updated settings design.
-* Dev - WP Compatibility added upto 5.7
-
-= 2.8.7 =
-* Dev - WC Compatibility added upto 5.0
-
-= 2.8.6 =
-* Fix - Tool Bar /debug mode CRITICAL Bug
-* Fix - Related Products / WC products widgets - BUG
-
-= 2.8.5 =
-* Fix - Hide Completely - select a page to redirect BUG
-
-= 2.8.4 =
-* Fix - Fixed country and state dropdown slection issue in checkout page
-
-= 2.8.3 =
-* Tweak - updated settings design.
-* Enhancement - Free plugin not run if PRO is activated.
-
-= 2.8.2 =
-* Tweak - updated settings design.
-
-= 2.8.1 =
-* Fix - Issues with geo location / widget detectors.
-
-= 2.8.0 =
-* Dev - WC Compatibility added upto 4.8
-* Dev - WP Compatibility added upto 5.6
-
-= 2.7.9 =
-* Tweak - updated settings tab design.
-* Enhancement - Added addons tab.
-
-= 2.7.8 =
-* Tweak - updated settings tab design.
-
-= 2.7.7 =
-* Tweak - changed label of option.
-* Enhancement - Added options(Pro) for Country detection widget customize.
-* Enhancement - Added CBR widget(Pro) for customer.
-
-= 2.7.6 =
-* Fix - css issue in settings.
-* Tweak - updated settings tab design.
-* Tweak - changed label of option.
-* Enhancement - Added cart message option(Pro) for changes cart restriction message.
-
-= 2.7.5 =
-* Fix - css issue in settings design.
-* Fix - issue of countries list dropdown option.
-
-= 2.7.4 =
-* Fix - css issue in settings design.
-
-= 2.7.3 =
-* Dev - WC Compatibility added upto 4.5
-* Dev - WP Compatibility added upto 5.5
-* Fix - css issue in settings design.
-* Fix - issue of subscription variation product
-* Tweak - design UI/UX.
-* Tweak - changed label of option.
-* Tweak - input textarea valid for Html tag/class.
-
-= 2.7.2 =
-* Fix - Invalid argument supplied for foreach().
-
-= 2.7.1 =
-* Dev - WC Compatibility added upto 4.3
-* Dev - Added Compatibility with Visual composer
-
-= 2.7 =
-* Enhancement - Added Bulk Action option(Pro) for remove single product rule.
-* Tweak - optimized Wp query to improve site speed.
-
-= 2.6.9 =
-* Enhancement - Added new Pro option of Global(All Products) in Bulk restriction setting.
-* Fix - issue of WPML competibility.
-
-= 2.6.8 =
-* Enhancement - Added new Pro option of hide restricted product price.
-
-= 2.6.7 =
-* Fix - css issue in settings design.
-* Tweak - updated settings tab design.
-* Tweak - changed label of option.
-
-= 2.6.6 =
-* Fix - issue of redirect 404 error page.
-* Tweak - design and changed label of option.
-* Tweak - input textarea valid for Html tag/class.
-
-= 2.6.5 =
-* Tweak - design and changed label of option.
-
-= 2.6.4 =
-* Tweak - PRO tab design.
-* Enhancement - Added option of 404 error page redirect to shop page in setting.
-
-= 2.6.3 =
-* Tweak - setting design.
-
-= 2.6.2 =
-* Tweak - design UI/UX.
-
-= 2.6.1 =
-* Fix - A black bar will appear at the top of the site.
-* Fix - js issue on email customize.
-* Fix - error.
-
-= 2.6 =
-* Enhancement - Added Pro option of 404 error page redirect to shop page in setting.
-* Tweak - Improved setting design.
-
-= 2.5.4 =
-* Dev - WC Compatibility added upto 4.0
-* Dev - WP tested upto 5.4
-
-= 2.5.3 = 
-* Enhancement - Added Pro tab in setting.
-* Tweak - Updated setting design.
-
-= 2.5.2 =
-* Fix - bug fix.
-
-= 2.5.1 =
-* Enhancement - Added option of Hide Variation Products in Setting.
-
-= 2.5 =
-* Dev - CBR pro compatibility added.
-
-[For the complete changelog](https://www.zorem.com/docs/country-based-restrictions-for-woocommerce/changelog/)
+For the full changelog of older versions, see [the complete changelog](https://www.zorem.com/docs/country-based-restrictions-for-woocommerce/changelog/).
