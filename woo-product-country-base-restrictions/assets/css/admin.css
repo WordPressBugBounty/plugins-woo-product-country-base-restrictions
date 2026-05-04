@@ -9,6 +9,7 @@
     padding: 0 20px;
     margin: auto 0;
     font-weight: 400;
+    width: 100%;
 }
 
 .zorem-layout__header .page_heading .dashicons {
@@ -91,8 +92,8 @@
     height: 0.75rem;
     position: absolute;
     z-index: -1;
-    top: 16px;
-    right: -8px;
+    top: 10px;
+    right: -7px;
     background-color: #fff;
     transform: rotate(135deg);
     border: 1px solid #e0e0e0;
@@ -1423,8 +1424,8 @@ tr.cbr-pro-feature-row th {
     color: #fff !important;
     text-decoration: none !important;
     font-size: 14px;
-    padding: 16px 20px;
-    border-radius: 8px;
+    padding: 18px;
+    border-radius: 3px;
     text-align: center;
     transition: background 0.2s ease;
     letter-spacing: 0.3px;
@@ -1443,64 +1444,53 @@ tr.cbr-pro-feature-row th {
     letter-spacing: 0.5px;
 }
 
-/* Sidebar Help Card */
-.cbr-pro-sidebar__help {
-    background: #fff;
-    border: 1px solid #e0e0e0;
+.cbr_sidebar_help {
+    background: #FFFFFF;
+    border: 1px solid #E5E7EB;
     border-radius: 8px;
     padding: 20px;
-}
-
-.cbr-pro-sidebar__help-icon {
-    margin-bottom: 8px;
-}
-
-.cbr-pro-sidebar__help-icon .dashicons {
-    font-size: 24px;
-    width: 24px;
-    height: 24px;
-    color: #3b64d3;
-}
-
-.cbr-pro-sidebar__help-title {
-    font-size: 15px;
-    font-weight: 600;
-    color: #1c1c1c;
-    margin: 0 0 6px;
-}
-
-.cbr-pro-sidebar__help-desc {
-    font-size: 13px;
-    color: #666;
-    margin: 0 0 14px;
-    line-height: 1.5;
-}
-
-.cbr-pro-sidebar__help-links {
     display: flex;
-    flex-direction: column;
-    gap: 8px;
+    gap: 14px;
+    align-items: flex-start;
+    margin: 20px 0 0 0;
 }
-
-.cbr-pro-sidebar__help-link {
+.cbr_sidebar_help .cbr-help-icon {
+    width: 32px;
+    height: 32px;
+    background: #F3F4F6;
+    border-radius: 8px;
     display: flex;
     align-items: center;
-    gap: 8px;
-    color: #3b64d3 !important;
-    text-decoration: none !important;
+    justify-content: center;
+    font-size: 16px;
+    font-weight: bold;
+    color: #9ca3af;
+    flex-shrink: 0;
+}
+.cbr_sidebar_help .cbr-help-text {
+    text-align: left;
+    flex: 1;
+}
+.cbr_sidebar_help h3 {
+    font-size: 14px;
+    font-weight: 600;
+    color: #111827;
+    margin: 0 0 6px 0;
+}
+.cbr_sidebar_help p {
+    font-size: 12px;
+    color: #6B7280;
+    line-height: 1.5;
+    margin: 0 0 12px 0;
+}
+.cbr_sidebar_help .cbr-help-link {
+    color: #3b64d3;
+    text-decoration: none;
     font-size: 13px;
     font-weight: 500;
-    padding: 6px 0;
-    transition: color 0.2s ease;
-}
-
-.cbr-pro-sidebar__help-link:hover {
-    color: #2d4fa8 !important;
-}
-
-.cbr-pro-sidebar__help-link img {
-    width: 18px;
-    height: 18px;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
 }
 
 @media only screen and (max-width: 1200px) {
@@ -2032,6 +2022,20 @@ tr.cbr-pro-feature-row th {
     border-color: #bbf7d0;
     background: #f0fdf4;
     cursor: default;
+}
+.wp-core-ui .btn_cbr2 {
+    background: #3b64d3;
+    text-shadow: none;
+    border-color: #3b64d3;
+    box-shadow: none;
+    font-size: 14px;
+    line-height: 35px;
+    padding: 0 10px;
+    border-radius: 3px;
+}
+.cbr_admin_content .cbr_go_pro_tab {
+    font-weight: 700 !important;
+    color: #3b64d3 !important;
 }
 
 @media (max-width: 960px) {

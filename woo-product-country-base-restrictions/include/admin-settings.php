@@ -175,7 +175,8 @@ class CBR_Admin_Settings {
 		<div class="zorem-layout__header">
 			<h1 class="page_heading">
 				<a href="javascript:void(0)"><?php esc_html_e( 'Country Based Restriction', 'woo-product-country-base-restrictions' ); ?></a> <span class="dashicons dashicons-arrow-right-alt2"></span> <span class="breadcums_page_heading"><?php echo esc_html( $breadcumps_page_heading ); ?></span>
-			</h1>	
+			</h1>
+			<a href="https://www.zorem.com/product/country-based-restriction-pro/?utm_source=wp-admin&utm_medium=CBR&utm_campaign=add-ons" target="_blank"><span class="button-primary btn_cbr2">UPGRADE TO PRO</span></a>
 			<img class="zorem-layout__header-logo" src="<?php echo esc_url($fzpcr->plugin_dir_url() . 'assets/images/zorem-logo.png'); ?>">
 		</div>
 		<?php do_action( 'cbr_settings_admin_notice' ); ?>
@@ -256,7 +257,7 @@ class CBR_Admin_Settings {
 				}
 				?>
 				>
-				<label for="tab4" class="cbr_tab_label" ><?php esc_html_e('Go Pro', 'woo-product-country-base-restrictions'); ?></label>
+				<label for="tab4" class="cbr_tab_label cbr_go_pro_tab" ><?php esc_html_e('Go Pro ✨', 'woo-product-country-base-restrictions'); ?></label>
 				<div class="menu_devider"></div>
 				<div class="cbr-admin-main-wrapper">
 					<div class="cbr-sections-wrapper">
@@ -280,18 +281,15 @@ class CBR_Admin_Settings {
 								<li><span class="cbr-check">✓</span><?php esc_html_e( 'Cart & category restriction messages', 'woo-product-country-base-restrictions' ); ?></li>
 								<li><span class="cbr-check">✓</span><?php esc_html_e( 'Restrict on Place Order (Checkout)', 'woo-product-country-base-restrictions' ); ?></li>
 							</ul>
-							<a href="https://www.zorem.com/product/country-based-restriction-pro/" class="cbr-pro-sidebar__btn" target="_blank"><?php esc_html_e( 'UPGRADE TO CBR PRO', 'woo-product-country-base-restrictions' ); ?> &rarr;</a>
+							<a href="https://www.zorem.com/product/country-based-restriction-pro/" class="cbr-pro-sidebar__btn" target="_blank"><?php esc_html_e( 'Upgrade to CBR PRO', 'woo-product-country-base-restrictions' ); ?> &rarr;</a>
 						</div>
-						<div class="cbr-pro-sidebar__help">
-							<div class="cbr-pro-sidebar__help-icon">
-								<span class="dashicons dashicons-editor-help"></span>
-							</div>
-							<h4 class="cbr-pro-sidebar__help-title"><?php esc_html_e( 'Need help?', 'woo-product-country-base-restrictions' ); ?></h4>
-							<p class="cbr-pro-sidebar__help-desc"><?php esc_html_e( 'Check our documentation or contact our support team if you have any questions.', 'woo-product-country-base-restrictions' ); ?></p>
-							<div class="cbr-pro-sidebar__help-links">
-								<a href="https://docs.zorem.com/docs/country-based-restrictions-pro/" target="_blank" class="cbr-pro-sidebar__help-link">
-									<img src="<?php echo esc_url($fzpcr->plugin_dir_url() . 'assets/images/documentation-icon.svg'); ?>" alt="" />
-									<?php esc_html_e( 'Documentation', 'woo-product-country-base-restrictions' ); ?>
+						<div class="cbr_sidebar_help">
+							<div class="cbr-help-icon">?</div>
+							<div class="cbr-help-text">
+								<h3>Need help?</h3>
+								<p>Check our documentation or contact our support team if you have any questions.</p>
+								<a href="https://docs.zorem.com/docs/country-based-restrictions-pro/" class="cbr-help-link" target="_blank">
+									View Documentation →
 								</a>
 							</div>
 						</div>
