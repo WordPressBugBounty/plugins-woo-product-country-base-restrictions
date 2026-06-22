@@ -161,150 +161,56 @@ class CBR_Admin_Settings {
 	*/
 	public function woocommerce_product_country_restrictions_page_callback() {
 		global $fzpcr;
-		$tab = isset( $_GET['tab'] ) ? sanitize_text_field($_GET['tab']) : '';
-		if ( 'catalog-restrictions' == $tab ) {
-			$breadcumps_page_heading = esc_html__( 'Catalog Restrictions', 'woo-product-country-base-restrictions' );
-		} else if ( 'payment-restrictions' == $tab ) {
-			$breadcumps_page_heading = esc_html__( 'Payment Restrictions', 'woo-product-country-base-restrictions' );
-		} else if ( 'go-pro' == $tab ) {
-			$breadcumps_page_heading = esc_html__( 'Go Pro', 'woo-product-country-base-restrictions' );
-		} else {
-			$breadcumps_page_heading = esc_html__( 'Settings', 'woo-product-country-base-restrictions' );
-		}
+		$tab          = isset( $_GET['tab'] ) ? sanitize_text_field( $_GET['tab'] ) : '';
+		$active_tab   = ! empty( $tab ) ? $tab : 'settings';
+		$tab_base_url = '?page=woocommerce-product-country-base-restrictions';
 		?>
-		<div class="zorem-layout__header">
-			<h1 class="page_heading">
-				<a href="javascript:void(0)"><?php esc_html_e( 'Country Based Restriction', 'woo-product-country-base-restrictions' ); ?></a> <span class="dashicons dashicons-arrow-right-alt2"></span> <span class="breadcums_page_heading"><?php echo esc_html( $breadcumps_page_heading ); ?></span>
-			</h1>
-			<a href="https://www.zorem.com/product/country-based-restriction-pro/?utm_source=wp-admin&utm_medium=CBR&utm_campaign=add-ons" target="_blank"><span class="button-primary btn_cbr2">UPGRADE TO PRO</span></a>
-			<img class="zorem-layout__header-logo" src="<?php echo esc_url($fzpcr->plugin_dir_url() . 'assets/images/zorem-logo.png'); ?>">
-		</div>
-		<?php do_action( 'cbr_settings_admin_notice' ); ?>
-		<div class="woocommerce cbr_admin_layout">
-			<div class="woocommerce-layout__activity-panel">
-				<div class="woocommerce-layout__activity-panel-tabs">
-					<button type="button" id="activity-panel-tab-help" class="components-button woocommerce-layout__activity-panel-tab">
-						<span class="dashicons dashicons-menu-alt"></span> 
+		<div class="ast-settings-app zui-scope" id="ast-settings-app">
+		<header class="zui-header" id="ast-set-header">
+			<div class="zui-header__bar">
+				<div class="zui-header__lead">
+					<button type="button" class="zui-header__menu-toggle" data-ast-drawer-toggle aria-label="<?php esc_attr_e( 'Open settings menu', 'woo-product-country-base-restrictions' ); ?>">
+						<svg class="zui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
 					</button>
-					<div class="woocommerce-layout__activity-panel-wrapper">
-						<ul class="woocommerce-list woocommerce-quick-links__list">
-							<li class="woocommerce-list__item has-action">
-								<?php
-								$support_link = 'https://wordpress.org/support/plugin/woo-product-country-base-restrictions/#new-topic-0' ;
-								?>
-								<a href="<?php echo esc_url( $support_link ); ?>" class="woocommerce-list__item-inner" target="_blank" >
-									<div class="woocommerce-list__item-before">
-										<img src="<?php echo esc_url($fzpcr->plugin_dir_url(__FILE__) . 'assets/images/support.png'); ?>">	
-									</div>
-									<div class="woocommerce-list__item-text">
-										<span class="woocommerce-list__item-title">
-											<div class="woocommerce-list-Text">Get Support</div>
-										</span>
-									</div>
-								</a>
-							</li>            
-							<li class="woocommerce-list__item has-action">
-								<a href="https://docs.zorem.com/docs/country-based-restrictions-free/?utm_source=wp-admin&utm_medium=CBRDOCU&utm_campaign=add-ons" class="woocommerce-list__item-inner" target="_blank">
-									<div class="woocommerce-list__item-before">
-										<img src="<?php echo esc_url($fzpcr->plugin_dir_url(__FILE__) . 'assets/images/document.png'); ?>">
-									</div>
-									<div class="woocommerce-list__item-text">
-										<span class="woocommerce-list__item-title">
-											<div class="woocommerce-list-Text">Documentation</div>
-										</span>
-									</div>
-								</a>
-							</li>
-							<li class="woocommerce-list__item has-action">
-								<a href="https://www.zorem.com/product/country-based-restriction-pro/?utm_source=wp-admin&utm_medium=CBR&utm_campaign=add-ons" class="woocommerce-list__item-inner" target="_blank">
-									<div class="woocommerce-list__item-before">
-										<img src="<?php echo esc_url($fzpcr->plugin_dir_url(__FILE__) . 'assets/images/upgrade.png'); ?>">
-									</div>
-									<div class="woocommerce-list__item-text">
-										<span class="woocommerce-list__item-title">
-											<div class="woocommerce-list-Text">Upgrade to Pro</div>
-										</span>
-									</div>
-								</a>
-							</li>
-						</ul>
+					<div class="zui-brand">
+						<span class="zui-brand__emblem" aria-hidden="true">
+							<svg class="zui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+						</span>
+						<span class="zui-brand__name">CBR</span>
+						<span class="zui-brand__badge zui-brand__badge--free"><?php esc_html_e( 'FREE', 'woo-product-country-base-restrictions' ); ?></span>
+						<span class="zui-brand__tagline"><?php esc_html_e( 'Country Based Restrictions', 'woo-product-country-base-restrictions' ); ?></span>
 					</div>
+				</div>
+				<div class="zui-header-actions">
+					<a class="zui-header-action zui-header-action--with-label" href="https://docs.zorem.com/docs/country-based-restrictions-free/?utm_source=wp-admin&utm_medium=CBR&utm_campaign=Docs" target="_blank" rel="noreferrer noopener">
+						<svg class="zui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>
+						<span class="zui-header-action__label"><?php esc_html_e( 'Docs Portal', 'woo-product-country-base-restrictions' ); ?></span>
+					</a>
 				</div>
 			</div>
+			<nav class="zui-tabs" aria-label="<?php esc_attr_e( 'CBR modules', 'woo-product-country-base-restrictions' ); ?>">
+				<a class="zui-tabs__item<?php echo ( 'settings' === $active_tab ) ? ' is-active' : ''; ?>" href="<?php echo esc_url( $tab_base_url . '&tab=settings' ); ?>" data-tab="settings" data-label="<?php esc_attr_e( 'Settings', 'woo-product-country-base-restrictions' ); ?>"<?php echo ( 'settings' === $active_tab ) ? ' aria-current="page"' : ''; ?>><?php esc_html_e( 'Settings', 'woo-product-country-base-restrictions' ); ?></a>
+				<a class="zui-tabs__item<?php echo ( 'catalog-restrictions' === $active_tab ) ? ' is-active' : ''; ?>" href="<?php echo esc_url( $tab_base_url . '&tab=catalog-restrictions' ); ?>" data-tab="catalog-restrictions" data-label="<?php esc_attr_e( 'Catalog Restrictions', 'woo-product-country-base-restrictions' ); ?>"<?php echo ( 'catalog-restrictions' === $active_tab ) ? ' aria-current="page"' : ''; ?>><?php esc_html_e( 'Catalog Restrictions', 'woo-product-country-base-restrictions' ); ?> <span class="zui-tabs__badge"><?php esc_html_e( 'PRO', 'woo-product-country-base-restrictions' ); ?></span></a>
+				<a class="zui-tabs__item<?php echo ( 'payment-restrictions' === $active_tab ) ? ' is-active' : ''; ?>" href="<?php echo esc_url( $tab_base_url . '&tab=payment-restrictions' ); ?>" data-tab="payment-restrictions" data-label="<?php esc_attr_e( 'Payment Restrictions', 'woo-product-country-base-restrictions' ); ?>"<?php echo ( 'payment-restrictions' === $active_tab ) ? ' aria-current="page"' : ''; ?>><?php esc_html_e( 'Payment Restrictions', 'woo-product-country-base-restrictions' ); ?> <span class="zui-tabs__badge"><?php esc_html_e( 'PRO', 'woo-product-country-base-restrictions' ); ?></span></a>
+				<a class="zui-tabs__item zui-tabs__item--gopro<?php echo ( 'go-pro' === $active_tab ) ? ' is-active' : ''; ?>" href="<?php echo esc_url( $tab_base_url . '&tab=go-pro' ); ?>" data-tab="go-pro" data-label="<?php esc_attr_e( 'Go Pro', 'woo-product-country-base-restrictions' ); ?>"<?php echo ( 'go-pro' === $active_tab ) ? ' aria-current="page"' : ''; ?>><?php esc_html_e( 'Go Pro', 'woo-product-country-base-restrictions' ); ?> <span class="zui-tabs__sparkle">&#10024;</span></a>
+			</nav>
+		</header>
+		<div class="woocommerce cbr_admin_layout">
 			<div class="cbr_admin_content">
-				<input id="tab1" type="radio" name="tabs" class="cbr_tab_input" data-tab="settings" data-label="<?php esc_html_e('Settings', 'woo-product-country-base-restrictions'); ?>" checked>
-				<label for="tab1" class="cbr_tab_label first_label" ><?php esc_html_e('Settings', 'woo-product-country-base-restrictions'); ?></label>
-				<input id="tab5" type="radio" name="tabs" class="cbr_tab_input" data-tab="catalog-restrictions" data-label="<?php esc_html_e('Catalog Restrictions', 'woo-product-country-base-restrictions'); ?>"
 				<?php
-				if ('catalog-restrictions' == $tab) {
-					echo 'checked';
-				}
+				require_once( 'views/cbr_setting_tab.php' );
+				require_once( 'views/cbr_catalog_restrictions_tab.php' );
+				require_once( 'views/cbr_payment_restrictions_tab.php' );
+				require_once( 'views/cbr_addons_tab.php' );
 				?>
-				>
-				<label for="tab5" class="cbr_tab_label cbr-pro-tab-label"><?php esc_html_e('Catalog Restrictions', 'woo-product-country-base-restrictions'); ?> <span class="cbr-pro-badge"><?php esc_html_e('PRO', 'woo-product-country-base-restrictions'); ?></span></label>
-				<input id="tab6" type="radio" name="tabs" class="cbr_tab_input" data-tab="payment-restrictions" data-label="<?php esc_html_e('Payment Restrictions', 'woo-product-country-base-restrictions'); ?>"
-				<?php
-				if ('payment-restrictions' == $tab) {
-					echo 'checked';
-				}
-				?>
-				>
-				<label for="tab6" class="cbr_tab_label cbr-pro-tab-label"><?php esc_html_e('Payment Restrictions', 'woo-product-country-base-restrictions'); ?> <span class="cbr-pro-badge"><?php esc_html_e('PRO', 'woo-product-country-base-restrictions'); ?></span></label>
-				<input id="tab4" type="radio" name="tabs" class="cbr_tab_input" data-tab="go-pro" data-label="<?php esc_html_e('Go Pro', 'woo-product-country-base-restrictions'); ?>"
-				<?php
-				if ('go-pro' == $tab) {
-					echo 'checked';
-				}
-				?>
-				>
-				<label for="tab4" class="cbr_tab_label cbr_go_pro_tab" ><?php esc_html_e('Go Pro ✨', 'woo-product-country-base-restrictions'); ?></label>
-				<div class="menu_devider"></div>
-				<div class="cbr-admin-main-wrapper">
-					<div class="cbr-sections-wrapper">
-						<?php require_once( 'views/cbr_setting_tab.php' ); ?>
-						<?php require_once( 'views/cbr_catalog_restrictions_tab.php' ); ?>
-						<?php require_once( 'views/cbr_payment_restrictions_tab.php' ); ?>
-						<?php require_once( 'views/cbr_addons_tab.php' ); ?>
-					</div>
-					<div class="cbr-pro-sidebar">
-						<div class="cbr-pro-sidebar__upgrade">
-							<div class="cbr-pro-sidebar__icon">
-								<img src="<?php echo esc_url($fzpcr->plugin_dir_url() . 'assets/images/cbr-icon.png'); ?>" alt="CBR PRO" />
-							</div>
-							<h3 class="cbr-pro-sidebar__title"><?php esc_html_e( 'Unlock Advanced Country Based Restrictions with CBR PRO', 'woo-product-country-base-restrictions' ); ?></h3>
-							<p class="cbr-pro-sidebar__desc"><?php esc_html_e( 'Upgrade to CBR PRO to extend your country-based restrictions beyond the basics.', 'woo-product-country-base-restrictions' ); ?></p>
-							<ul class="cbr-pro-sidebar__features">
-								<li><span class="cbr-check">✓</span><?php esc_html_e( 'Catalog restriction rules by category', 'woo-product-country-base-restrictions' ); ?></li>
-								<li><span class="cbr-check">✓</span><?php esc_html_e( 'Payment gateway restrictions by country', 'woo-product-country-base-restrictions' ); ?></li>
-								<li><span class="cbr-check">✓</span><?php esc_html_e( 'Country detection widget & customizer', 'woo-product-country-base-restrictions' ); ?></li>
-								<li><span class="cbr-check">✓</span><?php esc_html_e( 'Bypass restrictions for specific users', 'woo-product-country-base-restrictions' ); ?></li>
-								<li><span class="cbr-check">✓</span><?php esc_html_e( 'Cart & category restriction messages', 'woo-product-country-base-restrictions' ); ?></li>
-								<li><span class="cbr-check">✓</span><?php esc_html_e( 'Restrict on Place Order (Checkout)', 'woo-product-country-base-restrictions' ); ?></li>
-							</ul>
-							<a href="https://www.zorem.com/product/country-based-restriction-pro/" class="cbr-pro-sidebar__btn" target="_blank"><?php esc_html_e( 'Upgrade to CBR PRO', 'woo-product-country-base-restrictions' ); ?> &rarr;</a>
-						</div>
-						<div class="cbr_sidebar_help">
-							<div class="cbr-help-icon">?</div>
-							<div class="cbr-help-text">
-								<h3>Need help?</h3>
-								<p>Check our documentation or contact our support team if you have any questions.</p>
-								<a href="https://docs.zorem.com/docs/country-based-restrictions-pro/" class="cbr-help-link" target="_blank">
-									View Documentation →
-								</a>
-							</div>
-						</div>
-					</div>
-				</div>
 			</div>
 			<div id="cbr-toast-example" aria-live="assertive" aria-atomic="true" aria-relevant="text" class="mdl-snackbar mdl-js-snackbar">
 				<div class="mdl-snackbar__text"></div>
 				<button type="button" class="mdl-snackbar__action"></button>
 			</div>
 		</div>
-		<div class="zorem-layout__footer">
-			<span>Powered by</span> <img class="zorem-layout__footer-logo" src="<?php echo esc_url($fzpcr->plugin_dir_url() . 'assets/images/zorem-logo.png'); ?>">
 		</div>
-	   <?php
+		<?php
 	}
 
 	/**
@@ -490,160 +396,56 @@ class CBR_Admin_Settings {
 	}
 	
 	/*
-	* Get html of fields
+	* Get html of fields (ZUI row + toggle/select markup, ported from CBR PRO)
 	*
 	* @since 1.0.0
 	*/
 	public function get_html_visibility_setting( $arrays ) {
 		$checked = '';
-		?>
-		<table class="form-table">
-			<tbody>
-				<?php 
-				foreach ( (array) $arrays as $id => $array ) {
-					if ($array['show']) {
-						?>
-						<tr valign="top" class="<?php echo esc_html($array['class']); ?> border_1">
-						<?php
-						if ( 'checkbox' == $array['type'] ) {
-							if (isset($array['id']) && get_option($array['id'])) {
-								$checked = 'checked';
-							} else {
-								$checked = '';
-							}
-							if (isset($array['disabled']) && true == $array['disabled']) {
-								$disabled = 'disabled';
-								$checked = '';
-							} else {
-								$disabled = '';
-							}							
-							?>
-							<td>
-							<input type="hidden" name="<?php echo esc_html($id); ?>" value="0"/>
-							<input class="checkobox-input" id="<?php echo esc_html($id); ?>" name="<?php echo esc_html($id); ?>" type="checkbox" <?php echo esc_html($checked); ?> value="1" <?php echo esc_html($disabled); ?>/>
-							<label class="checkbox-label" for="<?php echo esc_html($id); ?>"><?php echo ( isset($array['title']) ) ? esc_html($array['title']) : ''; ?></label>
-							<?php if ( isset($array['tooltip']) ) { ?>
-								<span class="woocommerce-help-tip tipTip" title="<?php echo esc_html($array['tooltip']); ?>"></span>
-							<?php } ?>
-						</td>
-						<?php } elseif ( isset( $array['type'] ) && 'dropdown' == $array['type'] ) { ?>
-							<?php
-							if ( isset($array['multiple']) ) {
-								$multiple = 'multiple';
-								$field_id = $array['multiple'];
-							} else {
-								$multiple = '';
-								$field_id = $id;
-							}
-							?>
-							<td>
-							<label class="select-label" for="<?php echo esc_html($id); ?>"><?php echo ( isset($array['title']) ) ? esc_html($array['title']) : ''; ?></label>
-							<?php if ( isset($array['tooltip']) ) { ?>
-								<span class="woocommerce-help-tip tipTip" title="<?php echo esc_html($array['tooltip']); ?>"></span>
-							<?php } ?>
-							<fieldset>
-								<select class="select" id="<?php echo esc_html($field_id); ?>" name="<?php echo esc_html($id); ?>" <?php echo esc_html($multiple); ?>>
-									<?php foreach ((array) $array['options'] as $key => $val ) { ?>
-										<?php
-										$selected = '';
-										if ( isset($array['multiple']) ) {
-											if ( in_array($key, (array) $this->data->$field_id ) ) {
-												$selected = 'selected';
-											}
-										} else {
-											if ( get_option($array['id']) == (string) $key ) {
-												$selected = 'selected';
-											}
-										}
-										?>
-										<option value="<?php echo esc_html($key); ?>" <?php echo esc_html($selected); ?> ><?php echo esc_html($val); ?></option>
-									<?php } ?>
-								</select><p class="description"><?php echo ( isset($array['desc_tip']) ) ? esc_html($array['desc_tip']) : ''; ?></p>
-							</fieldset>
-									</td>
-						<?php
-						}
-					}
-				}
-				?>
-			</tbody>
-		</table>
-		<?php
-	}
-	
-	/*
-	* Get html of fields
-	*
-	* @since 1.0.0
-	*/
-	public function get_html_general_setting( $arrays ) {
-		
-		$checked = '';
-		?>
-		<?php 
 		foreach ( (array) $arrays as $id => $array ) {
-			if ($array['show']) {	
-				?>
-				<?php if ('checkbox-left' == $array['class']) { ?>
-				<tr valign="top" class="border_1 <?php echo esc_html($array['class']); ?>">
-					<?php
-					if (isset($array['id']) && get_option($array['id'])) {
-						$checked = 'checked';
-					} else {
-						$checked = '';
-					}
-					?>
-				<th scope="row" class="titledesc" colspan="2">
-					<label class="checkbx-label" for="<?php echo esc_html($id); ?>">
-						<input type="hidden" name="<?php echo esc_html($id); ?>" value="0">
-						<input type="checkbox" id="<?php echo esc_html($id); ?>" name="<?php echo esc_html($id); ?>" class="checkbox-input" <?php echo esc_html($checked); ?> value="1">
-						<?php echo esc_html($array['title']); ?>
-						<?php 
-						if (isset($array['title_link'])) { 
-							echo esc_html($array['title_link']);
-						}
-						if ( isset($array['tooltip']) ) { 
-							?>
-						<span class="woocommerce-help-tip tipTip" title="<?php echo esc_html($array['tooltip']); ?>"></span>
+			if ( ! $array['show'] ) {
+				continue;
+			}
+			$type        = isset( $array['type'] ) ? $array['type'] : '';
+			$extra_class = isset( $array['class'] ) ? $array['class'] : '';
+			$row_class   = ( 'checkbox' === $type ) ? 'zui-row zui-row--inline' : 'zui-row';
+			?>
+			<div class="<?php echo esc_attr( trim( $row_class . ' ' . $extra_class ) ); ?> border_1">
+				<div class="zui-row__head">
+					<span class="zui-row__label">
+						<?php echo ( isset( $array['title'] ) ) ? esc_html( $array['title'] ) : ''; ?>
+						<?php if ( isset( $array['tooltip'] ) ) { ?>
+							<span class="zui-tooltip" tabindex="0" role="img" aria-label="<?php echo esc_attr( $array['tooltip'] ); ?>">
+								<svg class="zui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+								<span class="zui-tooltip__bubble"><?php echo esc_html( $array['tooltip'] ); ?><span class="zui-tooltip__arrow"></span></span>
+							</span>
 						<?php } ?>
-					</label>
-				</th>
-			</tr>
-			<?php } elseif ( 'textarea' == $array['type'] ) { ?>
-				<tr valign="top" class="border_1 <?php echo esc_html($array['class']); ?>">
-					<th scope="row" class="titledesc" colspan="2">
-						<label for="<?php echo esc_html($id); ?>">
-							<?php echo esc_html($array['title']); ?>
-							<?php
-							if (isset($array['title_link'])) { 
-								echo esc_html($array['title_link']);
-							}
-							?>
-							<?php if ( isset($array['tooltip']) ) { ?>
-								<span class="woocommerce-help-tip tipTip" title="<?php echo esc_html($array['tooltip']); ?>"></span>
-							<?php } ?>
+					</span>
+				</div>
+				<div class="zui-row__control">
+					<?php
+					if ( 'checkbox' === $type ) {
+						if ( isset( $array['id'] ) && get_option( $array['id'] ) ) {
+							$checked = 'checked';
+						} else {
+							$checked = '';
+						}
+						if ( isset( $array['disabled'] ) && true == $array['disabled'] ) {
+							$disabled = 'disabled';
+							$checked  = '';
+						} else {
+							$disabled = '';
+						}
+						?>
+						<label class="zui-toggle">
+							<input type="hidden" name="<?php echo esc_html( $id ); ?>" value="0">
+							<input type="checkbox" id="<?php echo esc_html( $id ); ?>" name="<?php echo esc_html( $id ); ?>" value="1" class="zui-toggle__input ast-toggle ast-settings-toggle checkobox-input" <?php echo esc_html( $checked ); ?> <?php echo esc_html( $disabled ); ?>>
+							<span class="zui-toggle__track">
+								<span class="zui-toggle__thumb"></span>
+							</span>
 						</label>
-						<fieldset>
-						<textarea rows="3" cols="20" class="input-text regular-input" type="textarea" name="<?php echo esc_html($id); ?>" id="<?php echo esc_html($id); ?>" style="" placeholder="<?php echo ( !empty($array['placeholder']) ) ? esc_html($array['placeholder']) : ''; ?>"><?php echo ( !empty(get_option($array['id'])) ) ? esc_html(stripslashes(get_option($array['id']))) : ''; ?></textarea>
-						</fieldset><p class="description"><?php echo ( isset($array['desc_tip']) ) ? esc_html($array['desc_tip']) : ''; ?></p>
-					</th>
-				</tr>
-			<?php } elseif ( isset( $array['type'] ) && 'dropdown' == $array['type'] ) { ?>
-				<tr valign="top" class="border_1 <?php echo esc_html($array['class']); ?>">
-					<th scope="row" class="titledesc" colspan="2">
-						<label for="<?php echo esc_html($id); ?>">
-							<?php echo esc_html($array['title']); ?>
-							<?php
-							if (isset($array['title_link'])) { 
-								echo esc_html($array['title_link']); 
-							}
-							?>
-							<?php if ( isset($array['tooltip']) ) { ?>
-								<span class="woocommerce-help-tip tipTip" title="<?php echo esc_html($array['tooltip']); ?>"></span>
-							<?php } ?>
-						</label>
-						<?php
-						if ( isset($array['multiple']) ) {
+					<?php } elseif ( 'dropdown' === $type ) {
+						if ( isset( $array['multiple'] ) ) {
 							$multiple = 'multiple';
 							$field_id = $array['multiple'];
 						} else {
@@ -651,30 +453,127 @@ class CBR_Admin_Settings {
 							$field_id = $id;
 						}
 						?>
-						<fieldset>
-							<select class="select" id="<?php echo esc_html($field_id); ?>" name="<?php echo esc_html($id); ?>" <?php echo esc_html($multiple); ?>>
-								<?php foreach ( (array) $array['options'] as $key => $val ) { ?>
-									<?php
+						<div class="zui-select-wrap">
+							<select class="zui-select select" id="<?php echo esc_html( $field_id ); ?>" name="<?php echo esc_html( $id ); ?>" <?php echo esc_html( $multiple ); ?>>
+								<?php foreach ( (array) $array['options'] as $key => $val ) {
 									$selected = '';
-									if ( isset($array['multiple']) ) {
-										if ( in_array($key, (array) $this->data->$field_id )) {
+									if ( isset( $array['multiple'] ) ) {
+										if ( in_array( $key, (array) $this->data->$field_id ) ) {
 											$selected = 'selected';
 										}
 									} else {
-										if ( get_option($array['id']) == (string) $key ) {
-											$selected = 'selected'; 
+										if ( get_option( $array['id'] ) == (string) $key ) {
+											$selected = 'selected';
 										}
 									}
 									?>
-									<option value="<?php echo esc_html($key); ?>" <?php echo esc_html($selected); ?> ><?php echo esc_html($val); ?></option>
+									<option value="<?php echo esc_html( $key ); ?>" <?php echo esc_html( $selected ); ?>><?php echo esc_html( $val ); ?></option>
 								<?php } ?>
-							</select><p class="description"><?php echo ( isset($array['desc_tip']) ) ? esc_html($array['desc_tip']) : ''; ?></p>
-						</fieldset>
-					</th>
-				</tr>
-			<?php } ?>
-		<?php } } ?>
-	<?php 
+							</select>
+							<span class="zui-select-chevron">
+								<svg class="zui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
+							</span>
+						</div>
+						<?php if ( isset( $array['desc_tip'] ) ) { ?>
+							<p class="zui-row__hint description"><?php echo esc_html( $array['desc_tip'] ); ?></p>
+						<?php } ?>
+					<?php } ?>
+				</div>
+			</div>
+			<?php
+		}
+	}
+	
+	/*
+	* Get html of fields (ZUI row + toggle/select/textarea markup, ported from CBR PRO)
+	*
+	* @since 1.0.0
+	*/
+	public function get_html_general_setting( $arrays ) {
+		$checked = '';
+		foreach ( (array) $arrays as $id => $array ) {
+			if ( ! $array['show'] ) {
+				continue;
+			}
+			$type        = isset( $array['type'] ) ? $array['type'] : '';
+			$extra_class = isset( $array['class'] ) ? $array['class'] : '';
+			$is_checkbox = ( 'checkbox-left' === $extra_class );
+			$row_class   = $is_checkbox ? 'zui-row zui-row--inline' : 'zui-row';
+			?>
+			<div class="<?php echo esc_attr( trim( $row_class . ' border_1 ' . $extra_class ) ); ?>">
+				<div class="zui-row__head">
+					<span class="zui-row__label">
+						<?php echo isset( $array['title'] ) ? esc_html( $array['title'] ) : ''; ?>
+						<?php if ( isset( $array['title_link'] ) ) {
+							echo esc_html( $array['title_link'] );
+						} ?>
+						<?php if ( isset( $array['tooltip'] ) ) { ?>
+							<span class="zui-tooltip" tabindex="0" role="img" aria-label="<?php echo esc_attr( $array['tooltip'] ); ?>">
+								<svg class="zui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+								<span class="zui-tooltip__bubble"><?php echo esc_html( $array['tooltip'] ); ?><span class="zui-tooltip__arrow"></span></span>
+							</span>
+						<?php } ?>
+					</span>
+				</div>
+				<div class="zui-row__control">
+					<?php
+					if ( $is_checkbox ) {
+						if ( isset( $array['id'] ) && get_option( $array['id'] ) ) {
+							$checked = 'checked';
+						} else {
+							$checked = '';
+						}
+						?>
+						<label class="zui-toggle">
+							<input type="hidden" name="<?php echo esc_html( $id ); ?>" value="0">
+							<input type="checkbox" id="<?php echo esc_html( $id ); ?>" name="<?php echo esc_html( $id ); ?>" value="1" class="zui-toggle__input ast-toggle ast-settings-toggle checkbox-input" <?php echo esc_html( $checked ); ?>>
+							<span class="zui-toggle__track">
+								<span class="zui-toggle__thumb"></span>
+							</span>
+						</label>
+					<?php } elseif ( 'textarea' === $type ) { ?>
+						<textarea rows="3" cols="20" class="zui-input regular-input input-text" type="textarea" name="<?php echo esc_html( $id ); ?>" id="<?php echo esc_html( $id ); ?>" style="" placeholder="<?php echo ( ! empty( $array['placeholder'] ) ) ? esc_html( $array['placeholder'] ) : ''; ?>"><?php echo ( ! empty( get_option( $array['id'] ) ) ) ? esc_html( stripslashes( get_option( $array['id'] ) ) ) : ''; ?></textarea>
+						<?php if ( isset( $array['desc_tip'] ) ) { ?>
+							<p class="zui-row__hint description"><?php echo esc_html( $array['desc_tip'] ); ?></p>
+						<?php } ?>
+					<?php } elseif ( 'dropdown' === $type ) {
+						if ( isset( $array['multiple'] ) ) {
+							$multiple = 'multiple';
+							$field_id = $array['multiple'];
+						} else {
+							$multiple = '';
+							$field_id = $id;
+						}
+						?>
+						<div class="zui-select-wrap">
+							<select class="zui-select select" id="<?php echo esc_html( $field_id ); ?>" name="<?php echo esc_html( $id ); ?>" <?php echo esc_html( $multiple ); ?>>
+								<?php foreach ( (array) $array['options'] as $key => $val ) {
+									$selected = '';
+									if ( isset( $array['multiple'] ) ) {
+										if ( in_array( $key, (array) $this->data->$field_id ) ) {
+											$selected = 'selected';
+										}
+									} else {
+										if ( get_option( $array['id'] ) == (string) $key ) {
+											$selected = 'selected';
+										}
+									}
+									?>
+									<option value="<?php echo esc_html( $key ); ?>" <?php echo esc_html( $selected ); ?>><?php echo esc_html( $val ); ?></option>
+								<?php } ?>
+							</select>
+							<span class="zui-select-chevron">
+								<svg class="zui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
+							</span>
+						</div>
+						<?php if ( isset( $array['desc_tip'] ) ) { ?>
+							<p class="zui-row__hint description"><?php echo esc_html( $array['desc_tip'] ); ?></p>
+						<?php } ?>
+					<?php } ?>
+				</div>
+			</div>
+			<?php
+		}
 	}
 
 

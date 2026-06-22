@@ -5,61 +5,75 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 global $fzpcr;
 
+// Per-slug emblem icons (lucide path data) come from the library's icon
+// registry — assets/zui/icons.php is included so we can call zui_get_icon().
+$cbr_zui_dir = $fzpcr->get_plugin_path() . '/assets/zui';
+if ( ! function_exists( 'zui_get_icon' ) && file_exists( $cbr_zui_dir . '/icons.php' ) ) {
+	require_once $cbr_zui_dir . '/icons.php';
+}
+
 $more_plugins = array(
 	0 => array(
 		'title' => 'Advanced Shipment Tracking',
 		'description' => __( 'AST Pro provides powerful features to easily add tracking information to WooCommerce orders, automate fulfillment workflows, and keep your customers happy and informed.', 'woo-product-country-base-restrictions' ),
-		'url' => 'https://www.zorem.com/product/woocommerce-advanced-shipment-tracking/?utm_source=wp-admin&utm_medium=cbr-addons&utm_campaign=add-ons',
-		'image' => 'ast-45.png',
-		'file' => 'ast-pro/ast-pro.php'
+		'url' => 'https://www.zorem.com/product/woocommerce-advanced-shipment-tracking/?utm_source=wp-admin&utm_medium=AST&utm_campaign=add-ons',
+		'icon'   => 'package',
+		'tint'   => '#DBEAFE',
+		'accent' => '#2563EB',
+		'file' => 'ast-pro/ast-pro.php',
 	),
 	1 => array(
 		'title' => 'TrackShip for WooCommerce',
 		'description' => __( 'Take control of your post-shipping workflows, reduce time spent on customer service and provide a superior post-purchase experience to your customers. Beyond automatic shipment tracking, TrackShip brings a branded tracking experience into your store.', 'woo-product-country-base-restrictions' ),
-		'url' => 'https://wordpress.org/plugins/trackship-for-woocommerce/?utm_source=wp-admin&utm_medium=cbr-addons&utm_campaign=add-ons',
-		'image' => 'ts-45.png',
-		'file' => 'trackship-for-woocommerce/trackship-for-woocommerce.php'
+		'url' => 'https://wordpress.org/plugins/trackship-for-woocommerce/?utm_source=wp-admin&utm_medium=TS4WC&utm_campaign=add-ons',
+		'img'    => $fzpcr->plugin_dir_url() . 'assets/images/ts-45.png',
+		'tint'   => '#CCFBF1',
+		'accent' => '#0D9488',
+		'file' => 'trackship-for-woocommerce/trackship-for-woocommerce.php',
 	),
 	2 => array(
 		'title' => 'Zorem Local Pickup Pro',
 		'description' => __( 'The Advanced Local Pickup (ALP) helps you manage local pickup order workflows more conveniently by extending the WooCommerce Local Pickup shipping method. The Pro version lets you set up multiple pickup locations, split business hours, and apply discounts by pickup location.', 'woo-product-country-base-restrictions' ),
-		'url' => 'https://www.zorem.com/product/zorem-local-pickup-pro/?utm_source=wp-admin&utm_medium=cbr-addons&utm_campaign=add-ons',
-		'image' => 'alp-45.png',
-		'file' => 'advanced-local-pickup-pro/advanced-local-pickup-pro.php'
+		'url' => 'https://www.zorem.com/product/zorem-local-pickup-pro/?utm_source=wp-admin&utm_medium=ALPPRO&utm_campaign=add-ons',
+		'icon'   => 'store',
+		'tint'   => '#DCFCE7',
+		'accent' => '#16A34A',
+		'file' => 'advanced-local-pickup-pro/advanced-local-pickup-pro.php',
 	),
 	3 => array(
 		'title' => 'Customer Email Verification',
 		'description' => __( 'Customer Email Verification helps WooCommerce store owners reduce registration spam and fraudulent orders by requiring customers to verify their email address when registering an account or before placing an order.', 'woo-product-country-base-restrictions' ),
-		'url' => 'https://www.zorem.com/product/customer-email-verification/?utm_source=wp-admin&utm_medium=cbr-addons&utm_campaign=add-ons',
-		'image' => 'cev-45.png',
-		'file' => 'customer-email-verification/customer-email-verification.php'
+		'url' => 'https://www.zorem.com/product/customer-email-verification/?utm_source=wp-admin&utm_medium=CEV&utm_campaign=add-ons',
+		'icon'   => 'shield-check',
+		'tint'   => '#FEE2E2',
+		'accent' => '#DC2626',
+		'file' => 'customer-email-verification/customer-email-verification.php',
 	),
 	4 => array(
 		'title' => 'SMS for WooCommerce',
 		'description' => __( 'Keep your customers informed by sending them automated SMS text messages with order and delivery updates. You can send SMS notifications to customers when the order status is updated or when the shipment is out for delivery and more.', 'woo-product-country-base-restrictions' ),
-		'url' => 'https://www.zorem.com/product/sms-for-woocommerce/?utm_source=wp-admin&utm_medium=cbr-addons&utm_campaign=add-ons',
-		'image' => 'sms-45.png',
-		'file' => 'sms-for-woocommerce/sms-for-woocommerce.php'
+		'url' => 'https://www.zorem.com/product/sms-for-woocommerce/?utm_source=wp-admin&utm_medium=SMSWOO&utm_campaign=add-ons',
+		'icon'   => 'phone',
+		'tint'   => '#DBEAFE',
+		'accent' => '#2563EB',
+		'file' => 'sms-for-woocommerce/sms-for-woocommerce.php',
 	),
 	5 => array(
 		'title' => 'Email Reports for WooCommerce',
 		'description' => __( 'Sales Report Email Pro helps you understand how well your store is performing and how your products are selling by sending daily, weekly, or monthly sales reports directly from your WooCommerce store to your email.', 'woo-product-country-base-restrictions' ),
-		'url' => 'https://www.zorem.com/product/email-reports-for-woocommerce/?utm_source=wp-admin&utm_medium=cbr-addons&utm_campaign=add-ons',
-		'image' => 'sre-45.png',
-		'file' => 'sales-report-email-pro/sales-report-email-pro.php'
+		'url' => 'https://www.zorem.com/product/email-reports-for-woocommerce/?utm_source=wp-admin&utm_medium=SRE&utm_campaign=add-ons',
+		'icon'   => 'mail',
+		'tint'   => '#F3E8FF',
+		'accent' => '#9333EA',
+		'file' => 'sales-report-email-pro/sales-report-email-pro.php',
 	),
 );
 
-$plugin_url = $fzpcr->plugin_dir_url();
 ?>
-<section id="cbr_content4" class="cbr_tab_section">
-	<div class="d_table addons_page_dtable" style="">
-		<section id="content_tab_addons" class="
-		<?php
-		if ( class_exists( 'Country_Based_Restrictions_PRO_Add_on' ) ) {
-			?>
-			inner_tab_section
-			<?php } ?>">
+<div class="zui-tab-panel" id="cbr_content4" data-tab="go-pro"<?php echo ( isset( $active_tab ) && 'go-pro' === $active_tab ) ? '' : ' hidden'; ?>>
+<div class="zui-layout zui-layout--full">
+<main class="zui-content zui-content--full">
+	<section id="cbr-section-go-pro" class="zui-section is-active" data-section="go-pro">
 
 		<!-- CBR Go Pro v2 layout (mirrors AST structure exactly) -->
 		<div class="cbr-go-pro-v2">
@@ -209,44 +223,83 @@ $plugin_url = $fzpcr->plugin_dir_url();
 		</div>
 		<!-- End .cbr-go-pro-v2 hero + comparison -->
 
-		<!-- Powerful Add-ons -->
+		<!-- Powerful Add-ons (ZUI License Ecosystem) -->
 		<div class="cbr-go-pro-v2">
-			<div class="gopro-addons">
-				<div class="gopro-addons-header">
-					<div>
-						<h2><?php esc_html_e( 'Powerful Add-ons', 'woo-product-country-base-restrictions' ); ?></h2>
-						<p><?php esc_html_e( 'Extend your store\'s capabilities with our ecosystem', 'woo-product-country-base-restrictions' ); ?></p>
+			<div class="zui-lic-eco">
+				<div class="zui-lic-eco__head">
+					<div class="zui-lic-eco__heading">
+						<span class="zui-lic-eco__icon">
+							<svg class="zui-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m12 3-1.9 5.8a2 2 0 0 1-1.3 1.3L3 12l5.8 1.9a2 2 0 0 1 1.3 1.3L12 21l1.9-5.8a2 2 0 0 1 1.3-1.3L21 12l-5.8-1.9a2 2 0 0 1-1.3-1.3Z"/><path d="M5 3v4"/><path d="M19 17v4"/><path d="M3 5h4"/><path d="M17 19h4"/></svg>
+						</span>
+						<div>
+							<h3><?php esc_html_e( 'Powerful Add-ons', 'woo-product-country-base-restrictions' ); ?></h3>
+							<p><?php esc_html_e( 'Extend your store\'s capabilities with our ecosystem.', 'woo-product-country-base-restrictions' ); ?></p>
+						</div>
+					</div>
+					<div class="zui-lic-eco__filters">
+						<button type="button" class="zui-lic-eco__filter is-active" data-filter="all"><?php esc_html_e( 'All', 'woo-product-country-base-restrictions' ); ?></button>
+						<button type="button" class="zui-lic-eco__filter" data-filter="active"><?php esc_html_e( 'Active', 'woo-product-country-base-restrictions' ); ?></button>
+						<button type="button" class="zui-lic-eco__filter" data-filter="addons"><?php esc_html_e( 'Add-ons', 'woo-product-country-base-restrictions' ); ?></button>
 					</div>
 				</div>
-				<div class="gopro-addons-track">
+				<div class="zui-lic-eco__search">
+					<span class="zui-lic-eco__search-icon">
+						<svg class="zui-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+					</span>
+					<input type="text" class="zui-input" id="cbr-lic-search" placeholder="<?php esc_attr_e( 'Search&hellip;', 'woo-product-country-base-restrictions' ); ?>">
+				</div>
+				<div class="zui-lic-eco__grid" id="cbr-lic-grid">
 					<?php
-					$icon_colors = array( '#ecfdf5', '#ede9fe', '#eff6ff', '#fef3c7', '#fce7f3', '#e0f2fe' );
 					foreach ( $more_plugins as $index => $addon ) :
-						$icon_bg = isset( $icon_colors[ $index ] ) ? $icon_colors[ $index ] : '#f3f4f6';
+						$is_active = is_plugin_active( $addon['file'] );
 						?>
-						<div class="gopro-addon-card">
-							<div class="gopro-addon-card-top">
-								<div class="gopro-addon-card-icon" style="background:<?php echo esc_attr( $icon_bg ); ?>">
-									<img src="<?php echo esc_url( $plugin_url . 'assets/images/' . $addon['image'] ); ?>" alt="<?php echo esc_attr( $addon['title'] ); ?>">
+						<div class="zui-card zui-lic-plugin" data-name="<?php echo esc_attr( strtolower( $addon['title'] ) ); ?>" data-active="<?php echo $is_active ? '1' : '0'; ?>">
+							<div class="zui-lic-plugin__head">
+								<span class="zui-lic-plugin__logo" style="background: <?php echo esc_attr( $addon['tint'] ); ?>; color: <?php echo esc_attr( $addon['accent'] ); ?>;">
+									<?php
+									if ( ! empty( $addon['img'] ) ) {
+										?>
+										<img src="<?php echo esc_url( $addon['img'] ); ?>" alt="<?php echo esc_attr( $addon['title'] ); ?>" loading="lazy">
+										<?php
+									} elseif ( function_exists( 'zui_get_icon' ) ) {
+										echo zui_get_icon( $addon['icon'] ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- static trusted SVG.
+									}
+									?>
+								</span>
+								<div class="zui-lic-plugin__id">
+									<h4 class="zui-lic-plugin__name"><?php echo esc_html( $addon['title'] ); ?></h4>
+									<span class="zui-lic-plugin__type"><?php esc_html_e( 'WOO EXTENSION', 'woo-product-country-base-restrictions' ); ?></span>
 								</div>
-								<h3><?php echo esc_html( $addon['title'] ); ?></h3>
-							</div>
-							<div class="gopro-addon-card-body">
-								<p><?php echo esc_html( $addon['description'] ); ?></p>
-							</div>
-							<div class="gopro-addon-card-footer">
-								<?php if ( is_plugin_active( $addon['file'] ) ) : ?>
-									<span class="gopro-addon-card-btn is-active"><?php esc_html_e( 'Active', 'woo-product-country-base-restrictions' ); ?></span>
-								<?php else : ?>
-									<a href="<?php echo esc_url( $addon['url'] ); ?>" class="gopro-addon-card-btn" target="_blank"><?php esc_html_e( 'Learn More', 'woo-product-country-base-restrictions' ); ?></a>
+								<?php if ( ! $is_active && 0 === $index ) : ?>
+									<span class="zui-lic-plugin__badge"><?php esc_html_e( 'Recommended', 'woo-product-country-base-restrictions' ); ?></span>
 								<?php endif; ?>
+							</div>
+							<div class="zui-lic-plugin__body">
+								<p class="zui-lic-plugin__desc"><?php echo esc_html( $addon['description'] ); ?></p>
+								<div class="zui-lic-plugin__foot">
+									<?php if ( $is_active ) : ?>
+										<span class="zui-lic-plugin__active">
+											<span class="zui-lic-plugin__dot"></span>
+											<?php esc_html_e( 'Active', 'woo-product-country-base-restrictions' ); ?>
+										</span>
+										<span class="zui-lic-plugin__stat"><?php esc_html_e( 'Active in this store', 'woo-product-country-base-restrictions' ); ?></span>
+									<?php else : ?>
+										<a class="zui-lic-plugin__get" href="<?php echo esc_url( $addon['url'] ); ?>" target="_blank">
+											<span><?php esc_html_e( 'Get Extension', 'woo-product-country-base-restrictions' ); ?></span>
+											<svg class="zui-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+										</a>
+										<span class="zui-lic-plugin__stat"><?php esc_html_e( 'By zorem.com', 'woo-product-country-base-restrictions' ); ?></span>
+									<?php endif; ?>
+								</div>
 							</div>
 						</div>
 					<?php endforeach; ?>
+					<div class="zui-lic-eco__empty" hidden><?php esc_html_e( 'No plugins matched.', 'woo-product-country-base-restrictions' ); ?></div>
 				</div>
 			</div>
 		</div>
 
-		</section>
-	</div>
-</section>
+	</section>
+</main>
+</div>
+</div>

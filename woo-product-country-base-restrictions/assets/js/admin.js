@@ -17,36 +17,28 @@ jQuery( document ).on( "click", "body", function() {
 /*header script end*/ 
 
 
-/* cbr_snackbar jquery */
+/* cbr_snackbar — delegate to library's ZUI.snackbar (glassmorphic top-right toast).
+   Kept as a jQuery shim so existing callers (jQuery(document).cbr_snackbar('Saved.'))
+   transparently get the new library design without per-call rewrites. */
 (function( $ ){
 	$.fn.cbr_snackbar = function(msg) {
-		if ( jQuery('.snackbar-logs').length === 0 ){
-			$("body").append("<section class=snackbar-logs></section>");
+		if ( window.ZUI && typeof window.ZUI.snackbar === 'function' ) {
+			window.ZUI.snackbar( msg, { type: 'success' } );
 		}
-		var cbr_snackbar = $("<article></article>").addClass('snackbar-log snackbar-log-success snackbar-log-show').text( msg );
-		$(".snackbar-logs").append(cbr_snackbar);
-		setTimeout(function(){ cbr_snackbar.remove(); }, 3000);
 		return this;
-	}; 
-})( jQuery );
-
-/* cbr_snackbar_warning jquery */
-(function( $ ){
+	};
 	$.fn.cbr_snackbar_warning = function(msg) {
-		if ( jQuery('.snackbar-logs').length === 0 ){
-			$("body").append("<section class=snackbar-logs></section>");
+		if ( window.ZUI && typeof window.ZUI.snackbar === 'function' ) {
+			window.ZUI.snackbar( msg, { type: 'error', html: true } );
 		}
-		var cbr_snackbar_warning = $("<article></article>").addClass( 'snackbar-log snackbar-log-error snackbar-log-show' ).html( msg );
-		$(".snackbar-logs").append(cbr_snackbar_warning);
-		setTimeout(function(){ cbr_snackbar_warning.remove(); }, 3000);
 		return this;
-	}; 
+	};
 })( jQuery );
 
 jQuery(document).ready(function(){
 	"use strict";
 	jQuery(".tipTip").tipTip();
-	jQuery("#wpcbr_choose_the_page_to_redirect").select2();
+	/* Skip select2 on this dropdown — ZUI's .zui-select-wrap already styles it cleanly. */
 	jQuery('#cbrw_border_color, #cbrw_background_color, #cbrw_font_color, #cbrwl_box_background_color, #cbrwl_background_color').wpColorPicker();
 	
 	jQuery('#wpcbr_choose_the_page_to_redirect').parent().parent().parent().hide();
@@ -168,21 +160,82 @@ jQuery(document).on("click", "#cbr_setting_tab_form .cbr-save", function(){
 	return false;
 });
 
-jQuery(document).on("click", ".cbr_tab_input", function(){
+/* ZUI tab switching — no page reload (mirrors PRO behavior). */
+function cbrActivateTab(tab) {
 	"use strict";
+	jQuery('.zui-tab-panel').prop('hidden', true);
+	jQuery('.zui-tab-panel[data-tab="' + tab + '"]').prop('hidden', false);
+	jQuery('.zui-tabs__item').removeClass('is-active').removeAttr('aria-current');
+	jQuery('.zui-tabs__item[data-tab="' + tab + '"]').addClass('is-active').attr('aria-current', 'page');
+}
+
+jQuery(document).ready(function(){
+	"use strict";
+	var $active = jQuery('.zui-tabs__item.is-active').first();
+	if ($active.length) {
+		cbrActivateTab($active.data('tab'));
+	}
+});
+
+jQuery(document).on("click", ".zui-tabs__item", function(e){
+	"use strict";
+	e.preventDefault();
 	var tab = jQuery(this).data('tab');
-	var label = jQuery(this).data('label');
-	jQuery('.zorem-layout__header .breadcums_page_heading').text(label);
+	cbrActivateTab(tab);
 	var url = window.location.protocol + "//" + window.location.host + window.location.pathname+"?page=woocommerce-product-country-base-restrictions&tab="+tab;
 	window.history.pushState({path:url},'',url);
 	jQuery(window).trigger('resize');
+});
 
-	/* Show sidebar only on Settings tab */
-	if (tab === 'settings') {
-		jQuery('.cbr-pro-sidebar').addClass('cbr-sidebar-visible');
-	} else {
-		jQuery('.cbr-pro-sidebar').removeClass('cbr-sidebar-visible');
+// Settings tab sidebar section switching (ZUI).
+jQuery(document).on("click", ".zui-sidebar__item[data-section]", function(e){
+	"use strict";
+	e.preventDefault();
+	var $btn = jQuery(this);
+	var section = $btn.data("section");
+	if ( ! section ) {
+		return;
 	}
+	jQuery(".zui-sidebar__item").removeClass("is-active").removeAttr("aria-current");
+	$btn.addClass("is-active").attr("aria-current", "true");
+	var $panel = $btn.closest(".zui-tab-panel");
+	$panel.find("> .zui-layout > .zui-content > form > .zui-section, > .zui-layout .zui-content > form > .zui-section").each(function(){
+		var $section = jQuery(this);
+		if ( $section.data("section") === section ) {
+			$section.addClass("is-active").prop("hidden", false);
+		} else {
+			$section.removeClass("is-active").prop("hidden", true);
+		}
+	});
+	jQuery("#ast-settings-app").removeClass("zui-sidebar-open");
+	if ( window.history && window.history.replaceState ) {
+		var url = new URL( window.location.href );
+		url.searchParams.set("section", section);
+		window.history.replaceState({path: url.toString()}, "", url.toString());
+	}
+});
+
+// Mobile sidebar drawer toggle (ZUI).
+jQuery(document).on("click", "[data-ast-drawer-toggle]", function(e){
+	"use strict";
+	e.preventDefault();
+	jQuery("#ast-settings-app").addClass("zui-sidebar-open");
+});
+jQuery(document).on("click", "[data-ast-drawer-close]", function(e){
+	"use strict";
+	e.preventDefault();
+	jQuery("#ast-settings-app").removeClass("zui-sidebar-open");
+});
+
+// Radio card selection visual (ZUI radio cards in Catalog Visibility).
+jQuery(document).on("change", ".zui-radio-card__input.product_visibility", function(){
+	"use strict";
+	jQuery(".zui-radio-card.product_visibility").removeClass("is-selected");
+	jQuery(this).closest(".zui-radio-card").addClass("is-selected");
+	// Toggle inside panels.
+	jQuery(".main-panel .inside").removeClass("active");
+	var val = jQuery(this).val();
+	jQuery(".main-panel .inside[data-value='" + val + "']").addClass("active");
 });
 
 /* PRO feature lock - prevent any interaction with locked elements */
@@ -198,4 +251,41 @@ jQuery(document).on("click", ".cbr-pro-locked-section .panel", function(e){
 	e.preventDefault();
 	e.stopPropagation();
 	return false;
+});
+
+/* License Ecosystem grid: filter pills + search (canonical .zui-lic-* classes). */
+jQuery(function($){
+	"use strict";
+	var $grid = $("#cbr-lic-grid");
+	if ( ! $grid.length ) { return; }
+	var $search  = $("#cbr-lic-search");
+	var $empty   = $grid.find(".zui-lic-eco__empty");
+	var $filters = $(".zui-lic-eco__filters .zui-lic-eco__filter");
+	var current  = "all";
+
+	function applyFilter() {
+		var q = $.trim( ( $search.val() || "" ).toLowerCase() );
+		var shown = 0;
+		$grid.find(".zui-lic-plugin").each(function(){
+			var $card = $(this);
+			var name = ( $card.attr("data-name") || "" ).toLowerCase();
+			var active = $card.attr("data-active") === "1";
+			var matchSearch = ! q || name.indexOf(q) !== -1;
+			var matchFilter = ( current === "all" )
+				|| ( current === "active" && active )
+				|| ( current === "addons" && ! active );
+			var show = matchSearch && matchFilter;
+			$card.toggle( show );
+			if ( show ) { shown++; }
+		});
+		if ( shown === 0 ) { $empty.removeAttr("hidden"); } else { $empty.attr("hidden", ""); }
+	}
+
+	$search.on("input", applyFilter);
+	$filters.on("click", function(){
+		current = $(this).attr("data-filter");
+		$filters.removeClass("is-active");
+		$(this).addClass("is-active");
+		applyFilter();
+	});
 });

@@ -1,0 +1,1455 @@
+/* ============================================================
+   CBR-specific overrides to the canonical ZUI bundle.
+   ------------------------------------------------------------
+   Lives in the same zui bundle directory and is enqueued AFTER
+   the main aggregator. Only CBR-specific patterns belong here —
+   never override AST PRO's base primitives.
+   ============================================================ */
+
+/* ------------------------------------------------------------
+   1. Radio cards — list variant (Catalog Visibility tab)
+   ------------------------------------------------------------
+   The CBR design renders the 4 catalog visibility radios as a
+   vertical list (not the canonical 2-column grid). The selected
+   radio's sub-options (.main-panel > .inside) expand inline as
+   part of the selected row's body, sharing the same blue tint.
+   ------------------------------------------------------------ */
+
+.zui-scope .zui-radio-cards--list {
+	display: flex;
+	flex-direction: column;
+	gap: 0;
+	max-width: 100%;
+	border: 1px solid var(--zui-border);
+	border-radius: var(--zui-radius-xl);
+	background: var(--zui-surface);
+	/* IMPORTANT: do NOT use overflow:hidden here — it clips the tooltip bubble that
+	   floats above its trigger. Round corners via inner items having matching radii. */
+	overflow: visible;
+}
+
+/* First/last cards get the rounded corners so the container's border-radius doesn't
+   clip them (since overflow is visible). */
+.zui-scope .zui-radio-cards--list > .zui-radio-card:first-child {
+	border-top-left-radius: var(--zui-radius-xl);
+	border-top-right-radius: var(--zui-radius-xl);
+}
+
+.zui-scope .zui-radio-cards--list > .zui-radio-card:last-child {
+	border-bottom-left-radius: var(--zui-radius-xl);
+	border-bottom-right-radius: var(--zui-radius-xl);
+}
+
+.zui-scope .zui-radio-cards--list .zui-radio-card {
+	border: 0 !important;
+	border-bottom: 1px solid var(--zui-divider) !important;
+	border-radius: 0;
+	padding: 16px 20px;
+	background: #ffffff !important;
+	box-shadow: none !important;
+	transition: background 0.15s ease;
+}
+
+.zui-scope .zui-radio-cards--list .zui-radio-card:hover {
+	background: #f8fafc !important;
+}
+
+.zui-scope .zui-radio-cards--list .zui-radio-card.is-selected {
+	background: rgba(240, 244, 255, 0.4) !important;
+	border-bottom-color: transparent !important;
+}
+
+.zui-scope .zui-radio-cards--list .zui-radio-card__label {
+	font-size: 14px;
+	font-weight: 600;
+	color: var(--zui-text-strong);
+}
+
+.zui-scope .zui-radio-cards--list .zui-radio-card__desc {
+	font-size: 12px;
+	color: var(--zui-text-muted);
+	margin-top: 2px;
+}
+
+/* main-panel = the per-radio sub-options expand area */
+.zui-scope .zui-radio-cards--list .main-panel {
+	border-bottom: 1px solid var(--zui-divider);
+}
+
+.zui-scope .zui-radio-cards--list .main-panel:last-child,
+.zui-scope .zui-radio-cards--list > .zui-radio-card:last-child {
+	border-bottom: 0;
+}
+
+.zui-scope .zui-radio-cards--list .main-panel .inside {
+	display: none;
+	background: rgba(240, 244, 255, 0.4) !important;
+	padding: 4px 24px 16px 44px;
+	border: 0 !important;
+}
+
+.zui-scope .zui-radio-cards--list .main-panel .inside.active {
+	display: block;
+}
+
+/* When a radio is selected, blend its body color into the expand panel below */
+.zui-scope .zui-radio-cards--list .zui-radio-card.is-selected + .main-panel .inside.active {
+	border-top: 0;
+	margin-top: -1px;
+}
+
+/* The expand area's rows should sit flush — no card borders */
+.zui-scope .zui-radio-cards--list .main-panel .inside .zui-row {
+	border: 0;
+	padding: 8px 0;
+}
+
+.zui-scope .zui-radio-cards--list .main-panel .inside .zui-row:not(:last-child) {
+	border-bottom: 1px solid rgba(226, 232, 240, 0.6);
+}
+
+/* ------------------------------------------------------------
+   1a. Header brand bar — divider below the CBR logo row
+   ------------------------------------------------------------
+   The header is laid out as `.zui-header__bar` (CBR logo + Docs/Support
+   actions) followed by `.zui-tabs`. The base header.css only puts a
+   border under the entire header (below the tabs). Add a divider
+   between the brand bar and the tabs nav so the CBR logo row reads
+   as its own band. */
+.zui-scope .zui-header__bar {
+	border-bottom: 1px solid var(--zui-border);
+}
+
+/* ------------------------------------------------------------
+   1b. Bulk / Checkout restrictions — strip the .zui-card wrapper
+   ------------------------------------------------------------
+   The bulk-restrictions / payment-restrictions tabs wrap their
+   rules list in a `.zui-card`. The card chrome (background, border,
+   radius, shadow) competes with each rule's own pill chrome, so
+   the user wants this outer wrapper transparent.
+   ------------------------------------------------------------ */
+
+.zui-scope #cbr_bulk_restrictions_tab_form .zui-card,
+.zui-scope #cbr_checkout_restrictions_tab_form .zui-card {
+	background: transparent !important;
+	border: 0 !important;
+	border-radius: 0 !important;
+	box-shadow: none !important;
+	padding: 0 !important;
+}
+
+/* form-table inside the bulk/checkout tabs is a layout shell only — no chrome */
+.zui-scope #cbr_bulk_restrictions_tab_form .form-table,
+.zui-scope #cbr_checkout_restrictions_tab_form .form-table,
+.zui-scope #cbr_bulk_restrictions_tab_form .form-table tbody,
+.zui-scope #cbr_checkout_restrictions_tab_form .form-table tbody,
+.zui-scope #cbr_bulk_restrictions_tab_form .form-table tr,
+.zui-scope #cbr_checkout_restrictions_tab_form .form-table tr,
+.zui-scope #cbr_bulk_restrictions_tab_form .form-table td,
+.zui-scope #cbr_checkout_restrictions_tab_form .form-table td {
+	background: transparent !important;
+	border: 0 !important;
+	padding: 0 !important;
+	margin: 0 !important;
+	box-shadow: none !important;
+}
+
+/* Breathing room at the bottom of every tab panel — without this the rules
+   list bumps right up against the page background edge and the layout looks
+   "cut". Applies to all CBR tabs. */
+.zui-scope .zui-tab-panel {
+	padding-bottom: 48px !important;
+}
+
+.zui-scope #cbr_bulk_restrictions_tab_form,
+.zui-scope #cbr_checkout_restrictions_tab_form {
+	padding-bottom: 24px;
+}
+
+/* ------------------------------------------------------------
+   2. List-row pill (Catalog / Payment Restrictions rule list)
+   ------------------------------------------------------------
+   The CBR design (images 5/6/7) renders each restriction rule
+   as a pill-shaped row. Composes onto the existing
+   .br_cbr_accordion_handle / .ck_cbr_accordion_handle (so JS
+   hooks stay intact) but overrides the legacy chrome from
+   admin.css.
+   ------------------------------------------------------------ */
+
+.zui-scope .br_cbr_accordion_handle.zui-list-row,
+.zui-scope .ck_cbr_accordion_handle.zui-list-row {
+	display: flex;
+	align-items: center;
+	gap: 16px;
+	padding: 16px;
+	background: #ffffff;
+	border: 1px solid #e2e8f0 !important;
+	border-radius: 12px !important;
+	transition: background 0.15s ease;
+	position: relative;
+	cursor: pointer;
+	box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
+}
+
+.zui-scope .br_cbr_accordion_handle.zui-list-row:hover,
+.zui-scope .ck_cbr_accordion_handle.zui-list-row:hover {
+	background: #f8fafc;
+}
+
+/* Title styling matches React reference: text-slate-600 / 14px / weight 500 */
+.zui-scope .br_cbr_accordion_handle.zui-list-row .br_cbr_row_title_title,
+.zui-scope .ck_cbr_accordion_handle.zui-list-row .ck_cbr_row_title_title {
+	font-size: 14px !important;
+	font-weight: 500 !important;
+	color: #475569 !important;
+}
+
+/* Meta text matches React: text-slate-300 / 13px with left border separator */
+.zui-scope .br_cbr_accordion_handle.zui-list-row .br_cbr_row_title_note,
+.zui-scope .ck_cbr_accordion_handle.zui-list-row .ck_cbr_row_title_note {
+	font-size: 13px !important;
+	font-weight: 400 !important;
+	color: #cbd5e1 !important;
+	border-left: 1px solid #e2e8f0 !important;
+	padding-left: 12px !important;
+	margin-left: 4px !important;
+	text-transform: none !important;
+}
+
+/* Outer accordion wrapper resets — let the row pill provide visuals.
+   `position: relative` so duplicate_handle (a sibling of the pill in markup) can
+   be absolutely positioned to APPEAR inside the pill's right edge. */
+.zui-scope .accordion.br_cbr_row,
+.zui-scope .Accordion.ck_cbr_row {
+	background: transparent !important;
+	border: 0 !important;
+	padding: 0 !important;
+	margin-bottom: 12px;
+	position: relative !important;
+}
+
+/* sort_handle / remove_handle / duplicate_handle all sit inside `.br_cbr_accordion_handle`
+   in normal flex flow. The row title has `flex: 1`, so the three icons naturally
+   pack to the right edge of the pill — no absolute positioning, no extra padding. */
+
+/* Row title block: toggle + title + meta */
+.zui-scope .zui-list-row .br_cbr_row_title,
+.zui-scope .zui-list-row .ck_cbr_row_title {
+	flex: 1;
+	min-width: 0;
+	display: flex;
+	align-items: center;
+	gap: 12px;
+}
+
+.zui-scope .zui-list-row .br_cbr_row_title_title,
+.zui-scope .zui-list-row .ck_cbr_row_title_title {
+	font-size: 13px;
+	font-weight: 600;
+	color: var(--zui-text-strong);
+}
+
+.zui-scope .zui-list-row .br_cbr_row_title_note,
+.zui-scope .zui-list-row .ck_cbr_row_title_note {
+	font-size: 12px;
+	color: var(--zui-text-muted);
+}
+
+/* Right-side action cluster — controllers (sort, delete, duplicate) */
+.zui-scope .zui-list-row .controller,
+.zui-scope .zui-list-row .ck_controller {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 28px;
+	height: 28px;
+	border-radius: var(--zui-radius-lg);
+	color: var(--zui-text-muted);
+	cursor: pointer;
+	transition: background 0.15s ease, color 0.15s ease;
+	flex-shrink: 0;
+}
+
+.zui-scope .zui-list-row .controller:hover,
+.zui-scope .zui-list-row .ck_controller:hover {
+	background: var(--zui-divider);
+	color: var(--zui-text-strong);
+}
+
+.zui-scope .zui-list-row .controller .dashicons,
+.zui-scope .zui-list-row .ck_controller .dashicons {
+	font-size: 18px;
+	width: 18px;
+	height: 18px;
+}
+
+.zui-scope .zui-list-row .br_cbr_row_sort_handle,
+.zui-scope .zui-list-row .ck_cbr_row_sort_handle {
+	cursor: grab;
+}
+
+.zui-scope .zui-list-row .br_cbr_row_sort_handle:active,
+.zui-scope .zui-list-row .ck_cbr_row_sort_handle:active {
+	cursor: grabbing;
+}
+
+/* Save & Close button — keep its standard look but compact for inside the pill */
+.zui-scope .zui-list-row .cbr_save_wrap,
+.zui-scope .zui-list-row .ck_cbr_save_wrap {
+	display: inline-flex;
+	align-items: center;
+	gap: 8px;
+}
+
+/* Add New Restriction Rule button — React reference:
+   text-brand-600 border border-brand-200 bg-white px-4 py-2 rounded hover:bg-brand-50
+*/
+.zui-scope .cbr_add_wrap,
+.zui-scope .ck_cbr_add_wrap {
+	margin-top: 16px;
+	padding: 0 !important;
+	background: transparent !important;
+	border: 0 !important;
+	float: none !important;
+}
+
+.zui-scope .cbr_add_wrap .btn-cbr-add,
+.zui-scope .ck_cbr_add_wrap .btn-ck-cbr-add,
+.zui-scope .cbr_add_wrap .zui-btn-secondary,
+.zui-scope .ck_cbr_add_wrap .zui-btn-secondary {
+	display: inline-flex !important;
+	align-items: center !important;
+	gap: 6px !important;
+	background: #ffffff !important;
+	color: var(--zui-primary-600, #2d4db5) !important;
+	border: 1px solid var(--zui-primary-200, #cbdafc) !important;
+	padding: 8px 16px !important;
+	font-size: 14px !important;
+	font-weight: 500 !important;
+	border-radius: 6px !important;
+	transition: background 0.15s ease !important;
+	cursor: pointer !important;
+	height: auto !important;
+	line-height: 1.4 !important;
+	box-shadow: none !important;
+}
+
+/* Hover state — legacy `admin.css:1783` sets background:#3b64d3 !important with
+   4-class specificity (.submit.cbr-btn.cbr_add_wrap .btn-cbr-add:hover). Match
+   that selector chain and prepend `.zui-scope` so this wins on specificity AND
+   on order. Without the full chain, legacy wins and the button flashes blue. */
+.zui-scope .submit.cbr-btn.cbr_add_wrap .btn-cbr-add:hover,
+.zui-scope .submit.cbr-btn.ck_cbr_add_wrap .btn-ck-cbr-add:hover,
+.zui-scope .cbr_add_wrap .btn-cbr-add:hover,
+.zui-scope .ck_cbr_add_wrap .btn-ck-cbr-add:hover,
+.zui-scope .cbr_add_wrap .zui-btn-secondary:hover,
+.zui-scope .ck_cbr_add_wrap .zui-btn-secondary:hover {
+	background: #ffffff !important;
+	border-color: var(--zui-primary-600, #2d4db5) !important;
+	color: var(--zui-primary-600, #2d4db5) !important;
+}
+
+.zui-scope .cbr_add_wrap .dashicons-plus,
+.zui-scope .ck_cbr_add_wrap .dashicons-plus {
+	font-size: 16px !important;
+	width: 16px !important;
+	height: 16px !important;
+}
+
+/* ------------------------------------------------------------
+   3. Tooltip — escape parent overflow + boost z-index
+   ------------------------------------------------------------
+   Legacy admin.css uses z-index: 9999 on the row pill (and the
+   .clickDiv has z-index: -99999) which creates a stacking
+   context that traps the tooltip bubble below it.
+
+   Also: many sub-content panels (.inside, .main-panel, .panel,
+   .accordions, .cbr-block, etc.) inherit overflow: hidden from
+   legacy CSS which clips the tooltip bubble that floats above
+   the icon. Force overflow:visible on every parent in the
+   tooltip's containing chain.
+   ------------------------------------------------------------ */
+
+.zui-scope .zui-tooltip {
+	position: relative;
+	z-index: 99999;
+}
+
+.zui-scope .zui-tooltip__bubble {
+	z-index: 100000 !important;
+}
+
+/* Parents of tooltips — let bubble escape. */
+.zui-scope .zui-section,
+.zui-scope .zui-section-header,
+.zui-scope .zui-card,
+.zui-scope .zui-row,
+.zui-scope .zui-row__head,
+.zui-scope .zui-row__label,
+.zui-scope .zui-row__control,
+.zui-scope .main-panel,
+.zui-scope .main-panel .inside,
+.zui-scope .panel,
+.zui-scope .accordions,
+.zui-scope .cbr-block,
+.zui-scope .cbr_single_col,
+.zui-scope .cbr_single,
+.zui-scope .ck-cbr-block,
+.zui-scope .ck_cbr_single,
+.zui-scope .ck_cbr_single_col,
+.zui-scope .zui-radio-cards,
+.zui-scope .zui-radio-cards--list,
+.zui-scope .zui-radio-card,
+.zui-scope .zui-radio-card__body {
+	overflow: visible !important;
+}
+
+/* ------------------------------------------------------------
+   4. Section padding + breathing room fixes
+   ------------------------------------------------------------ */
+
+.zui-scope .zui-section > .zui-card:not(:first-child) {
+	margin-top: 0;
+}
+
+.zui-scope .zui-section-header + .zui-card {
+	margin-top: 16px;
+}
+
+/* Catalog Visibility intro caption — full-width band across the top of the
+   card. The base `.zui-row__desc` component (form-row.css:70) caps width at
+   576px; clear that so the description spans the whole card width. */
+.zui-scope .zui-section .zui-card > p.zui-row__desc:first-child {
+	padding: 18px 24px 0 !important;
+	margin: 0 !important;
+	font-size: 13px !important;
+	color: var(--zui-text-soft) !important;
+	border-bottom: 0 !important;
+	max-width: none !important;
+	width: 100% !important;
+	box-sizing: border-box;
+}
+
+/* Radio-cards--list — wrapped in its own bordered container INSIDE the outer
+   `.zui-card`. The intro caption sits flush at the top of the card; the radio
+   group has its own pill-shaped border with margin around it for breathing
+   room. */
+.zui-scope .zui-section .zui-card .zui-radio-cards--list {
+	border: 1px solid var(--zui-border) !important;
+	border-radius: var(--zui-radius-xl) !important;
+	background: var(--zui-surface);
+	margin: 20px 24px 24px !important;
+	overflow: hidden;
+}
+
+.zui-scope .zui-section .zui-card .zui-radio-cards--list > .zui-radio-card:first-child {
+	border-top-left-radius: calc(var(--zui-radius-xl) - 1px) !important;
+	border-top-right-radius: calc(var(--zui-radius-xl) - 1px) !important;
+}
+
+.zui-scope .zui-section .zui-card .zui-radio-cards--list > .zui-radio-card:last-child {
+	border-bottom-left-radius: calc(var(--zui-radius-xl) - 1px) !important;
+	border-bottom-right-radius: calc(var(--zui-radius-xl) - 1px) !important;
+	border-bottom: 0 !important;
+}
+
+/* Inside the active radio's expanded panel — form rows have transparent background
+   so the panel's blue tint shows through cleanly */
+.zui-scope .zui-radio-cards--list .main-panel .inside .zui-row {
+	background: transparent !important;
+}
+
+/* ------------------------------------------------------------
+   5. NUKE legacy admin.css row chrome — bulk + checkout
+   ------------------------------------------------------------
+   The existing admin.css uses absolute positioning + floats
+   + fixed heights on the row pill children. These conflict
+   with our flex layout. Override with very high specificity.
+   ------------------------------------------------------------ */
+
+.zui-scope .accordion.br_cbr_row,
+.zui-scope .Accordion.ck_cbr_row {
+	border: 0 !important;
+}
+
+.zui-scope .accordion.br_cbr_row:last-child,
+.zui-scope .Accordion.ck_cbr_row:last-child {
+	border-bottom: 0 !important;
+}
+
+.zui-scope .br_cbr_accordion_handle.zui-list-row,
+.zui-scope .ck_cbr_accordion_handle.zui-list-row {
+	background: var(--zui-surface) !important;
+	display: flex !important;
+	height: auto !important;
+	min-height: auto !important;
+	padding: 14px 18px !important;
+	position: relative !important;
+	z-index: 1 !important;
+	overflow: visible !important;
+}
+
+/* clickDiv as overlay — covers the row to act as the toggle target */
+.zui-scope .zui-list-row .clickDiv {
+	position: absolute !important;
+	inset: 0 !important;
+	z-index: 1 !important;
+	cursor: pointer;
+	background: transparent;
+}
+
+/* Title block — admin.css:1561-1571 forces `position: absolute` + `height: 25px` +
+   `overflow: hidden` on this span. Override aggressively so it stays in normal flow
+   inside the flex row and takes 1fr of available space. */
+.zui-scope .br_cbr_accordion_handle .br_cbr_row_title,
+.zui-scope .ck_cbr_accordion_handle .ck_cbr_row_title,
+.zui-scope .zui-list-row .br_cbr_row_title,
+.zui-scope .zui-list-row .ck_cbr_row_title {
+	position: relative !important;
+	display: flex !important;
+	align-items: center !important;
+	gap: 14px !important;
+	flex: 1 1 auto !important;
+	min-width: 0 !important;
+	max-width: none !important;
+	width: auto !important;
+	height: auto !important;
+	line-height: normal !important;
+	overflow: visible !important;
+	white-space: normal !important;
+	padding: 0 !important;
+	margin: 0 !important;
+	top: auto !important;
+	left: auto !important;
+	right: auto !important;
+	bottom: auto !important;
+	z-index: 2 !important;
+}
+
+.zui-scope .zui-list-row .br_cbr_row_title_title,
+.zui-scope .zui-list-row .ck_cbr_row_title_title {
+	font-size: 14px !important;
+	font-weight: 600 !important;
+	color: var(--zui-text-strong) !important;
+	white-space: nowrap !important;
+	overflow: hidden !important;
+	text-overflow: ellipsis !important;
+	max-width: 50%;
+}
+
+.zui-scope .zui-list-row .br_cbr_row_title_note,
+.zui-scope .zui-list-row .ck_cbr_row_title_note {
+	color: var(--zui-text-muted) !important;
+	border-left: 1px solid var(--zui-border) !important;
+	padding-left: 12px !important;
+	margin-left: 0 !important;
+	font-size: 12px !important;
+	font-weight: 400 !important;
+}
+
+.zui-scope .zui-list-row .br_cbr_row_toggle_handle,
+.zui-scope .zui-list-row .ck_cbr_row_toggle_handle {
+	float: none !important;
+	padding: 0 !important;
+	line-height: normal !important;
+	position: relative !important;
+	z-index: 2 !important;
+	flex-shrink: 0;
+}
+
+/* Right-side action cluster — controllers (sort, delete, duplicate).
+   NOTE: DO NOT set `display: inline-flex !important` here — that defeats the JS
+   `.controller.hide()` call (admin.js:604, 647, 655, 792) which uses `display: none`
+   to hide controllers when the row is expanded (so only Save & Close shows).
+   We use `display: inline-flex` without !important + cascade order so the inline
+   `style="display:none"` set by jQuery.hide() still wins.
+*/
+.zui-scope .zui-list-row .controller,
+.zui-scope .zui-list-row .ck_controller,
+.zui-scope .zui-list-row .br_cbr_row_sort_handle,
+.zui-scope .zui-list-row .br_cbr_row_remove_handle,
+.zui-scope .zui-list-row .br_cbr_row_duplicate_handle,
+.zui-scope .zui-list-row .ck_cbr_row_sort_handle,
+.zui-scope .zui-list-row .ck_cbr_row_remove_handle,
+.zui-scope .zui-list-row .ck_cbr_row_duplicate_handle {
+	float: none !important;
+	display: inline-flex;
+	align-items: center !important;
+	justify-content: center !important;
+	width: 30px !important;
+	height: 30px !important;
+	padding: 0 !important;
+	margin: 0 !important;
+	border-radius: var(--zui-radius-lg) !important;
+	color: var(--zui-text-muted) !important;
+	cursor: pointer !important;
+	transition: background 0.15s ease, color 0.15s ease;
+	position: relative !important;
+	z-index: 2 !important;
+	flex-shrink: 0;
+}
+
+.zui-scope .zui-list-row .controller:hover,
+.zui-scope .zui-list-row .ck_controller:hover,
+.zui-scope .zui-list-row .br_cbr_row_sort_handle:hover,
+.zui-scope .zui-list-row .br_cbr_row_remove_handle:hover,
+.zui-scope .zui-list-row .br_cbr_row_duplicate_handle:hover,
+.zui-scope .zui-list-row .ck_cbr_row_sort_handle:hover,
+.zui-scope .zui-list-row .ck_cbr_row_remove_handle:hover,
+.zui-scope .zui-list-row .ck_cbr_row_duplicate_handle:hover {
+	background: var(--zui-divider) !important;
+	color: var(--zui-text-strong) !important;
+}
+
+.zui-scope .zui-list-row .controller .dashicons,
+.zui-scope .zui-list-row .ck_controller .dashicons,
+.zui-scope .zui-list-row .br_cbr_row_sort_handle .dashicons,
+.zui-scope .zui-list-row .br_cbr_row_remove_handle .dashicons,
+.zui-scope .zui-list-row .br_cbr_row_duplicate_handle .dashicons,
+.zui-scope .zui-list-row .ck_cbr_row_sort_handle .dashicons,
+.zui-scope .zui-list-row .ck_cbr_row_remove_handle .dashicons,
+.zui-scope .zui-list-row .ck_cbr_row_duplicate_handle .dashicons {
+	font-size: 18px !important;
+	width: 18px !important;
+	height: 18px !important;
+}
+
+.zui-scope .zui-list-row .br_cbr_row_remove_handle:hover .dashicons,
+.zui-scope .zui-list-row .ck_cbr_row_remove_handle:hover .dashicons {
+	color: var(--zui-danger, #ef4444) !important;
+}
+
+/* Save & Close button in row pill — React reference:
+   bg-brand-600 hover:bg-brand-700 text-white px-5 py-2 rounded font-medium text-sm
+*/
+.zui-scope .zui-list-row .submit.cbr-btn.cbr_save_wrap,
+.zui-scope .zui-list-row .submit.cbr-btn.ck_cbr_save_wrap {
+	float: none !important;
+	padding: 0 !important;
+	margin: 0 0 0 auto !important;
+	position: relative !important;
+	z-index: 3 !important;
+	align-items: center !important;
+	gap: 8px;
+	width: auto !important;
+	max-width: none !important;
+}
+
+.zui-scope .zui-list-row .cbr_save_wrap .btn-save,
+.zui-scope .zui-list-row .ck_cbr_save_wrap .btn-ck-cbr-save {
+	background: var(--zui-primary-600, #2d4db5) !important;
+	color: #ffffff !important;
+	border: 0 !important;
+	padding: 8px 20px !important;
+	border-radius: 6px !important;
+	font-size: 14px !important;
+	font-weight: 500 !important;
+	cursor: pointer !important;
+	transition: background 0.15s ease !important;
+	height: auto !important;
+	line-height: 1.4 !important;
+	box-shadow: none !important;
+}
+
+.zui-scope .zui-list-row .cbr_save_wrap .btn-save:hover,
+.zui-scope .zui-list-row .ck_cbr_save_wrap .btn-ck-cbr-save:hover {
+	background: #243c94 !important;
+}
+
+/* Replace WP's GIF spinner with a CSS-only ring positioned as an absolute
+   overlay centered on the Save & Close button. The save_wrap markup is:
+   <div class="spinner"></div><button>Save & Close</button>. Instead of letting
+   the spinner sit beside the button (which makes the wrap grow when AJAX
+   kicks off), we hide it offscreen by default and absolutely position it on
+   top of the button when active. Button width stays constant. White ring on
+   the blue button reads clearly. NO `display !important` on save_wrap so the
+   inline `style="display:none"` from the template (and from jQuery's .hide()
+   after save) still wins to keep the button hidden while the row is
+   collapsed. */
+.zui-scope .zui-list-row .cbr_save_wrap,
+.zui-scope .zui-list-row .ck_cbr_save_wrap {
+	display: inline-flex;
+	align-items: center !important;
+	gap: 0 !important;
+	position: relative !important;
+}
+
+.zui-scope .zui-list-row .cbr_save_wrap .spinner,
+.zui-scope .zui-list-row .ck_cbr_save_wrap .spinner {
+	position: absolute !important;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	background: none !important;
+	background-image: none !important;
+	box-shadow: none !important;
+	width: 16px !important;
+	height: 16px !important;
+	margin: 0 !important;
+	padding: 0 !important;
+	border-radius: 50% !important;
+	border: 2px solid rgba(255, 255, 255, 0.4) !important;
+	border-top-color: #ffffff !important;
+	float: none !important;
+	vertical-align: middle;
+	opacity: 0;
+	box-sizing: border-box;
+	pointer-events: none;
+	z-index: 2;
+}
+
+.zui-scope .zui-list-row .cbr_save_wrap .spinner.active,
+.zui-scope .zui-list-row .cbr_save_wrap .spinner.is-active,
+.zui-scope .zui-list-row .ck_cbr_save_wrap .spinner.active,
+.zui-scope .zui-list-row .ck_cbr_save_wrap .spinner.is-active {
+	visibility: visible !important;
+	opacity: 1 !important;
+	animation: zui-savebtn-spin 0.8s linear infinite !important;
+}
+
+/* Fade the button label while saving so the spinner reads alone */
+.zui-scope .zui-list-row .cbr_save_wrap:has(.spinner.active) .btn-save,
+.zui-scope .zui-list-row .cbr_save_wrap:has(.spinner.is-active) .btn-save,
+.zui-scope .zui-list-row .ck_cbr_save_wrap:has(.spinner.active) .btn-ck-cbr-save,
+.zui-scope .zui-list-row .ck_cbr_save_wrap:has(.spinner.is-active) .btn-ck-cbr-save {
+	color: transparent !important;
+}
+
+/* Expanded form below pill: clean panel that merges visually with the pill above */
+.zui-scope .accordion.br_cbr_row .cbr_single,
+.zui-scope .Accordion.ck_cbr_row .ck_cbr_single {
+	background: var(--zui-surface) !important;
+	border: 1px solid var(--zui-border) !important;
+	border-top: 0 !important;
+	border-radius: 0 0 var(--zui-radius-xl) var(--zui-radius-xl) !important;
+	margin-top: -1px;
+	padding: 24px !important;
+	position: relative;
+	z-index: 0;
+}
+
+/* When expanded, the pill should have only the top corners rounded so it merges
+   visually with the cbr_single below. Detect expanded state via the absence of
+   `.hide-panel` class on cbr_single (toggled by admin.js + the init code that
+   adds it to non-last rows on render). Avoid sniffing inline `style*="display:
+   none"` — that's brittle: the rendered template uses `display:none;` (no
+   space) while jQuery's `.hide()` writes `display: none;` (with space), so the
+   substring match misses one of the two formats and the rule fires on collapsed
+   rows it shouldn't. */
+.zui-scope .accordion.br_cbr_row:has(.cbr_single:not(.hide-panel)) .br_cbr_accordion_handle.zui-list-row,
+.zui-scope .Accordion.ck_cbr_row:has(.ck_cbr_single:not(.hide-panel)) .ck_cbr_accordion_handle.zui-list-row {
+	border-radius: var(--zui-radius-xl) var(--zui-radius-xl) 0 0 !important;
+	border-bottom: 0 !important;
+}
+
+/* NOTE: layout of .cbr-block / .ck-cbr-block is handled below in the per-tab
+   sections (CATALOG RESTRICTIONS / PAYMENT RESTRICTIONS). Don't set
+   `display: block !important` here — it would clobber the grid layout. */
+.zui-scope .accordion.br_cbr_row .cbr_single .cbr-block,
+.zui-scope .Accordion.ck_cbr_row .ck_cbr_single .ck-cbr-block {
+	border: 0 !important;
+	padding: 0 !important;
+}
+
+/* =========================================================================
+   CATALOG RESTRICTIONS expanded form (per Google AI Studio reference)
+   Layout: 24px gap between Rule Name (full-width row) and the two-column body.
+   The two `.sub-block` divs in the second `.cbr-block` are the LEFT and RIGHT
+   columns; each contains stacked `.cbr_single_col` field rows.
+
+   CRITICAL: do NOT set `display !important` on .cbr_single_col — admin.js sets
+   `style="display:none"` inline to hide unused sub-selects (lines 387/569/708),
+   and !important here would defeat that.
+   ========================================================================= */
+
+.zui-scope .cbr_single > div {
+	display: flex !important;
+	flex-direction: column !important;
+	gap: 24px !important;
+	padding: 0 !important;
+}
+
+/* Rule Name's standalone .cbr-block — full-width row */
+.zui-scope .cbr_single > div > .cbr-block:first-child {
+	display: block !important;
+	border: 0 !important;
+	padding: 0 !important;
+	margin: 0 !important;
+}
+
+/* Restriction-group .cbr-block: 2-column grid (one col per sub-block) */
+.zui-scope .cbr_single > div > .cbr-block:not(:first-child) {
+	display: grid !important;
+	grid-template-columns: 1fr 1fr !important;
+	gap: 24px 40px !important;
+	border: 0 !important;
+	padding: 0 !important;
+	margin: 0 !important;
+}
+
+/* Each sub-block is a vertical stack of field rows. Legacy admin.css adds a
+   left-border + 20px padding + negative margin on `.sub-block:last-child` to
+   create a divider — null those out so the grid columns sit clean. */
+.zui-scope .cbr_single .sub-block {
+	display: flex !important;
+	flex-direction: column !important;
+	gap: 20px !important;
+	min-width: 0 !important;
+	border: 0 !important;
+	padding: 0 !important;
+	margin: 0 !important;
+}
+
+/* Each field cell — INLINE label + input. NO !important on display so JS hide works. */
+.zui-scope .cbr_single .cbr_single_col {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	gap: 16px;
+	width: auto;
+	max-width: none;
+	padding: 0 !important;
+	margin: 0 !important;
+	float: none !important;
+	min-width: 0;
+}
+
+.zui-scope .cbr_single .cbr_single_col label {
+	display: flex !important;
+	align-items: center !important;
+	gap: 6px !important;
+	width: 140px !important;
+	min-width: 140px !important;
+	flex-shrink: 0 !important;
+	font-weight: 400 !important;
+	font-size: 13px !important;
+	color: var(--zui-text-soft) !important;
+	line-height: 1.4 !important;
+	margin: 0 !important;
+	padding: 0 !important;
+}
+
+.zui-scope .cbr_single .cbr_single_col > input,
+.zui-scope .cbr_single .cbr_single_col > select,
+.zui-scope .cbr_single .cbr_single_col > .select2-container,
+.zui-scope .cbr_single .cbr_single_col > fieldset {
+	flex: 1 1 0 !important;
+	min-width: 0 !important;
+	width: auto !important;
+	max-width: 100% !important;
+	margin: 0 !important;
+}
+
+/* Inputs / native selects styling */
+.zui-scope .cbr_single .cbr_single_col input[type="text"],
+.zui-scope .cbr_single .cbr_single_col input[type="date"],
+.zui-scope .cbr_single .cbr_single_col select {
+	width: 100% !important;
+	max-width: 100% !important;
+	padding: 8px 10px !important;
+	border: 1px solid #e2e8f0 !important;
+	border-radius: 6px !important;
+	background: #ffffff !important;
+	font-size: 13px !important;
+	line-height: 1.4 !important;
+	height: auto !important;
+	min-height: 38px !important;
+	margin: 0 !important;
+	color: var(--zui-text) !important;
+	box-shadow: none !important;
+}
+
+.zui-scope .cbr_single .cbr_single_col input:focus,
+.zui-scope .cbr_single .cbr_single_col select:focus {
+	outline: none !important;
+	border-color: var(--zui-primary) !important;
+	box-shadow: 0 0 0 1px var(--zui-primary) !important;
+}
+
+/* select2 widget chrome inside the expanded form */
+.zui-scope .cbr_single .select2-container {
+	flex: 1 1 0 !important;
+	min-width: 0 !important;
+	width: auto !important;
+	max-width: 100% !important;
+}
+
+.zui-scope .cbr_single .select2-selection {
+	min-height: 38px !important;
+	padding: 4px 6px !important;
+	border: 1px solid #e2e8f0 !important;
+	border-radius: 6px !important;
+	background: #ffffff !important;
+}
+
+.zui-scope .cbr_single .select2-selection--multiple .select2-selection__rendered {
+	padding: 0 !important;
+	display: flex !important;
+	flex-wrap: wrap !important;
+	gap: 6px !important;
+	align-items: center !important;
+}
+
+.zui-scope .cbr_single .select2-selection--multiple .select2-selection__choice {
+	background: #f1f5f9 !important;
+	border: 1px solid #e2e8f0 !important;
+	border-radius: 3px !important;
+	color: #475569 !important;
+	font-size: 12px !important;
+	padding: 2px 8px 2px 4px !important;
+	margin: 0 !important;
+	display: inline-flex !important;
+	align-items: center !important;
+	gap: 4px !important;
+}
+
+/* Validation error state — admin.js's showerror()/ck_showerror() add the
+   `border-color` class to the failing field and set inline `border-color:red`.
+   Our other rules use `border: 1px solid #e2e8f0 !important` shorthand which
+   beats the inline because of !important, so the red never shows. Override
+   here with !important so the failing field is clearly highlighted. */
+.zui-scope .cbr_single .border-color,
+.zui-scope .cbr_single input.border-color,
+.zui-scope .cbr_single select.border-color,
+.zui-scope .cbr_single .select2-selection.border-color,
+.zui-scope .cbr_single .select2-selection--multiple.border-color,
+.zui-scope .cbr_single .select2-selection--single.border-color,
+.zui-scope .ck_cbr_single .border-color,
+.zui-scope .ck_cbr_single input.border-color,
+.zui-scope .ck_cbr_single select.border-color,
+.zui-scope .ck_cbr_single .select2-selection.border-color,
+.zui-scope .ck_cbr_single .select2-selection--multiple.border-color,
+.zui-scope .ck_cbr_single .select2-selection--single.border-color {
+	border-color: #ef4444 !important;
+	box-shadow: 0 0 0 1px #ef4444 !important;
+}
+
+/* Select2 multi-select renders an empty `<li class="select2-search--inline">`
+   with an inline `<input>` for type-to-filter. With our flex container it shows
+   up as an empty box next to the tags — hide it (the dropdown arrow still
+   opens the picker for adding more). Also applies in the checkout/payment form. */
+.zui-scope .cbr_single .select2-selection--multiple .select2-search--inline,
+.zui-scope .cbr_single .select2-selection--multiple .select2-search__field,
+.zui-scope .ck_cbr_single .select2-selection--multiple .select2-search--inline,
+.zui-scope .ck_cbr_single .select2-selection--multiple .select2-search__field {
+	width: 0 !important;
+	min-width: 0 !important;
+	margin: 0 !important;
+	padding: 0 !important;
+	border: 0 !important;
+	height: 0 !important;
+	opacity: 0 !important;
+	flex: 0 0 0 !important;
+}
+
+/* Date pickers — narrower than other fields so the column has breathing room
+   (matches React reference `sm:w-[200px]` on date inputs). */
+.zui-scope .cbr_single .cbr_schedule_start_date input[type="date"],
+.zui-scope .cbr_single .cbr_schedule_end_date input[type="date"] {
+	flex: 0 0 auto !important;
+	width: 220px !important;
+	max-width: 220px !important;
+}
+
+/* Custom Taxonomy's secondary label (Select Terms) gets a small top spacer */
+.zui-scope .cbr_single .select_custom_taxonomy {
+	flex-direction: column !important;
+	align-items: stretch !important;
+	gap: 8px !important;
+}
+
+.zui-scope .cbr_single .select_custom_taxonomy > label {
+	width: 100% !important;
+	min-width: 0 !important;
+}
+
+.zui-scope .cbr_single .select_custom_taxonomy > select,
+.zui-scope .cbr_single .select_custom_taxonomy > .select2-container {
+	width: 100% !important;
+}
+
+/* =========================================================================
+   PAYMENT RESTRICTIONS expanded form (per Google AI Studio reference)
+   - Single column
+   - Each field STACKED: label on top, input below, full width
+   ========================================================================= */
+
+/* Markup: .ck_cbr_single > div (wrapper) > .ck-cbr-block > .ck_cbr_single_col (×5).
+   The field rows are children of `.ck-cbr-block`, NOT of the wrapper div — so the
+   `gap` must live on `.ck-cbr-block` for it to space the fields. */
+.zui-scope .ck_cbr_single > div {
+	display: block !important;
+	padding: 0 !important;
+}
+
+.zui-scope .ck_cbr_single .ck-cbr-block {
+	display: flex !important;
+	flex-direction: column !important;
+	gap: 20px !important;
+	border: 0 !important;
+	padding: 0 !important;
+	margin: 0 !important;
+}
+
+/* Legacy admin.css:1360 forces `border-bottom: 1px solid #e0e0e0` + `padding-bottom: 20px`
+   on every `.ck_cbr_single_col`, which draws a line under each Payment Restrictions
+   field. Null both so the 20px gap from the parent flex column is the only spacer. */
+.zui-scope .ck_cbr_single .ck_cbr_single_col {
+	display: block !important;
+	width: 100% !important;
+	max-width: 100% !important;
+	padding: 0 !important;
+	margin: 0 !important;
+	float: none !important;
+	border: 0 !important;
+}
+
+.zui-scope .ck_cbr_single .ck_cbr_single_col label {
+	display: block !important;
+	width: 100% !important;
+	font-weight: 400 !important;
+	font-size: 13px !important;
+	color: var(--zui-text-soft) !important;
+	line-height: 1.4 !important;
+	margin: 0 0 6px 0 !important;
+	padding: 0 !important;
+}
+
+.zui-scope .ck_cbr_single .ck_cbr_single_col > input,
+.zui-scope .ck_cbr_single .ck_cbr_single_col > select,
+.zui-scope .ck_cbr_single .ck_cbr_single_col input[type="text"],
+.zui-scope .ck_cbr_single .ck_cbr_single_col select {
+	width: 100% !important;
+	max-width: 100% !important;
+	padding: 8px 10px !important;
+	border: 1px solid #e2e8f0 !important;
+	border-radius: 6px !important;
+	background: #ffffff !important;
+	font-size: 13px !important;
+	line-height: 1.4 !important;
+	height: auto !important;
+	min-height: 38px !important;
+	margin: 0 !important;
+}
+
+.zui-scope .ck_cbr_single .select2-container {
+	width: 100% !important;
+	max-width: 100% !important;
+}
+
+.zui-scope .ck_cbr_single .select2-selection {
+	min-height: 38px !important;
+	padding: 4px 6px !important;
+	border: 1px solid #e2e8f0 !important;
+	border-radius: 6px !important;
+	background: #ffffff !important;
+}
+
+.zui-scope .ck_cbr_single .select2-selection--multiple .select2-selection__rendered {
+	padding: 0 !important;
+	display: flex !important;
+	flex-wrap: wrap !important;
+	gap: 6px !important;
+	align-items: center !important;
+}
+
+.zui-scope .ck_cbr_single .select2-selection--multiple .select2-selection__choice {
+	background: #f1f5f9 !important;
+	border: 1px solid #e2e8f0 !important;
+	border-radius: 3px !important;
+	color: var(--zui-text) !important;
+	font-size: 12px !important;
+	padding: 2px 8px 2px 4px !important;
+	margin: 0 !important;
+}
+
+/* ------------------------------------------------------------
+   5a. Settings textareas — undo single-line input chrome
+   ------------------------------------------------------------
+   The Settings tab renders each textarea field with the same class
+   chain as a text input: `class="zui-input regular-input input-text"`.
+   `.zui-input` is built for single-line text — height: 40px and
+   padding: 0 14px — which on a <textarea> forces the field into a
+   40px box and centers the value vertically like an input, hiding any
+   wrap. Re-apply proper textarea sizing when the element is a textarea. */
+.zui-scope textarea.zui-input,
+.zui-scope textarea.regular-input,
+.zui-scope textarea.input-text {
+	height: auto !important;
+	min-height: 88px !important;
+	padding: 10px 14px !important;
+	line-height: 1.5 !important;
+	resize: vertical;
+	vertical-align: top;
+}
+
+/* ------------------------------------------------------------
+   5b. Bypass-users select — hide raw <select multiple> until select2 wraps it
+   ------------------------------------------------------------
+   The Settings page initializes select2 on `#cbr_bypass_users` inside a 200ms
+   setTimeout, so on first paint the user briefly sees the raw multi-select
+   rendered as a tall empty listbox. Once select2 mounts it adds the
+   `select2-hidden-accessible` class to the original select — until then we
+   hide it ourselves. */
+.zui-scope #cbr_bypass_users:not(.select2-hidden-accessible) {
+	opacity: 0 !important;
+	height: 38px !important;
+	min-height: 38px !important;
+	max-height: 38px !important;
+	overflow: hidden !important;
+}
+
+/* ------------------------------------------------------------
+   6. License page — ecosystem filter buttons + search input
+   ------------------------------------------------------------ */
+
+.zui-scope .zui-lic-eco__filters {
+	display: inline-flex;
+	background: var(--zui-divider);
+	border-radius: 999px;
+	padding: 4px;
+	gap: 2px;
+}
+
+.zui-scope .zui-lic-eco__filter {
+	background: transparent;
+	border: 0;
+	padding: 6px 14px;
+	font-size: 12px;
+	font-weight: 600;
+	color: var(--zui-text-soft);
+	border-radius: 999px;
+	cursor: pointer;
+	transition: background 0.15s ease, color 0.15s ease;
+}
+
+.zui-scope .zui-lic-eco__filter:hover {
+	color: var(--zui-text-strong);
+}
+
+.zui-scope .zui-lic-eco__filter.is-active {
+	background: var(--zui-surface);
+	color: var(--zui-primary);
+	box-shadow: var(--zui-shadow-xs);
+}
+
+/* Eco search bar */
+.zui-scope .zui-lic-eco__search {
+	position: relative;
+	margin-bottom: 16px;
+}
+
+.zui-scope .zui-lic-eco__search-icon {
+	position: absolute;
+	left: 12px;
+	top: 50%;
+	transform: translateY(-50%);
+	color: var(--zui-text-muted);
+	pointer-events: none;
+}
+
+.zui-scope .zui-lic-eco__search .zui-input {
+	padding-left: 36px;
+}
+
+.zui-scope .zui-lic-eco__empty {
+	text-align: center;
+	padding: 32px 16px;
+	color: var(--zui-text-muted);
+	font-size: 13px;
+}
+
+/* =====================================================================
+ * CBR FREE — PRO-locked overlays, badges, and sample preview rows
+ * Used only in the free plugin (woo-product-country-base-restrictions).
+ * ===================================================================== */
+
+/* FREE badge in header brand — same blue pill as PRO so the chrome
+   reads as a real branded badge instead of a slate afterthought. */
+.zui-scope .zui-brand__badge--free {
+	background: var(--zui-primary);
+	color: #fff;
+}
+
+/* PRO badge on tab labels (Catalog/Payment Restrictions) */
+.zui-scope .zui-tabs__item .zui-tabs__badge {
+	display: inline-flex;
+	align-items: center;
+	margin-left: 8px;
+	padding: 2px 8px;
+	font-size: 10px;
+	font-weight: 700;
+	letter-spacing: .04em;
+	background: #4f46e5;
+	color: #fff;
+	border-radius: 999px;
+	vertical-align: middle;
+}
+.zui-scope .zui-tabs__item--gopro .zui-tabs__sparkle {
+	margin-left: 4px;
+}
+
+/* Locked PRO card overlay (Catalog/Payment Restrictions tabs) */
+.zui-scope .zui-card.cbr-pro-locked-card {
+	padding: 0;
+	overflow: hidden;
+}
+.zui-scope .cbr-pro-locked-card__overlay {
+	padding: 56px 24px;
+	text-align: center;
+}
+.zui-scope .cbr-pro-locked-card__title {
+	display: inline-flex;
+	align-items: center;
+	gap: 10px;
+	margin: 0 0 12px;
+	font-size: 20px;
+	font-weight: 700;
+	color: var(--zui-text);
+}
+.zui-scope .cbr-pro-locked-card__title .cbr-pro-badge {
+	font-size: 11px;
+	padding: 2px 8px;
+	background: #4f46e5;
+	color: #fff;
+	border-radius: 999px;
+	font-weight: 700;
+}
+.zui-scope .cbr-pro-locked-card__title .cbr-pro-lock .dashicons {
+	color: #94a3b8;
+	font-size: 16px;
+	width: 16px;
+	height: 16px;
+}
+.zui-scope .cbr-pro-locked-card__desc {
+	max-width: 720px;
+	margin: 0 auto 20px;
+	color: var(--zui-text-muted);
+	font-size: 13px;
+	line-height: 1.6;
+}
+.zui-scope .zui-btn-locked {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	padding: 11px 22px;
+	background: #c7d2fe;
+	color: #ffffff !important;
+	border-radius: 8px;
+	font-weight: 600;
+	font-size: 13px;
+	text-decoration: none;
+	box-shadow: none;
+	cursor: pointer;
+	transition: background .15s ease;
+}
+.zui-scope .zui-btn-locked:hover {
+	background: #a5b4fc;
+}
+
+/* Locked preview rows below the overlay (sample rules) */
+.zui-scope .cbr-pro-locked-preview {
+	margin-top: 16px;
+	opacity: .45;
+	pointer-events: none;
+}
+.zui-scope .cbr-pro-sample-row {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 12px;
+	padding: 14px 20px;
+	background: #fff;
+	border: 1px solid var(--zui-border);
+	border-radius: 10px;
+	margin-bottom: 10px;
+}
+.zui-scope .cbr-pro-sample-row .br_cbr_row_title__name {
+	font-weight: 600;
+	color: var(--zui-text);
+	font-size: 13px;
+}
+.zui-scope .cbr-pro-sample-row .br_cbr_row_title__meta {
+	margin-left: 8px;
+	color: var(--zui-text-muted);
+	font-size: 12px;
+}
+.zui-scope .cbr-pro-sample-row__icons {
+	display: inline-flex;
+	gap: 8px;
+}
+.zui-scope .cbr-pro-sample-row__icons .dashicons {
+	color: #9ca3af;
+	font-size: 16px;
+	width: 16px;
+	height: 16px;
+}
+.zui-scope .cbr-pro-locked-preview__action {
+	margin-top: 4px;
+}
+.zui-scope .cbr-pro-locked-btn {
+	opacity: .65;
+	cursor: not-allowed !important;
+}
+
+/* PRO-locked radio card (option 4 in Catalog Visibility) */
+.zui-scope .zui-radio-card.zui-radio-card--locked {
+	opacity: .65;
+	cursor: not-allowed !important;
+	position: relative;
+}
+.zui-scope .zui-radio-card.zui-radio-card--locked .zui-radio-card__label,
+.zui-scope .zui-radio-card.zui-radio-card--locked .zui-radio-card__desc {
+	color: #94a3b8 !important;
+}
+.zui-scope .zui-radio-card.zui-radio-card--locked .cbr-pro-row-actions {
+	position: absolute;
+	top: 50%;
+	right: 18px;
+	transform: translateY(-50%);
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+}
+
+/* PRO-locked row inside a setting section (toggles, textareas, selects) */
+.zui-scope .cbr-pro-feature-row {
+	position: relative;
+	opacity: .7;
+}
+.zui-scope .cbr-pro-feature-row .pro_feature,
+.zui-scope .cbr-pro-feature-row textarea[disabled],
+.zui-scope .cbr-pro-feature-row select[disabled],
+.zui-scope .cbr-pro-feature-row input[disabled] {
+	cursor: not-allowed !important;
+	opacity: .55 !important;
+}
+/* PRO badge/lock pinned to top-right of the row when placed as a direct row child. */
+.zui-scope .cbr-pro-feature-row > .cbr-pro-row-actions {
+	position: absolute;
+	top: 18px;
+	right: 20px;
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+	pointer-events: none;
+}
+/* Fallback (badge inside __control, kept for radio-card-locked + toggle rows).
+   Badge + lock now lead, the toggle follows on the right. */
+.zui-scope .cbr-pro-feature-row .zui-row__control {
+	display: inline-flex;
+	align-items: center;
+	gap: 12px;
+}
+.zui-scope .cbr-pro-feature-row .zui-row__control > .cbr-pro-row-actions {
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+	vertical-align: middle;
+}
+.zui-scope .cbr-pro-badge {
+	display: inline-flex;
+	align-items: center;
+	padding: 2px 8px;
+	font-size: 10px;
+	font-weight: 700;
+	letter-spacing: .04em;
+	background: #4f46e5;
+	color: #fff;
+	border-radius: 999px;
+}
+.zui-scope .cbr-pro-lock .dashicons {
+	color: #94a3b8;
+	font-size: 16px;
+	width: 16px;
+	height: 16px;
+}
+
+/* Widen the in-page sidebar in the FREE plugin so the PRO upsell card fits. */
+.zui-scope .zui-sidebar {
+	flex: 0 0 320px;
+	width: 320px;
+}
+
+/* PRO upsell card placed inside the in-page sidebar (free plugin only) */
+.zui-scope .cbr-pro-sidebar__upgrade--inline {
+	margin: 16px 0 0;
+	padding: 18px 16px;
+	background: linear-gradient(180deg, #eef2ff 0%, #ffffff 100%);
+	border: 1px solid #c7d2fe;
+	border-radius: 12px;
+	text-align: center;
+}
+.zui-scope .cbr-pro-sidebar__upgrade--inline .cbr-pro-sidebar__icon {
+	display: flex;
+	justify-content: center;
+	margin-bottom: 8px;
+}
+.zui-scope .cbr-pro-sidebar__upgrade--inline .cbr-pro-sidebar__icon img {
+	width: 36px;
+	height: 36px;
+}
+.zui-scope .cbr-pro-sidebar__upgrade--inline .cbr-pro-sidebar__title {
+	font-size: 13px;
+	font-weight: 700;
+	color: #4f46e5;
+	line-height: 1.4;
+	margin: 0 0 6px;
+}
+.zui-scope .cbr-pro-sidebar__upgrade--inline .cbr-pro-sidebar__desc {
+	font-size: 12px;
+	color: var(--zui-text-muted);
+	line-height: 1.5;
+	margin: 0 0 10px;
+}
+.zui-scope .cbr-pro-sidebar__upgrade--inline .cbr-pro-sidebar__features {
+	list-style: none;
+	padding: 0;
+	margin: 0 0 12px;
+	text-align: left;
+}
+.zui-scope .cbr-pro-sidebar__upgrade--inline .cbr-pro-sidebar__features li {
+	display: flex;
+	gap: 6px;
+	font-size: 11.5px;
+	color: var(--zui-text);
+	margin-bottom: 4px;
+	line-height: 1.4;
+}
+.zui-scope .cbr-pro-sidebar__upgrade--inline .cbr-check {
+	color: #16a34a;
+	font-weight: 700;
+	flex-shrink: 0;
+}
+.zui-scope .cbr-pro-sidebar__upgrade--inline .cbr-pro-sidebar__btn {
+	display: inline-block;
+	width: 100%;
+	padding: 9px 12px;
+	background: #4f46e5;
+	color: #fff !important;
+	font-weight: 600;
+	font-size: 12.5px;
+	border-radius: 8px;
+	text-decoration: none;
+	box-shadow: 0 1px 2px rgba(79, 70, 229, .25);
+}
+.zui-scope .cbr-pro-sidebar__upgrade--inline .cbr-pro-sidebar__btn:hover {
+	background: #4338ca;
+}
+
+/* "Upgrade to PRO" button on Country Detection Widget locked row */
+.zui-scope .zui-btn-secondary--locked {
+	background: #c7d2fe;
+	color: #fff !important;
+	border: none;
+}
+.zui-scope .zui-btn-secondary--locked:hover {
+	background: #a5b4fc;
+}
+
+/* Muted variant of zui-row__desc (used in Country Detection Widget locked row) */
+.zui-scope .zui-row__desc--muted {
+	color: var(--zui-text-muted);
+	font-size: 12px;
+	margin-top: 4px;
+}

@@ -5,10 +5,10 @@
 * Description: Restrict WooCommerce products in specific countries
 * Author: zorem
 * Author URI: https://www.zorem.com/
-* Version: 3.7.8
+* Version: 3.7.9
 * Text Domain: woo-product-country-base-restrictions
 * WC requires at least: 4.0
-* WC tested up to: 10.7.0
+* WC tested up to: 10.8.1
 * Requires Plugins: woocommerce
 */
 
@@ -27,7 +27,7 @@ class ZH_Product_Country_Restrictions {
 	 * @since 1.0.0
 	 * @var string
 	 */
-	public $version = '3.7.8';
+	public $version = '3.7.9';
 	public $toolbar;
 	public $restriction;
 	public $plugin_path;
@@ -288,10 +288,20 @@ class ZH_Product_Country_Restrictions {
 			
 		wp_enqueue_style('select2-cbr', plugins_url('assets/css/select2.min.css', __FILE__ ), array(), $this->version );
 		wp_enqueue_script('select2-cbr', plugins_url('assets/js/select2.min.js', __FILE__), array(), $this->version);
-		
+
 		wp_register_style( 'woocommerce_admin_styles', WC()->plugin_url() . '/assets/css/admin.css', array(), WC_VERSION );
 		wp_enqueue_style( 'woocommerce_admin_styles' );
-		
+
+		// ZUI canonical bundle — ported from CBR PRO.
+		$cbr_zui_version_file = $this->get_plugin_path() . '/assets/zui/VERSION';
+		$cbr_zui_version      = is_readable( $cbr_zui_version_file ) ? trim( file_get_contents( $cbr_zui_version_file ) ) : '';
+		if ( '' === $cbr_zui_version ) {
+			$cbr_zui_version = $this->version;
+		}
+		wp_enqueue_style( 'cbr-zui', plugin_dir_url( __FILE__ ) . 'assets/zui/css/zui.css', array(), $cbr_zui_version );
+		wp_enqueue_style( 'cbr-zui-overrides', plugin_dir_url( __FILE__ ) . 'assets/zui/css/cbr-overrides.css', array( 'cbr-zui' ), $cbr_zui_version );
+		wp_enqueue_script( 'cbr-zui', plugin_dir_url( __FILE__ ) . 'assets/zui/js/zui.js', array(), $cbr_zui_version, true );
+		wp_enqueue_script( 'cbr-zui-app', plugin_dir_url( __FILE__ ) . 'assets/zui/js/zui-app.js', array( 'jquery', 'cbr-zui' ), $cbr_zui_version, true );
 	}
 	
 	/*

@@ -55,13 +55,13 @@ class CBR_Admin_Notice {
 	* @since 1.0.0
 	*/
 	public function init() {
-		add_action( 'admin_init', array( $this, 'cbr_pro_notice_ignore_cb_378' ) );
+		add_action( 'admin_init', array( $this, 'cbr_pro_notice_ignore_cb_379' ) );
 
 		$page = isset( $_GET['page'] ) ? sanitize_text_field( $_GET['page'] ) : '';
 		
 		if ( 'woocommerce-product-country-base-restrictions' != $page ) {
 			// Analytics for WooCommerce Subscriptions Notice
-			add_action( 'admin_notices', array( $this, 'cbr_pro_admin_notice_378' ) );
+			add_action( 'admin_notices', array( $this, 'cbr_pro_admin_notice_379' ) );
 			
 		}
 		add_action('cbr_settings_admin_notice', array( $this, 'cbr_settings_admin_notice' ) );
@@ -74,12 +74,12 @@ class CBR_Admin_Notice {
 		/*
 	* Dismiss admin notice for trackship
 	*/
-	public function cbr_pro_notice_ignore_cb_378() {
-		if ( isset( $_GET['cbr-pro-update-notice-378'] ) ) {
+	public function cbr_pro_notice_ignore_cb_379() {
+		if ( isset( $_GET['cbr-pro-update-notice-379'] ) ) {
 			if (isset($_GET['nonce'])) {
 				$nonce = sanitize_text_field($_GET['nonce']);
-				if (wp_verify_nonce($nonce, 'cbr_pro_dismiss_notice_378')) {
-					update_option('cbr_pro_update_ignore_378', 'true');
+				if (wp_verify_nonce($nonce, 'cbr_pro_dismiss_notice_379')) {
+					update_option('cbr_pro_update_ignore_379', 'true');
 				}
 			}
 		}
@@ -88,30 +88,30 @@ class CBR_Admin_Notice {
 	/*
 	* Display admin notice on plugin install or update
 	*/
-	public function cbr_pro_admin_notice_378() {
+	public function cbr_pro_admin_notice_379() {
 		
-		if ( get_option('cbr_pro_update_ignore_378') ) {
+		if ( get_option('cbr_pro_update_ignore_379') ) {
 			return;
 		}
 		
-		$nonce = wp_create_nonce('cbr_pro_dismiss_notice_378');
-		$dismissable_url = esc_url(add_query_arg(['cbr-pro-update-notice-378' => 'true', 'nonce' => $nonce]));
+		$nonce = wp_create_nonce('cbr_pro_dismiss_notice_379');
+		$dismissable_url = esc_url(add_query_arg(['cbr-pro-update-notice-379' => 'true', 'nonce' => $nonce]));
 
 		?>
 		<style>		
-		.wp-core-ui .notice.cbr-pro-dismissable-notice-378 {
+		.wp-core-ui .notice.cbr-pro-dismissable-notice-379 {
 			position: relative;
 			padding-right: 38px;
 			border-left-color: #3b64d3;
 		}
-		.wp-core-ui .notice.cbr-pro-dismissable-notice-378 h3{
+		.wp-core-ui .notice.cbr-pro-dismissable-notice-379 h3{
 			margin-bottom: 5px;
 		} 
-		.wp-core-ui .notice.cbr-pro-dismissable-notice-378 a.notice-dismiss{
+		.wp-core-ui .notice.cbr-pro-dismissable-notice-379 a.notice-dismiss{
 			padding: 9px;
 			text-decoration: none;
 		} 
-		.wp-core-ui .button-primary.cbr_pro_notice_btn_378 {
+		.wp-core-ui .button-primary.cbr_pro_notice_btn_379 {
 			background: #3b64d3;
 			color: #fff;
 			border-color: #3b64d3;
@@ -122,25 +122,25 @@ class CBR_Admin_Notice {
 			line-height: 28px;
 			margin: 5px 0 10px;
 		}
-		.cbr-pro-dismissable-notice-378 strong{
+		.cbr-pro-dismissable-notice-379 strong{
 			font-weight:bold;
 		}
 		</style>
-		<div class="notice updated notice-success cbr-pro-dismissable-notice-378">
+		<div class="notice updated notice-success cbr-pro-dismissable-notice-379">
 			<a href="<?php echo $dismissable_url; ?>" class="notice-dismiss"><span class="screen-reader-text">Dismiss this notice.</span></a>
-			<h2>🌍 Upgrade to Country Based Restrictions PRO – Gain Full Control Over Who Sees What!</h2>
-			<p>Enhance your store's flexibility with CBR PRO:</p>
+			<h2>🌍 Upgrade to Country Based Restrictions PRO – Gain Full Control Over Who Sees What</h2>
+			<p>Get full control over who sees what:</p>
 			<ul>
-				<li>✅ Restrict product visibility by country, category, tag, or shipping class</li>
-				<li>✅ Show or hide prices, payment gateways, and checkout options by location</li>
-				<li>✅ Use a frontend country detection widget</li>
-				<li>✅ Bulk import restrictions with a CSV file</li>
-				<li>✅ Enable debug mode and customize restrictions with ease</li>
+				<li>✅ Restrict by country, category, tag, attribute & shipping class</li>
+				<li>✅ Hide prices, payment gateways & checkout options by location</li>
+				<li>✅ Restrict individual product variations</li>
+				<li>✅ Country detection widget + CSV bulk import</li>
+				<li>✅ Redirects, custom messages & debug mode</li>
 			</ul>
-			<p>🎁 Special Offer: Get 20% OFF with coupon code CBRPRO20 – limited time only!</p>
+			<p>🎁 20% OFF with code CBRPRO20 — limited time!</p>
 			<p>
-				<a href="https://www.zorem.com/product/country-based-restriction-pro/" class="button-primary cbr_pro_notice_btn_378">👉 Upgrade to CBR PRO</a>
-				<a class="button-primary cbr_pro_notice_btn_378" href="<?php echo $dismissable_url; ?>">Dismiss</a>
+				<a href="https://www.zorem.com/product/country-based-restriction-pro/" class="button-primary cbr_pro_notice_btn_379">👉 Upgrade to CBR PRO</a>
+				<a class="button-primary cbr_pro_notice_btn_379" href="<?php echo $dismissable_url; ?>">Dismiss</a>
 			</p>
 		</div>
 		<?php

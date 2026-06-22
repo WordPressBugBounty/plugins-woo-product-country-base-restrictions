@@ -178,13 +178,13 @@
 }
 
 .admin-message-panel .admin-message-row {
-    margin: 20px;
+    margin: 20px 20px 0;
     display: block;
     padding: 20px;
     background-color: #fff;
     position: relative;
     border: 1px solid #e0e0e0;
-    border-radius: 8px;
+    border-radius: 16px;
 }
 
 .admin-message-panel p {
@@ -225,7 +225,6 @@
 .cbr_tab_inner_container .select2-selection--single,
 .cbr_tab_inner_container .select2-selection--multiple {
     border-color: #e0e0e0 !important;
-    background-color: #fafafa !important;
 }
 
 .woocommerce.cbr_admin_layout table.form-table.setting {
@@ -1267,6 +1266,15 @@ table.form-table.country_detection_widget {
 .pro_feature {
     opacity: 0.3;
 }
+
+/* PRO-locked toggle: the underlying disabled <input type="checkbox"> picks up
+   WP core's #f0f0f0 bg + 1px #ccc border, and .pro_feature's opacity:0.3
+   normally makes that rectangle visible behind the toggle pill. Force the
+   input back to fully invisible so only the library's disabled OFF-state
+   toggle pill (track + thumb) renders. */
+.cbr-pro-feature-row .zui-toggle .zui-toggle__input.pro_feature {
+    opacity: 0 !important;
+}
 .cbr-pro-tab-overlay h3 {
     font-size: 18px;
     color: #3c4758;
@@ -1404,7 +1412,7 @@ tr.cbr-pro-feature-row th {
 
 .cbr-pro-sidebar__features li {
     position: relative;
-    padding: 4px 0 4px 24px;
+    padding: 4px 0;
     font-size: 13px;
     color: #333;
     line-height: 1.5;
