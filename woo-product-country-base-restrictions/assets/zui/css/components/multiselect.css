@@ -5,8 +5,7 @@
    save-of-truth, visible chip-control on top, and a JS-rendered
    dropdown of options.
 
-   Auto-init via `data-ast-multiselect` (handled by zui.js or
-   the consumer plugin's settings JS).
+   Auto-init via `data-zui-multiselect` (handled by ZUI.scan() in zui.js).
 
    ============================================================ */
 
@@ -69,6 +68,11 @@
 }
 
 .zui-scope .zui-ms__chip-remove {
+	display: flex;
+	justify-content: center;
+	width: 14px;
+	height: 14px;
+	flex-shrink: 0;
 	border: 0;
 	background: transparent;
 	color: #ef4444;
@@ -78,6 +82,10 @@
 	padding: 0;
 	margin-inline-start: 2px;
 	cursor: pointer;
+}
+
+.zui-scope .zui-ms__chip .zui-ms__chip-remove {
+	color: #ef4444;
 }
 
 .zui-scope .zui-ms__chip-remove:hover {

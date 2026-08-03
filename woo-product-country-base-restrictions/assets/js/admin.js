@@ -135,26 +135,49 @@ jQuery(document).on("change", ".cbr_restricted_type", function(){
 	}
 });
 
-/*ajex call for general tab form save*/	
+/* Library-spec savebtn lifecycle: replace the .zui-savebtn__label text
+ * with "Saving…" while the AJAX is in flight, then restore it on completion.
+ * Matches the canonical pattern shown in ZUI-COMPONENTS-PREVIEW.html. */
+function cbrSavebtnSaving($btn) {
+	var $label = $btn.find(".zui-savebtn__label");
+	if ( $label.length && ! $btn.data("cbrSavebtnOriginalLabel") ) {
+		$btn.data("cbrSavebtnOriginalLabel", $label.html());
+	}
+	$label.html("Saving…");
+	$btn.addClass("is-saving").removeClass("is-saved").prop("disabled", true);
+}
+function cbrSavebtnReset($btn) {
+	var original = $btn.data("cbrSavebtnOriginalLabel");
+	if ( original ) {
+		$btn.find(".zui-savebtn__label").html(original);
+	}
+	$btn.removeClass("is-saving").prop("disabled", false);
+}
+
+/*ajex call for general tab form save*/
 jQuery(document).on("click", "#cbr_setting_tab_form .cbr-save", function(){
 	"use strict";
-	jQuery(this).parent().find(".spinner").addClass("active");
+	var $btn = jQuery(this);
+	cbrSavebtnSaving($btn);
+	$btn.parent().find(".spinner").addClass("active");
 	var form = jQuery('#cbr_setting_tab_form');
 	jQuery.ajax({
-		url: ajaxurl+"?action=cbr_setting_form_update",//csv_workflow_update,		
+		url: ajaxurl+"?action=cbr_setting_form_update",//csv_workflow_update,
 		data: form.serialize(),
 		type: 'POST',
-		dataType:"json",	
+		dataType:"json",
 		success: function(response) {
+			jQuery("#cbr_setting_tab_form .spinner").removeClass("active");
+			cbrSavebtnReset($btn);
 			if( response.success === "true" ){
-				jQuery("#cbr_setting_tab_form .spinner").removeClass("active");
+				$btn.addClass("is-saved");
 				jQuery(document).cbr_snackbar( "Settings Successfully Saved." );
-			} else {
-				//show error on front
+				setTimeout(function(){ $btn.removeClass("is-saved"); }, 1500);
 			}
 		},
 		error: function(response) {
-			console.log(response);			
+			cbrSavebtnReset($btn);
+			console.log(response);
 		}
 	});
 	return false;

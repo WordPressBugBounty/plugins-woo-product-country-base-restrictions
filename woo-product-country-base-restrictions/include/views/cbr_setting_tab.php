@@ -88,24 +88,6 @@ if ( ! in_array( $cbr_section, $cbr_valid_sections, true ) ) {
 			</div>
 		</div>
 
-		<!-- PRO upsell card in sidebar (free-only) -->
-		<div class="cbr-pro-sidebar__upgrade cbr-pro-sidebar__upgrade--inline">
-			<div class="cbr-pro-sidebar__icon">
-				<img src="<?php echo esc_url( $fzpcr->plugin_dir_url() . 'assets/images/cbr-icon.png' ); ?>" alt="CBR PRO">
-			</div>
-			<h3 class="cbr-pro-sidebar__title"><?php esc_html_e( 'Unlock Advanced Country Based Restrictions with CBR PRO', 'woo-product-country-base-restrictions' ); ?></h3>
-			<p class="cbr-pro-sidebar__desc"><?php esc_html_e( 'Upgrade to CBR PRO to extend your country-based restrictions beyond the basics.', 'woo-product-country-base-restrictions' ); ?></p>
-			<ul class="cbr-pro-sidebar__features">
-				<li><span class="cbr-check">&#10003;</span><?php esc_html_e( 'Catalog restriction rules by category', 'woo-product-country-base-restrictions' ); ?></li>
-				<li><span class="cbr-check">&#10003;</span><?php esc_html_e( 'Payment gateway restrictions by country', 'woo-product-country-base-restrictions' ); ?></li>
-				<li><span class="cbr-check">&#10003;</span><?php esc_html_e( 'Country detection widget & customizer', 'woo-product-country-base-restrictions' ); ?></li>
-				<li><span class="cbr-check">&#10003;</span><?php esc_html_e( 'Bypass restrictions for specific users', 'woo-product-country-base-restrictions' ); ?></li>
-				<li><span class="cbr-check">&#10003;</span><?php esc_html_e( 'Cart & category restriction messages', 'woo-product-country-base-restrictions' ); ?></li>
-				<li><span class="cbr-check">&#10003;</span><?php esc_html_e( 'Restrict on Place Order (Checkout)', 'woo-product-country-base-restrictions' ); ?></li>
-			</ul>
-			<a href="https://www.zorem.com/product/country-based-restriction-pro/?utm_source=wp-admin&utm_medium=CBRPRO&utm_campaign=sidebar" class="cbr-pro-sidebar__btn" target="_blank"><?php esc_html_e( 'Upgrade to CBR PRO', 'woo-product-country-base-restrictions' ); ?> &rarr;</a>
-		</div>
-
 	</aside>
 
 	<main class="zui-content" id="ast-set-content">
@@ -129,6 +111,7 @@ if ( ! in_array( $cbr_section, $cbr_valid_sections, true ) ) {
 					<div class="zui-section-header__actions">
 						<span class="zui-savebtn-wrap ast-accordion-btn">
 							<button name="save" type="button" class="zui-savebtn cbr-save woocommerce-save-button btn_ast2" value="Save Changes">
+								<span class="zui-savebtn__spinner" aria-hidden="true"></span>
 								<span class="zui-savebtn__label"><?php esc_html_e( 'Save Changes', 'woo-product-country-base-restrictions' ); ?></span>
 							</button>
 						</span>
@@ -176,9 +159,11 @@ if ( ! in_array( $cbr_section, $cbr_valid_sections, true ) ) {
 										</span>
 									</div>
 									<div class="zui-row__control">
-										<span class="cbr-pro-row-actions">
-											<span class="cbr-pro-badge"><?php esc_html_e( 'PRO', 'woo-product-country-base-restrictions' ); ?></span>
-											<span class="cbr-pro-lock"><span class="dashicons dashicons-lock"></span></span>
+										<span class="zui-pro-feature">
+											<span class="zui-pro-feature__badge"><?php esc_html_e( 'PRO', 'woo-product-country-base-restrictions' ); ?></span>
+											<span class="zui-pro-feature__lock" aria-hidden="true">
+												<svg class="zui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+											</span>
 										</span>
 										<label class="zui-toggle">
 											<input type="hidden" value="0">
@@ -214,9 +199,11 @@ if ( ! in_array( $cbr_section, $cbr_valid_sections, true ) ) {
 										</span>
 									</div>
 									<div class="zui-row__control">
-										<span class="cbr-pro-row-actions">
-											<span class="cbr-pro-badge"><?php esc_html_e( 'PRO', 'woo-product-country-base-restrictions' ); ?></span>
-											<span class="cbr-pro-lock"><span class="dashicons dashicons-lock"></span></span>
+										<span class="zui-pro-feature">
+											<span class="zui-pro-feature__badge"><?php esc_html_e( 'PRO', 'woo-product-country-base-restrictions' ); ?></span>
+											<span class="zui-pro-feature__lock" aria-hidden="true">
+												<svg class="zui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+											</span>
 										</span>
 										<label class="zui-toggle">
 											<input type="hidden" value="0">
@@ -241,9 +228,11 @@ if ( ! in_array( $cbr_section, $cbr_valid_sections, true ) ) {
 										</span>
 									</div>
 									<div class="zui-row__control">
-										<span class="cbr-pro-row-actions">
-											<span class="cbr-pro-badge"><?php esc_html_e( 'PRO', 'woo-product-country-base-restrictions' ); ?></span>
-											<span class="cbr-pro-lock"><span class="dashicons dashicons-lock"></span></span>
+										<span class="zui-pro-feature">
+											<span class="zui-pro-feature__badge"><?php esc_html_e( 'PRO', 'woo-product-country-base-restrictions' ); ?></span>
+											<span class="zui-pro-feature__lock" aria-hidden="true">
+												<svg class="zui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+											</span>
 										</span>
 										<label class="zui-toggle">
 											<input type="hidden" value="0">
@@ -266,9 +255,11 @@ if ( ! in_array( $cbr_section, $cbr_valid_sections, true ) ) {
 										</span>
 									</div>
 									<div class="zui-row__control">
-										<span class="cbr-pro-row-actions">
-											<span class="cbr-pro-badge"><?php esc_html_e( 'PRO', 'woo-product-country-base-restrictions' ); ?></span>
-											<span class="cbr-pro-lock"><span class="dashicons dashicons-lock"></span></span>
+										<span class="zui-pro-feature">
+											<span class="zui-pro-feature__badge"><?php esc_html_e( 'PRO', 'woo-product-country-base-restrictions' ); ?></span>
+											<span class="zui-pro-feature__lock" aria-hidden="true">
+												<svg class="zui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+											</span>
 										</span>
 										<label class="zui-toggle">
 											<input type="hidden" value="0">
@@ -289,9 +280,11 @@ if ( ! in_array( $cbr_section, $cbr_valid_sections, true ) ) {
 								<span class="zui-radio-card__label"><?php esc_html_e( 'Restrict product only on Place Order (Checkout)', 'woo-product-country-base-restrictions' ); ?></span>
 								<span class="zui-radio-card__desc"><?php esc_html_e( 'Enable this option to apply country-based restriction only when the customer clicks the Place Order button on the checkout page.', 'woo-product-country-base-restrictions' ); ?></span>
 							</span>
-							<span class="cbr-pro-row-actions">
-								<span class="cbr-pro-badge"><?php esc_html_e( 'PRO', 'woo-product-country-base-restrictions' ); ?></span>
-								<span class="cbr-pro-lock"><span class="dashicons dashicons-lock"></span></span>
+							<span class="zui-pro-feature">
+								<span class="zui-pro-feature__badge"><?php esc_html_e( 'PRO', 'woo-product-country-base-restrictions' ); ?></span>
+								<span class="zui-pro-feature__lock" aria-hidden="true">
+									<svg class="zui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+								</span>
 							</span>
 						</label>
 
@@ -318,6 +311,7 @@ if ( ! in_array( $cbr_section, $cbr_valid_sections, true ) ) {
 					<div class="zui-section-header__actions">
 						<span class="zui-savebtn-wrap ast-accordion-btn">
 							<button name="save" type="button" class="zui-savebtn cbr-save woocommerce-save-button btn_ast2" value="Save Changes">
+								<span class="zui-savebtn__spinner" aria-hidden="true"></span>
 								<span class="zui-savebtn__label"><?php esc_html_e( 'Save Changes', 'woo-product-country-base-restrictions' ); ?></span>
 							</button>
 						</span>
@@ -349,9 +343,11 @@ if ( ! in_array( $cbr_section, $cbr_valid_sections, true ) ) {
 								</span>
 							</div>
 						</div>
-						<span class="cbr-pro-row-actions">
-							<span class="cbr-pro-badge"><?php esc_html_e( 'PRO', 'woo-product-country-base-restrictions' ); ?></span>
-							<span class="cbr-pro-lock"><span class="dashicons dashicons-lock"></span></span>
+						<span class="zui-pro-feature">
+							<span class="zui-pro-feature__badge"><?php esc_html_e( 'PRO', 'woo-product-country-base-restrictions' ); ?></span>
+							<span class="zui-pro-feature__lock" aria-hidden="true">
+								<svg class="zui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+							</span>
 						</span>
 					</div>
 
@@ -373,9 +369,11 @@ if ( ! in_array( $cbr_section, $cbr_valid_sections, true ) ) {
 							<textarea id="wpcbr_cart_message_pro" rows="3" cols="20" class="zui-input regular-input input-text pro_feature" disabled placeholder="<?php esc_attr_e( '{Product_Name} has been removed from your cart since it is not available for purchase to your Country.', 'woo-product-country-base-restrictions' ); ?>"></textarea>
 							<p class="zui-row__hint description"><?php esc_html_e( 'Available variable: {Product_Name}, {Product_name_with_link}', 'woo-product-country-base-restrictions' ); ?></p>
 						</div>
-						<span class="cbr-pro-row-actions">
-							<span class="cbr-pro-badge"><?php esc_html_e( 'PRO', 'woo-product-country-base-restrictions' ); ?></span>
-							<span class="cbr-pro-lock"><span class="dashicons dashicons-lock"></span></span>
+						<span class="zui-pro-feature">
+							<span class="zui-pro-feature__badge"><?php esc_html_e( 'PRO', 'woo-product-country-base-restrictions' ); ?></span>
+							<span class="zui-pro-feature__lock" aria-hidden="true">
+								<svg class="zui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+							</span>
 						</span>
 					</div>
 
@@ -394,9 +392,11 @@ if ( ! in_array( $cbr_section, $cbr_valid_sections, true ) ) {
 							<textarea id="cbr_cat_default_message_pro" rows="3" cols="20" class="zui-input regular-input input-text pro_feature" disabled placeholder="<?php esc_attr_e( 'Sorry, products from this category are not available to purchase in your country.', 'woo-product-country-base-restrictions' ); ?>"></textarea>
 							<p class="zui-row__hint description"><?php esc_html_e( 'You can use shortcode [cbr_category_message] in your category template.', 'woo-product-country-base-restrictions' ); ?></p>
 						</div>
-						<span class="cbr-pro-row-actions">
-							<span class="cbr-pro-badge"><?php esc_html_e( 'PRO', 'woo-product-country-base-restrictions' ); ?></span>
-							<span class="cbr-pro-lock"><span class="dashicons dashicons-lock"></span></span>
+						<span class="zui-pro-feature">
+							<span class="zui-pro-feature__badge"><?php esc_html_e( 'PRO', 'woo-product-country-base-restrictions' ); ?></span>
+							<span class="zui-pro-feature__lock" aria-hidden="true">
+								<svg class="zui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+							</span>
 						</span>
 					</div>
 
@@ -415,9 +415,11 @@ if ( ! in_array( $cbr_section, $cbr_valid_sections, true ) ) {
 							<textarea id="cbr_catalog_default_message_pro" rows="3" cols="20" class="zui-input regular-input input-text pro_feature" disabled placeholder="<?php esc_attr_e( 'Sorry, products are not available in your country.', 'woo-product-country-base-restrictions' ); ?>"></textarea>
 							<p class="zui-row__hint description"><?php esc_html_e( 'Shown when no products are available due to country-based restrictions.', 'woo-product-country-base-restrictions' ); ?></p>
 						</div>
-						<span class="cbr-pro-row-actions">
-							<span class="cbr-pro-badge"><?php esc_html_e( 'PRO', 'woo-product-country-base-restrictions' ); ?></span>
-							<span class="cbr-pro-lock"><span class="dashicons dashicons-lock"></span></span>
+						<span class="zui-pro-feature">
+							<span class="zui-pro-feature__badge"><?php esc_html_e( 'PRO', 'woo-product-country-base-restrictions' ); ?></span>
+							<span class="zui-pro-feature__lock" aria-hidden="true">
+								<svg class="zui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+							</span>
 						</span>
 					</div>
 				</div>
@@ -445,7 +447,7 @@ if ( ! in_array( $cbr_section, $cbr_valid_sections, true ) ) {
 				<div class="zui-card customizer cbr-widget-customizer-section">
 					<div class="zui-row zui-row--inline border_1 cbr-pro-feature-row">
 						<div class="zui-row__head">
-							<span class="zui-row__label"><?php esc_html_e( 'Country Detection Widget', 'woo-product-country-base-restrictions' ); ?> <span class="cbr-pro-row-actions"><span class="cbr-pro-badge"><?php esc_html_e( 'PRO', 'woo-product-country-base-restrictions' ); ?></span><span class="cbr-pro-lock"><span class="dashicons dashicons-lock"></span></span></span></span>
+							<span class="zui-row__label"><?php esc_html_e( 'Country Detection Widget', 'woo-product-country-base-restrictions' ); ?> <span class="zui-pro-feature"><span class="zui-pro-feature__badge"><?php esc_html_e( 'PRO', 'woo-product-country-base-restrictions' ); ?></span><span class="zui-pro-feature__lock" aria-hidden="true"><svg class="zui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg></span></span></span>
 							<p class="zui-row__desc"><?php esc_html_e( 'Customize the country detection widget', 'woo-product-country-base-restrictions' ); ?></p>
 							<p class="zui-row__desc zui-row__desc--muted"><?php esc_html_e( 'Show the detected country and allow customers to change their shipping country on any page.', 'woo-product-country-base-restrictions' ); ?></p>
 						</div>
@@ -463,6 +465,64 @@ if ( ! in_array( $cbr_section, $cbr_valid_sections, true ) ) {
 			<input type="hidden" name="action" value="cbr_setting_form_update">
 
 		</form>
+
+		<?php
+		// ---- Library .zui-upsell panel at the bottom of the Settings tab.
+		$cbr_upsell_features = array(
+			esc_html__( 'Catalog restriction rules by category', 'woo-product-country-base-restrictions' ),
+			esc_html__( 'Payment gateway restrictions by country', 'woo-product-country-base-restrictions' ),
+			esc_html__( 'Country detection widget & customizer', 'woo-product-country-base-restrictions' ),
+			esc_html__( 'Bypass restrictions for specific users', 'woo-product-country-base-restrictions' ),
+			esc_html__( 'Cart & category restriction messages', 'woo-product-country-base-restrictions' ),
+			esc_html__( 'Restrict on Place Order (Checkout)', 'woo-product-country-base-restrictions' ),
+			esc_html__( 'Bulk restriction management', 'woo-product-country-base-restrictions' ),
+			esc_html__( 'Country selector widget for the storefront', 'woo-product-country-base-restrictions' ),
+			esc_html__( 'Live preview customizer support', 'woo-product-country-base-restrictions' ),
+			esc_html__( 'Priority support & auto-updates', 'woo-product-country-base-restrictions' ),
+		);
+		$cbr_upsell_url = 'https://www.zorem.com/product/country-based-restriction-pro/?utm_source=wp-admin&utm_medium=CBRFREE&utm_campaign=UpsellPanel';
+		?>
+		<section class="zui-upsell" aria-labelledby="cbr-upsell-title">
+
+			<header class="zui-upsell__head">
+				<span class="zui-upsell__emblem" aria-hidden="true">
+					<svg class="zui-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+				</span>
+				<div class="zui-upsell__head-text">
+					<span class="zui-upsell__eyebrow"><?php esc_html_e( 'CBR PRO', 'woo-product-country-base-restrictions' ); ?></span>
+					<h3 class="zui-upsell__title" id="cbr-upsell-title"><?php esc_html_e( 'Unlock Advanced Country Based Restrictions with CBR PRO', 'woo-product-country-base-restrictions' ); ?></h3>
+					<p class="zui-upsell__sub"><?php esc_html_e( 'Upgrade to CBR PRO to extend your country-based restrictions beyond the basics — category rules, payment gateway restrictions, a country selector widget, the live customizer, and more.', 'woo-product-country-base-restrictions' ); ?></p>
+				</div>
+			</header>
+
+			<ul class="zui-upsell__features">
+				<?php foreach ( $cbr_upsell_features as $cbr_feat ) : ?>
+					<li class="zui-upsell__feature">
+						<span class="zui-upsell__check" aria-hidden="true">
+							<svg class="zui-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+						</span>
+						<span class="zui-upsell__label"><?php echo esc_html( $cbr_feat ); ?></span>
+					</li>
+				<?php endforeach; ?>
+			</ul>
+
+			<footer class="zui-upsell__foot">
+				<div class="zui-upsell__offer">
+					<span class="zui-upsell__offer-label"><?php esc_html_e( 'Launch offer', 'woo-product-country-base-restrictions' ); ?></span>
+					<span class="zui-upsell__offer-body">
+						<?php esc_html_e( 'Get 20% off — use code', 'woo-product-country-base-restrictions' ); ?>
+						<span class="zui-upsell__code">CBRPRO20</span>
+						<?php esc_html_e( 'at checkout.', 'woo-product-country-base-restrictions' ); ?>
+					</span>
+					<span class="zui-upsell__offer-note">★ <?php esc_html_e( 'for new customers only', 'woo-product-country-base-restrictions' ); ?></span>
+				</div>
+				<a class="zui-upsell__cta" href="<?php echo esc_url( $cbr_upsell_url ); ?>" target="_blank" rel="noopener noreferrer">
+					<?php esc_html_e( 'Upgrade to CBR PRO', 'woo-product-country-base-restrictions' ); ?> <span aria-hidden="true">&rarr;</span>
+				</a>
+			</footer>
+
+		</section>
+
 	</main>
 
 </div>

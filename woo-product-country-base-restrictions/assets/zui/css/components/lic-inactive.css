@@ -99,7 +99,7 @@
 
 .zui-scope .zui-lic-savebtn {
 	padding: 7px 14px;
-	background: #0f172a;
+	background: var(--zui-primary);
 	color: #fff;
 	border: 0;
 	border-radius: var(--zui-radius-lg);
@@ -109,7 +109,25 @@
 }
 
 .zui-scope .zui-lic-savebtn:hover {
-	background: #1e293b;
+	background: var(--zui-primary-hover);
+}
+
+.zui-scope .zui-lic-savebtn.is-saving,
+.zui-scope .zui-lic-activate.is-saving {
+	cursor: wait;
+	opacity: 0.55;
+	pointer-events: none;
+}
+
+.zui-scope .zui-lic-savebtn.is-saved {
+	background: var(--zui-success, #16a34a);
+	color: #fff;
+	opacity: 1;
+	cursor: default;
+	pointer-events: none;
+}
+.zui-scope .zui-lic-savebtn.is-saved:hover {
+	background: var(--zui-success, #16a34a);
 }
 
 .zui-scope .zui-lic-telemetry-form {

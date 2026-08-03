@@ -58,13 +58,80 @@ class CBR_Admin_Notice {
 		add_action( 'admin_init', array( $this, 'cbr_pro_notice_ignore_cb_379' ) );
 
 		$page = isset( $_GET['page'] ) ? sanitize_text_field( $_GET['page'] ) : '';
-		
+
 		if ( 'woocommerce-product-country-base-restrictions' != $page ) {
 			// Analytics for WooCommerce Subscriptions Notice
 			add_action( 'admin_notices', array( $this, 'cbr_pro_admin_notice_379' ) );
-			
+
 		}
 		add_action('cbr_settings_admin_notice', array( $this, 'cbr_settings_admin_notice' ) );
+
+		// Review request notice (ZUI plugin-notice card)
+		add_action( 'admin_init', array( $this, 'cbr_free_review_notice_ignore' ) );
+		add_action( 'admin_notices', array( $this, 'cbr_free_review_notice' ) );
+		add_action( 'admin_enqueue_scripts', array( $this, 'cbr_free_review_notice_styles' ) );
+	}
+
+	/*
+	* Dismiss the review notice
+	*/
+	public function cbr_free_review_notice_ignore() {
+		if ( isset( $_GET['cbr-free-review-ignore-notice'] ) && isset( $_GET['nonce'] ) ) {
+			$nonce = sanitize_text_field( $_GET['nonce'] );
+			if ( wp_verify_nonce( $nonce, 'cbr_free_review_notice' ) ) {
+				update_option( 'cbr_free_review_notice_ignore', 'true' );
+			}
+		}
+	}
+
+	/*
+	* ZUI plugin-notice styles — the review notice renders from `admin_notices`
+	* on every admin page, outside `.zui-scope`, so the standalone component
+	* stylesheet is enqueued here (it has no dependency on the zui.css bundle).
+	*/
+	public function cbr_free_review_notice_styles() {
+		global $fzpcr;
+
+		if ( get_option( 'cbr_free_review_notice_ignore' ) ) {
+			return;
+		}
+
+		$zui_version_file = $fzpcr->get_plugin_path() . '/assets/zui/VERSION';
+		$zui_version      = is_readable( $zui_version_file ) ? trim( file_get_contents( $zui_version_file ) ) : $fzpcr->version;
+
+		wp_enqueue_style( 'cbr-zui-pnotice', $fzpcr->plugin_dir_url() . 'assets/zui/css/components/plugin-notice.css', array(), $zui_version );
+	}
+
+	/*
+	* Display the review request notice (ZUI plugin-notice card)
+	*/
+	public function cbr_free_review_notice() {
+
+		if ( get_option( 'cbr_free_review_notice_ignore' ) ) {
+			return;
+		}
+
+		$nonce           = wp_create_nonce( 'cbr_free_review_notice' );
+		$dismissable_url = esc_url( add_query_arg( array( 'cbr-free-review-ignore-notice' => 'true', 'nonce' => $nonce ) ) );
+		?>
+		<div class="zui-pnotice" role="status">
+			<span class="zui-pnotice__avatar" aria-hidden="true">
+				<svg class="zui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+			</span>
+			<div class="zui-pnotice__body">
+				<strong class="zui-pnotice__title">⭐ <?php esc_html_e( 'Enjoying Country Based Restrictions? Leave Us a Review!', 'woo-product-country-base-restrictions' ); ?></strong>
+				<p class="zui-pnotice__text"><?php esc_html_e( 'We hope Country Based Restrictions has given you the control you need over what customers see and buy in each country! Your feedback helps us grow and continue improving the plugin.', 'woo-product-country-base-restrictions' ); ?></p>
+				<p class="zui-pnotice__text"><?php esc_html_e( 'If you love using CBR, we\'d really appreciate it if you could take a moment to leave us a 5-star review. It helps us keep improving and providing the best experience for you!', 'woo-product-country-base-restrictions' ); ?></p>
+				<p class="zui-pnotice__text"><strong>👍 <?php esc_html_e( 'Support CBR & Share Your Experience!', 'woo-product-country-base-restrictions' ); ?></strong></p>
+				<div class="zui-pnotice__actions">
+					<a class="zui-pnotice__btn" href="https://wordpress.org/support/plugin/woo-product-country-base-restrictions/reviews/#new-post" target="_blank" rel="noreferrer noopener"><?php esc_html_e( 'Ok, you deserve it', 'woo-product-country-base-restrictions' ); ?></a>
+					<a class="zui-pnotice__btn zui-pnotice__btn--ghost" href="<?php echo esc_url( $dismissable_url ); ?>"><?php esc_html_e( 'I already did', 'woo-product-country-base-restrictions' ); ?></a>
+					<a class="zui-pnotice__link" href="<?php echo esc_url( $dismissable_url ); ?>"><?php esc_html_e( 'Nope, maybe later', 'woo-product-country-base-restrictions' ); ?></a>
+				</div>
+			</div>
+			<a class="zui-pnotice__close" href="<?php echo esc_url( $dismissable_url ); ?>" aria-label="<?php esc_attr_e( 'Dismiss', 'woo-product-country-base-restrictions' ); ?>">&times;</a>
+		</div>
+		<?php
 	}
 
 	public function cbr_settings_admin_notice() {

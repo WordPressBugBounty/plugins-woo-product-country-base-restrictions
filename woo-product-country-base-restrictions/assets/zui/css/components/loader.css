@@ -68,6 +68,19 @@
 	transition: opacity 200ms ease;
 }
 
+/* `--dialog` modifier: when the loader is placed as a direct child of
+   `.zui-modal__dialog` (sibling to `.zui-modal__head` + `.zui-modal__body`),
+   it stretches over the WHOLE dialog so it covers both the scrollable body
+   AND the actions row below — useful on long forms where the body's own
+   absolute overlay would scroll out of view. */
+.zui-scope .zui-loader-overlay--dialog,
+.zui-loader-overlay--dialog {
+	position: absolute;
+	inset: 0;
+	z-index: 6;
+	border-radius: inherit;
+}
+
 /* ---- Spinner (CSS-only circular arc rotation) ---- */
 .zui-scope .zui-loader-spinner,
 .zui-loader-spinner {

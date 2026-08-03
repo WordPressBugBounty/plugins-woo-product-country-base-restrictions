@@ -46,3 +46,19 @@
 .zui-scope .zui-savebtn__spinner {
 	display: none;
 }
+
+.zui-scope .zui-section-header .zui-savebtn.is-saving {
+	cursor: wait;
+	opacity: 0.55;
+	pointer-events: none;
+}
+
+.zui-scope .zui-section-header .zui-savebtn.is-saved {
+	background: var(--zui-success, #16a34a);
+	opacity: 1;
+	cursor: default;
+	pointer-events: none;
+}
+.zui-scope .zui-section-header .zui-savebtn.is-saved:hover {
+	background: var(--zui-success, #16a34a);
+}

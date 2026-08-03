@@ -8,20 +8,20 @@ if ( ! defined( 'ABSPATH' ) ) {
 <main class="zui-content zui-content--full">
 	<section id="cbr-section-catalog-restrictions" class="zui-section is-active" data-section="catalog-restrictions">
 
-		<div class="zui-card cbr-pro-locked-card">
-			<div class="cbr-pro-locked-card__overlay">
-				<h3 class="cbr-pro-locked-card__title">
-					<?php esc_html_e( 'Catalog Restrictions', 'woo-product-country-base-restrictions' ); ?>
-					<span class="cbr-pro-badge"><?php esc_html_e( 'PRO', 'woo-product-country-base-restrictions' ); ?></span>
-					<span class="cbr-pro-lock"><span class="dashicons dashicons-lock"></span></span>
-				</h3>
-				<p class="cbr-pro-locked-card__desc"><?php esc_html_e( 'Create bulk restriction rules to restrict products by categories, tags, attributes, and shipping classes for specific countries. Upgrade to PRO to unlock this feature.', 'woo-product-country-base-restrictions' ); ?></p>
-				<a href="https://www.zorem.com/product/country-based-restriction-pro/?utm_source=wp-admin&utm_medium=CBRPRO&utm_campaign=catalog-restrictions" class="zui-btn-locked" target="_blank"><?php esc_html_e( 'Upgrade To PRO', 'woo-product-country-base-restrictions' ); ?></a>
+		<div class="zui-lock-section">
+			<div class="zui-lock-section__icon">
+				<svg class="zui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
 			</div>
+			<h3 class="zui-lock-section__title">
+				<?php esc_html_e( 'Catalog Restrictions', 'woo-product-country-base-restrictions' ); ?>
+				<span class="zui-lock-section__badge"><?php esc_html_e( 'PRO', 'woo-product-country-base-restrictions' ); ?></span>
+			</h3>
+			<p class="zui-lock-section__desc"><?php esc_html_e( 'Create bulk restriction rules to restrict products by categories, tags, attributes, and shipping classes for specific countries. Upgrade to PRO to unlock this feature.', 'woo-product-country-base-restrictions' ); ?></p>
+			<a href="https://www.zorem.com/product/country-based-restriction-pro/?utm_source=wp-admin&utm_medium=CBRPRO&utm_campaign=catalog-restrictions" class="zui-btn-primary zui-lock-section__cta" target="_blank" rel="noopener noreferrer"><?php esc_html_e( 'Upgrade To PRO', 'woo-product-country-base-restrictions' ); ?></a>
 		</div>
 
 		<!-- Locked preview of sample rules -->
-		<div class="cbr-pro-locked-preview">
+		<div class="zui-lock-section__preview cbr-pro-locked-preview">
 			<div class="accordion zui-list-row cbr-pro-sample-row">
 				<div class="br_cbr_row_title">
 					<span class="br_cbr_row_title__name"><?php esc_html_e( 'Restrictions Rule 1', 'woo-product-country-base-restrictions' ); ?></span>

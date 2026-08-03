@@ -110,3 +110,9 @@
 .zui-scope .zui-lic-deactivate:hover {
 	background: #fff1f2;
 }
+
+.zui-scope .zui-lic-deactivate.is-saving {
+	cursor: wait;
+	opacity: 0.55;
+	pointer-events: none;
+}

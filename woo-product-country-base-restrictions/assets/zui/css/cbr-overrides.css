@@ -117,7 +117,7 @@
    between the brand bar and the tabs nav so the CBR logo row reads
    as its own band. */
 .zui-scope .zui-header__bar {
-	border-bottom: 1px solid var(--zui-border);
+	border-bottom: 0 !important;
 }
 
 /* ------------------------------------------------------------
@@ -1171,87 +1171,32 @@
 	color: #fff;
 }
 
-/* PRO badge on tab labels (Catalog/Payment Restrictions) */
+/* PRO badge on tab labels (Catalog/Payment Restrictions) — mirrors the
+   library `.zui-pro-feature__badge` so every PRO indicator reads the same. */
 .zui-scope .zui-tabs__item .zui-tabs__badge {
 	display: inline-flex;
 	align-items: center;
 	margin-left: 8px;
 	padding: 2px 8px;
-	font-size: 10px;
-	font-weight: 700;
-	letter-spacing: .04em;
-	background: #4f46e5;
+	font-size: 11px;
+	font-weight: 800;
+	letter-spacing: .05em;
+	background: var(--zui-primary);
 	color: #fff;
-	border-radius: 999px;
+	border-radius: 4px;
 	vertical-align: middle;
+	font-family: inherit;
 }
 .zui-scope .zui-tabs__item--gopro .zui-tabs__sparkle {
 	margin-left: 4px;
 }
 
-/* Locked PRO card overlay (Catalog/Payment Restrictions tabs) */
-.zui-scope .zui-card.cbr-pro-locked-card {
-	padding: 0;
-	overflow: hidden;
-}
-.zui-scope .cbr-pro-locked-card__overlay {
-	padding: 56px 24px;
-	text-align: center;
-}
-.zui-scope .cbr-pro-locked-card__title {
-	display: inline-flex;
-	align-items: center;
-	gap: 10px;
-	margin: 0 0 12px;
-	font-size: 20px;
-	font-weight: 700;
-	color: var(--zui-text);
-}
-.zui-scope .cbr-pro-locked-card__title .cbr-pro-badge {
-	font-size: 11px;
-	padding: 2px 8px;
-	background: #4f46e5;
-	color: #fff;
-	border-radius: 999px;
-	font-weight: 700;
-}
-.zui-scope .cbr-pro-locked-card__title .cbr-pro-lock .dashicons {
-	color: #94a3b8;
-	font-size: 16px;
-	width: 16px;
-	height: 16px;
-}
-.zui-scope .cbr-pro-locked-card__desc {
-	max-width: 720px;
-	margin: 0 auto 20px;
-	color: var(--zui-text-muted);
-	font-size: 13px;
-	line-height: 1.6;
-}
-.zui-scope .zui-btn-locked {
-	display: inline-flex;
-	align-items: center;
-	justify-content: center;
-	padding: 11px 22px;
-	background: #c7d2fe;
-	color: #ffffff !important;
-	border-radius: 8px;
-	font-weight: 600;
-	font-size: 13px;
-	text-decoration: none;
-	box-shadow: none;
-	cursor: pointer;
-	transition: background .15s ease;
-}
-.zui-scope .zui-btn-locked:hover {
-	background: #a5b4fc;
-}
+/* Catalog/Payment Restrictions tabs now use library `.zui-lock-section` —
+   only the bottom preview block is plugin-specific. */
 
-/* Locked preview rows below the overlay (sample rules) */
+/* Locked preview rows below the lock card (sample rules) */
 .zui-scope .cbr-pro-locked-preview {
 	margin-top: 16px;
-	opacity: .45;
-	pointer-events: none;
 }
 .zui-scope .cbr-pro-sample-row {
 	display: flex;
@@ -1302,14 +1247,11 @@
 .zui-scope .zui-radio-card.zui-radio-card--locked .zui-radio-card__desc {
 	color: #94a3b8 !important;
 }
-.zui-scope .zui-radio-card.zui-radio-card--locked .cbr-pro-row-actions {
+.zui-scope .zui-radio-card.zui-radio-card--locked .zui-pro-feature {
 	position: absolute;
 	top: 50%;
 	right: 18px;
 	transform: translateY(-50%);
-	display: inline-flex;
-	align-items: center;
-	gap: 6px;
 }
 
 /* PRO-locked row inside a setting section (toggles, textareas, selects) */
@@ -1325,50 +1267,29 @@
 	opacity: .55 !important;
 }
 /* PRO badge/lock pinned to top-right of the row when placed as a direct row child. */
-.zui-scope .cbr-pro-feature-row > .cbr-pro-row-actions {
+.zui-scope .cbr-pro-feature-row > .zui-pro-feature {
 	position: absolute;
 	top: 18px;
 	right: 20px;
-	display: inline-flex;
-	align-items: center;
-	gap: 6px;
 	pointer-events: none;
 }
-/* Fallback (badge inside __control, kept for radio-card-locked + toggle rows).
-   Badge + lock now lead, the toggle follows on the right. */
+/* When the badge+lock sits inside `.zui-row__control` (toggle rows), keep
+   the indicator and the disabled control on the same baseline. */
 .zui-scope .cbr-pro-feature-row .zui-row__control {
 	display: inline-flex;
 	align-items: center;
 	gap: 12px;
 }
-.zui-scope .cbr-pro-feature-row .zui-row__control > .cbr-pro-row-actions {
-	display: inline-flex;
-	align-items: center;
-	gap: 6px;
+.zui-scope .cbr-pro-feature-row .zui-row__control > .zui-pro-feature {
 	vertical-align: middle;
 }
-.zui-scope .cbr-pro-badge {
-	display: inline-flex;
-	align-items: center;
-	padding: 2px 8px;
-	font-size: 10px;
-	font-weight: 700;
-	letter-spacing: .04em;
-	background: #4f46e5;
-	color: #fff;
-	border-radius: 999px;
-}
-.zui-scope .cbr-pro-lock .dashicons {
-	color: #94a3b8;
-	font-size: 16px;
-	width: 16px;
-	height: 16px;
-}
 
-/* Widen the in-page sidebar in the FREE plugin so the PRO upsell card fits. */
+/* Sidebar width pinned to 290px (was widened to 320px when the PRO upsell
+   sat inside the sidebar — the upsell now lives at the bottom of the page,
+   so the sidebar only needs to fit Quick Help). */
 .zui-scope .zui-sidebar {
-	flex: 0 0 320px;
-	width: 320px;
+	flex: 0 0 290px;
+	width: 290px;
 }
 
 /* PRO upsell card placed inside the in-page sidebar (free plugin only) */
@@ -1452,4 +1373,15 @@
 	color: var(--zui-text-muted);
 	font-size: 12px;
 	margin-top: 4px;
+}
+
+/* The library's savebtn.css flips .zui-savebtn.is-saved to green after a
+   successful save. CBR keeps the primary blue chrome the whole time — the
+   snackbar already communicates "Settings Successfully Saved." so the
+   colour change is redundant. Pin both the resting and hover state back
+   to the primary brand colour. */
+.zui-scope .zui-section-header .zui-savebtn.is-saved,
+.zui-scope .zui-section-header .zui-savebtn.is-saved:hover {
+	background: var(--zui-primary) !important;
+	color: #fff !important;
 }

@@ -29,6 +29,9 @@
 			this._wireSortableTables( root );
 			this._wireSegmentedTabs( root );
 			this._wireShell( root );
+			this._wireMultiselect( root );
+			this._wireLicense( root );
+			this._wireAccordions( root );
 		},
 
 		snackbar: function ( message, opts ) {
@@ -116,6 +119,12 @@
 		slideout: {
 			open:  function ( id ) { _toggleOverlay( id, true,  'zui-slideout-open' ); },
 			close: function ( id ) { _toggleOverlay( id, false, 'zui-slideout-open' ); },
+		},
+
+		accordion: {
+			open:   function ( item ) { _setAccordionOpen( item, true ); },
+			close:  function ( item ) { _setAccordionOpen( item, false ); },
+			toggle: function ( item ) { _setAccordionOpen( item, ! item.classList.contains( 'is-open' ) ); },
 		},
 
 		/**
@@ -319,11 +328,330 @@
 				if ( scope ) { scope.classList.remove( 'zui-sidebar-open' ); }
 			} );
 		},
+		/**
+		 * Accordion — click on `.zui-accordion__head` toggles `.is-open` on
+		 * its parent `.zui-accordion__item`, flips `body.hidden`, sets
+		 * `aria-expanded`. If the parent `.zui-accordion` carries the
+		 * `--single` modifier, opening one item closes all siblings.
+		 * Clicks that originate on a form control (input, select, textarea,
+		 * or a `.zui-toggle` widget) are ignored so those controls can
+		 * operate without triggering expand/collapse.
+		 * Items with `[data-zui-accordion-default-open]` are opened on init.
+		 * Fires `zui:accordiontoggle` on the item (bubbles, detail: { open }).
+		 */
+		_wireAccordions: function ( root ) {
+			root = root || document;
+
+			_delegateClick( root, '.zui-accordion__head', function ( head, ev ) {
+				// Skip if the click was inside a form control living in the head
+				// (e.g. an inline toggle). Those controls handle their own events.
+				if ( ev.target.closest( '.zui-toggle, input, select, textarea, [data-zui-accordion-ignore]' ) ) {
+					return;
+				}
+				var item = head.closest( '.zui-accordion__item' );
+				if ( ! item ) { return; }
+				_setAccordionOpen( item, ! item.classList.contains( 'is-open' ) );
+			} );
+
+			// Default-open pass — one-shot per item.
+			Array.prototype.forEach.call(
+				root.querySelectorAll( '.zui-accordion__item[data-zui-accordion-default-open]' ),
+				function ( item ) {
+					if ( item._zuiAccordionInit ) { return; }
+					item._zuiAccordionInit = true;
+					_setAccordionOpen( item, true );
+				}
+			);
+		},
+
+		_wireMultiselect: function ( root ) {
+			root = root || document;
+			Array.prototype.forEach.call(
+				root.querySelectorAll( '[data-zui-multiselect]' ),
+				function ( el ) {
+					if ( el._zuiMsBound ) { return; }
+					el._zuiMsBound = true;
+					_initMultiselect( el );
+				}
+			);
+		},
+
+		/**
+		 * Wire the License & Extensions page: ecosystem grid search + filter
+		 * buttons, and the live "secure connection" clock. Markup contract:
+		 *   #zui-lic-grid      → grid wrapping .zui-lic-plugin cards
+		 *   #zui-lic-search    → text input for name search
+		 *   #zui-lic-empty     → empty-state message (toggled hidden)
+		 *   #zui-lic-time      → element to receive (HH:MM:SS) tick
+		 *   .zui-lic-eco__filter[data-filter] → all|active|addons buttons
+		 *   .zui-lic-plugin[data-name][data-active] → cards
+		 */
+		_wireLicense: function ( root ) {
+			root = root || document;
+			var grid    = root.querySelector( '#zui-lic-grid' );
+			var emptyEl = root.querySelector( '#zui-lic-empty' );
+			var searchEl = root.querySelector( '#zui-lic-search' );
+			var timeEl  = root.querySelector( '#zui-lic-time' );
+
+			if ( grid && ! grid._zuiLicBound ) {
+				grid._zuiLicBound = true;
+				var filter = 'all';
+
+				function applyFilter () {
+					var q = searchEl ? searchEl.value.trim().toLowerCase() : '';
+					var shown = 0;
+					Array.prototype.forEach.call( grid.querySelectorAll( '.zui-lic-plugin' ), function ( card ) {
+						var name = ( card.getAttribute( 'data-name' ) || '' ).toLowerCase();
+						var active = card.getAttribute( 'data-active' ) === '1';
+						var matchSearch = ! q || name.indexOf( q ) !== -1;
+						var matchFilter = ( filter === 'all' ) || ( filter === 'active' && active ) || ( filter === 'addons' && ! active );
+						var show = matchSearch && matchFilter;
+						card.style.display = show ? '' : 'none';
+						if ( show ) { shown++; }
+					} );
+					if ( emptyEl ) {
+						if ( shown === 0 ) { emptyEl.removeAttribute( 'hidden' ); }
+						else { emptyEl.setAttribute( 'hidden', '' ); }
+					}
+				}
+
+				if ( searchEl ) { searchEl.addEventListener( 'input', applyFilter ); }
+				Array.prototype.forEach.call( root.querySelectorAll( '.zui-lic-eco__filter' ), function ( btn ) {
+					btn.addEventListener( 'click', function () {
+						filter = btn.getAttribute( 'data-filter' );
+						Array.prototype.forEach.call( root.querySelectorAll( '.zui-lic-eco__filter' ), function ( b ) {
+							b.classList.toggle( 'is-active', b === btn );
+						} );
+						applyFilter();
+					} );
+				} );
+			}
+
+			if ( timeEl && ! timeEl._zuiLicBound ) {
+				timeEl._zuiLicBound = true;
+				var tick = function () { timeEl.textContent = '(' + new Date().toLocaleTimeString() + ')'; };
+				tick();
+				setInterval( tick, 5000 );
+			}
+
+			// Activate (anchor → navigates) and Deactivate (form submit → page
+			// reloads): both just need an on-click "Saving…" label swap. Page
+			// transition cleans up. data-label-saving carries the i18n text.
+			_delegateClick( root, '.zui-lic-activate, .zui-lic-deactivate', function ( btn ) {
+				if ( btn.classList.contains( 'is-saving' ) ) { return; }
+				_setBtnSavingState( btn );
+			} );
+		},
+
+		/* Public lifecycle helpers — let plugin-specific AJAX flows
+		 * (e.g. AST's usage-tracking fetch) drive the same Saving…/Saved
+		 * visual without duplicating the lookup/text-swap logic.
+		 */
+		btnSaving: function ( btn ) { _setBtnSavingState( btn ); },
+		btnSaved:  function ( btn, opts ) { _setBtnSavedState( btn, opts || {} ); },
+		btnReset:  function ( btn ) { _setBtnResetState( btn ); },
 	};
 
 	/* ----------------------------------------------------------------
 	 * Helpers
 	 * ---------------------------------------------------------------- */
+
+	// Find the inner element whose text should be swapped during the
+	// Saving…/Saved lifecycle. Prefers a dedicated label span, falls back
+	// to the first non-icon child span (for "icon + <span>label</span>"
+	// markup), and finally to the button/anchor itself.
+	function _findBtnLabel ( btn ) {
+		var explicit = btn.querySelector( '.zui-savebtn__label' );
+		if ( explicit ) { return explicit; }
+		var children = btn.children;
+		for ( var i = 0; i < children.length; i++ ) {
+			var c = children[ i ];
+			if ( c.tagName === 'SPAN' && ! c.querySelector( 'svg' ) ) { return c; }
+		}
+		return btn;
+	}
+
+	function _setBtnSavingState ( btn ) {
+		btn.classList.add( 'is-saving' );
+		var label = _findBtnLabel( btn );
+		if ( label._zuiOrigText == null ) { label._zuiOrigText = label.textContent; }
+		label.textContent = btn.getAttribute( 'data-label-saving' ) || 'Saving\u2026';
+	}
+
+	// Clear the saving state without showing the green Saved confirmation —
+	// used when an external snackbar already confirms success.
+	function _setBtnResetState ( btn ) {
+		btn.classList.remove( 'is-saving', 'is-saved' );
+		var label = _findBtnLabel( btn );
+		if ( label._zuiOrigText != null ) {
+			label.textContent = label._zuiOrigText;
+			delete label._zuiOrigText;
+		}
+	}
+
+	function _setBtnSavedState ( btn, opts ) {
+		btn.classList.remove( 'is-saving' );
+		btn.classList.add( 'is-saved' );
+		var label = _findBtnLabel( btn );
+		label.textContent = btn.getAttribute( 'data-label-saved' ) || 'Saved';
+		var delay = opts.delay || 3000;
+		setTimeout( function () {
+			btn.classList.remove( 'is-saved' );
+			if ( label._zuiOrigText != null ) {
+				label.textContent = label._zuiOrigText;
+				delete label._zuiOrigText;
+			}
+			if ( opts.disableAfter ) { btn.disabled = true; }
+		}, delay );
+	}
+
+	function _initMultiselect ( root ) {
+		var select   = root.querySelector( 'select.zui-ms__native' );
+		var control  = root.querySelector( '.zui-ms__control' );
+		var chipsWrap = root.querySelector( '.zui-ms__chips' );
+		var dropdown = root.querySelector( '.zui-ms__dropdown' );
+		if ( ! select || ! control || ! chipsWrap || ! dropdown ) { return; }
+		var placeholder = root.getAttribute( 'data-placeholder' ) || 'Select\u2026';
+
+		function opts() {
+			return Array.prototype.slice.call( select.options );
+		}
+
+		function commit() {
+			select.dispatchEvent( new Event( 'change', { bubbles: true } ) );
+			// Enable any disabled save button in the nearest enclosing section.
+			var section = root.closest( '.zui-section, .zui-scope' ) || document;
+			Array.prototype.forEach.call(
+				section.querySelectorAll( '.zui-section-header .woocommerce-save-button[disabled]' ),
+				function ( btn ) { btn.disabled = false; }
+			);
+			renderChips();
+			renderDropdown();
+		}
+
+		function renderChips() {
+			chipsWrap.innerHTML = '';
+			var selected = opts().filter( function ( o ) { return o.selected; } );
+			if ( ! selected.length ) {
+				var ph = document.createElement( 'span' );
+				ph.className = 'zui-ms__placeholder';
+				ph.textContent = placeholder;
+				chipsWrap.appendChild( ph );
+				return;
+			}
+			selected.forEach( function ( o ) {
+				var isLocked = o.getAttribute( 'data-locked' ) === '1';
+				var chip = document.createElement( 'span' );
+				chip.className = 'zui-ms__chip' + ( isLocked ? ' is-locked' : '' );
+				chip.setAttribute( 'data-value', o.value );
+				var lbl = document.createElement( 'span' );
+				lbl.className = 'zui-ms__chip-label';
+				lbl.textContent = o.textContent;
+				chip.appendChild( lbl );
+				if ( ! isLocked ) {
+					var rm = document.createElement( 'button' );
+					rm.type = 'button';
+					rm.className = 'zui-ms__chip-remove';
+					rm.innerHTML = '&times;';
+					rm.setAttribute( 'aria-label', o.textContent );
+					rm.addEventListener( 'click', function ( e ) {
+						e.stopPropagation();
+						o.selected = false;
+						commit();
+					} );
+					chip.appendChild( rm );
+				}
+				chipsWrap.appendChild( chip );
+			} );
+		}
+
+		function renderDropdown() {
+			dropdown.innerHTML = '';
+			opts().forEach( function ( o ) {
+				var isLocked = o.getAttribute( 'data-locked' ) === '1';
+				var item = document.createElement( 'div' );
+				item.className = 'zui-ms__option' + ( o.selected ? ' is-selected' : '' ) + ( isLocked ? ' is-locked' : '' );
+				item.setAttribute( 'role', 'option' );
+				item.setAttribute( 'aria-selected', o.selected ? 'true' : 'false' );
+				if ( isLocked ) { item.setAttribute( 'aria-disabled', 'true' ); }
+				var lbl = document.createElement( 'span' );
+				lbl.textContent = o.textContent;
+				item.appendChild( lbl );
+				if ( o.selected ) {
+					var ck = document.createElement( 'span' );
+					ck.className = 'zui-ms__check';
+					ck.innerHTML = '&#10003;';
+					item.appendChild( ck );
+				}
+				item.addEventListener( 'click', function () {
+					if ( isLocked && o.selected ) { return; }
+					o.selected = ! o.selected;
+					commit();
+				} );
+				dropdown.appendChild( item );
+			} );
+		}
+
+		function open() {
+			root.classList.add( 'is-open' );
+			control.setAttribute( 'aria-expanded', 'true' );
+			dropdown.removeAttribute( 'hidden' );
+		}
+		function close() {
+			root.classList.remove( 'is-open' );
+			control.setAttribute( 'aria-expanded', 'false' );
+			dropdown.setAttribute( 'hidden', 'hidden' );
+		}
+
+		control.addEventListener( 'click', function () {
+			root.classList.contains( 'is-open' ) ? close() : open();
+		} );
+		control.addEventListener( 'keydown', function ( e ) {
+			if ( e.key === 'Enter' || e.key === ' ' ) {
+				e.preventDefault();
+				root.classList.contains( 'is-open' ) ? close() : open();
+			} else if ( e.key === 'Escape' ) {
+				close();
+			}
+		} );
+		document.addEventListener( 'click', function ( e ) {
+			if ( ! root.contains( e.target ) ) { close(); }
+		} );
+
+		// Expose a public refresh hook so external code (e.g. section-revert
+		// logic that restores option.selected programmatically) can ask the
+		// widget to re-render its chips + dropdown from the current select state.
+		root._zuiRefresh = function () { renderChips(); renderDropdown(); };
+
+		renderChips();
+		renderDropdown();
+	}
+
+	function _setAccordionOpen ( item, open ) {
+		if ( ! item ) { return; }
+		var head = item.querySelector( ':scope > .zui-accordion__head' );
+		var body = item.querySelector( ':scope > .zui-accordion__body' );
+		if ( ! head || ! body ) { return; }
+
+		// Single-open mode: close every sibling before opening this one.
+		if ( open ) {
+			var container = item.closest( '.zui-accordion' );
+			if ( container && container.classList.contains( 'zui-accordion--single' ) ) {
+				Array.prototype.forEach.call(
+					container.querySelectorAll( ':scope > .zui-accordion__item.is-open' ),
+					function ( sib ) { if ( sib !== item ) { _setAccordionOpen( sib, false ); } }
+				);
+			}
+		}
+
+		item.classList.toggle( 'is-open', open );
+		body.hidden = ! open;
+		head.setAttribute( 'aria-expanded', open ? 'true' : 'false' );
+		item.dispatchEvent( new CustomEvent( 'zui:accordiontoggle', {
+			bubbles: true,
+			detail: { open: open },
+		} ) );
+	}
 
 	function _toggleOverlay ( id, show, bodyClass ) {
 		var el = document.getElementById( id );
