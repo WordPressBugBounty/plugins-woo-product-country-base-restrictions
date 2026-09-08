@@ -55,21 +55,21 @@ class CBR_Admin_Notice {
 	* @since 1.0.0
 	*/
 	public function init() {
-		add_action( 'admin_init', array( $this, 'cbr_pro_notice_ignore_cb_379' ) );
+		add_action( 'admin_init', array( $this, 'cbr_pro_notice_ignore_cb_381' ) );
 
 		$page = isset( $_GET['page'] ) ? sanitize_text_field( $_GET['page'] ) : '';
 
 		if ( 'woocommerce-product-country-base-restrictions' != $page ) {
 			// Analytics for WooCommerce Subscriptions Notice
-			add_action( 'admin_notices', array( $this, 'cbr_pro_admin_notice_379' ) );
+			add_action( 'admin_notices', array( $this, 'cbr_pro_admin_notice_381' ) );
 
 		}
 		add_action('cbr_settings_admin_notice', array( $this, 'cbr_settings_admin_notice' ) );
 
 		// Review request notice (ZUI plugin-notice card)
-		add_action( 'admin_init', array( $this, 'cbr_free_review_notice_ignore' ) );
-		add_action( 'admin_notices', array( $this, 'cbr_free_review_notice' ) );
-		add_action( 'admin_enqueue_scripts', array( $this, 'cbr_free_review_notice_styles' ) );
+		// add_action( 'admin_init', array( $this, 'cbr_free_review_notice_ignore' ) );
+		// add_action( 'admin_notices', array( $this, 'cbr_free_review_notice' ) );
+		// add_action( 'admin_enqueue_scripts', array( $this, 'cbr_free_review_notice_styles' ) );
 	}
 
 	/*
@@ -141,12 +141,12 @@ class CBR_Admin_Notice {
 		/*
 	* Dismiss admin notice for trackship
 	*/
-	public function cbr_pro_notice_ignore_cb_379() {
-		if ( isset( $_GET['cbr-pro-update-notice-379'] ) ) {
+	public function cbr_pro_notice_ignore_cb_381() {
+		if ( isset( $_GET['cbr-pro-update-notice-381'] ) ) {
 			if (isset($_GET['nonce'])) {
 				$nonce = sanitize_text_field($_GET['nonce']);
-				if (wp_verify_nonce($nonce, 'cbr_pro_dismiss_notice_379')) {
-					update_option('cbr_pro_update_ignore_379', 'true');
+				if (wp_verify_nonce($nonce, 'cbr_pro_dismiss_notice_381')) {
+					update_option('cbr_pro_update_ignore_381', 'true');
 				}
 			}
 		}
@@ -155,30 +155,30 @@ class CBR_Admin_Notice {
 	/*
 	* Display admin notice on plugin install or update
 	*/
-	public function cbr_pro_admin_notice_379() {
+	public function cbr_pro_admin_notice_381() {
 		
-		if ( get_option('cbr_pro_update_ignore_379') ) {
+		if ( get_option('cbr_pro_update_ignore_381') ) {
 			return;
 		}
 		
-		$nonce = wp_create_nonce('cbr_pro_dismiss_notice_379');
-		$dismissable_url = esc_url(add_query_arg(['cbr-pro-update-notice-379' => 'true', 'nonce' => $nonce]));
+		$nonce = wp_create_nonce('cbr_pro_dismiss_notice_381');
+		$dismissable_url = esc_url(add_query_arg(['cbr-pro-update-notice-381' => 'true', 'nonce' => $nonce]));
 
 		?>
 		<style>		
-		.wp-core-ui .notice.cbr-pro-dismissable-notice-379 {
+		.wp-core-ui .notice.cbr-pro-dismissable-notice-381 {
 			position: relative;
 			padding-right: 38px;
 			border-left-color: #3b64d3;
 		}
-		.wp-core-ui .notice.cbr-pro-dismissable-notice-379 h3{
+		.wp-core-ui .notice.cbr-pro-dismissable-notice-381 h3{
 			margin-bottom: 5px;
 		} 
-		.wp-core-ui .notice.cbr-pro-dismissable-notice-379 a.notice-dismiss{
+		.wp-core-ui .notice.cbr-pro-dismissable-notice-381 a.notice-dismiss{
 			padding: 9px;
 			text-decoration: none;
 		} 
-		.wp-core-ui .button-primary.cbr_pro_notice_btn_379 {
+		.wp-core-ui .button-primary.cbr_pro_notice_btn_381 {
 			background: #3b64d3;
 			color: #fff;
 			border-color: #3b64d3;
@@ -189,11 +189,11 @@ class CBR_Admin_Notice {
 			line-height: 28px;
 			margin: 5px 0 10px;
 		}
-		.cbr-pro-dismissable-notice-379 strong{
+		.cbr-pro-dismissable-notice-381 strong{
 			font-weight:bold;
 		}
 		</style>
-		<div class="notice updated notice-success cbr-pro-dismissable-notice-379">
+		<div class="notice updated notice-success cbr-pro-dismissable-notice-381">
 			<a href="<?php echo $dismissable_url; ?>" class="notice-dismiss"><span class="screen-reader-text">Dismiss this notice.</span></a>
 			<h2>🌍 Upgrade to Country Based Restrictions PRO – Gain Full Control Over Who Sees What</h2>
 			<p>Get full control over who sees what:</p>
@@ -206,8 +206,8 @@ class CBR_Admin_Notice {
 			</ul>
 			<p>🎁 20% OFF with code CBRPRO20 — limited time!</p>
 			<p>
-				<a href="https://www.zorem.com/product/country-based-restriction-pro/" class="button-primary cbr_pro_notice_btn_379">👉 Upgrade to CBR PRO</a>
-				<a class="button-primary cbr_pro_notice_btn_379" href="<?php echo $dismissable_url; ?>">Dismiss</a>
+				<a href="https://www.zorem.com/product/country-based-restriction-pro/" class="button-primary cbr_pro_notice_btn_381">👉 Upgrade to CBR PRO</a>
+				<a class="button-primary cbr_pro_notice_btn_381" href="<?php echo $dismissable_url; ?>">Dismiss</a>
 			</p>
 		</div>
 		<?php
