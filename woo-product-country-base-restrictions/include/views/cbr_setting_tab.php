@@ -60,7 +60,7 @@ if ( ! in_array( $cbr_section, $cbr_valid_sections, true ) ) {
 			<p class="zui-quickhelp__text"><?php esc_html_e( 'Learn how to configure CBR for best results.', 'woo-product-country-base-restrictions' ); ?></p>
 
 			<div class="zui-quickhelp__links">
-				<a class="zui-quickhelp__link" href="https://docs.zorem.com/docs/country-based-restrictions-free/?utm_source=wp-admin&utm_medium=CBR&utm_campaign=QuickHelp" target="_blank" rel="noreferrer noopener">
+				<a class="zui-quickhelp__link" href="<?php echo esc_url( cbr_utm_url( 'https://docs.zorem.com/docs/country-based-restrictions-free/', 'quick-help', 'docs' ) ); ?>" target="_blank" rel="noreferrer noopener">
 					<span><?php esc_html_e( 'View Documentation', 'woo-product-country-base-restrictions' ); ?></span>
 					<svg class="zui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
 				</a>
@@ -87,6 +87,16 @@ if ( ! in_array( $cbr_section, $cbr_valid_sections, true ) ) {
 				<span class="zui-quickhelp__check">✓</span>
 			</div>
 		</div>
+
+		<?php $cbr_review_url = 'https://wordpress.org/support/plugin/woo-product-country-base-restrictions/reviews/#new-post'; ?>
+		<?php if ( $cbr_review_url ) : ?>
+		<div class="zui-quickhelp cbr-review-card">
+			<h4 class="zui-quickhelp__title"><?php esc_html_e( 'Enjoying Country Based Restrictions?', 'woo-product-country-base-restrictions' ); ?></h4>
+			<div class="cbr-review-card__stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+			<p class="zui-quickhelp__text"><?php esc_html_e( 'If Country Based Restrictions makes managing your store\'s country rules easier, please leave us a quick review. It really helps!', 'woo-product-country-base-restrictions' ); ?></p>
+			<a class="zui-btn-primary cbr-review-card__btn" href="<?php echo esc_url( $cbr_review_url ); ?>" target="_blank" rel="noreferrer noopener"><?php esc_html_e( 'Leave a review', 'woo-product-country-base-restrictions' ); ?></a>
+		</div>
+		<?php endif; ?>
 
 	</aside>
 
@@ -453,7 +463,7 @@ if ( ! in_array( $cbr_section, $cbr_valid_sections, true ) ) {
 						</div>
 						<div class="zui-row__control">
 							<span class="row cbr-btn preview-btn">
-								<a href="https://www.zorem.com/product/country-based-restriction-pro/?utm_source=wp-admin&utm_medium=CBRPRO&utm_campaign=widget" class="zui-btn-secondary zui-btn-secondary--locked" target="_blank"><?php esc_html_e( 'Upgrade to PRO', 'woo-product-country-base-restrictions' ); ?></a>
+								<a href="<?php echo esc_url( cbr_pro_upgrade_url( 'plugin-setting' ) ); ?>" class="zui-btn-secondary zui-btn-secondary--locked" target="_blank"><?php esc_html_e( 'Upgrade to PRO', 'woo-product-country-base-restrictions' ); ?></a>
 							</span>
 						</div>
 					</div>
@@ -480,7 +490,7 @@ if ( ! in_array( $cbr_section, $cbr_valid_sections, true ) ) {
 			esc_html__( 'Live preview customizer support', 'woo-product-country-base-restrictions' ),
 			esc_html__( 'Priority support & auto-updates', 'woo-product-country-base-restrictions' ),
 		);
-		$cbr_upsell_url = 'https://www.zorem.com/product/country-based-restriction-pro/?utm_source=wp-admin&utm_medium=CBRFREE&utm_campaign=UpsellPanel';
+		$cbr_upsell_url = cbr_pro_upgrade_url( 'settings-upsell' );
 		?>
 		<section class="zui-upsell" aria-labelledby="cbr-upsell-title">
 

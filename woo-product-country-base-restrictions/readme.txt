@@ -2,11 +2,11 @@
 Contributors: zorem,gaurav1092,virendesai
 Tags: country restrictions, geolocation, woocommerce, product restriction, payment gateway
 Requires at least: 5.3
-Tested up to: 7.1
-Stable tag: 3.8.1
+Tested up to: 7.1.3
+Stable tag: 3.8.2
 Requires PHP: 7.0
 WC requires at least: 5.0
-WC tested up to: 11.1.0
+WC tested up to: 11.2.1
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -156,6 +156,13 @@ Yes. CBR is fully compatible with WooCommerce High-Performance Order Storage (cu
 Yes. CBR supports WooCommerce Subscriptions, including variation-level restrictions on subscription products.
 
 == Changelog ==
+
+= 3.8.2 =
+* Fix -  invalid "LIMIT 0, -1" SQL error in catalog restriction query (conflict with product filter plugins).
+* Improved - [Security] CBR Free: check customizer for unauthenticated REST routes (same as AST PRO).
+* Improved - Add an in-plugin upgrade surface matching the AST pattern.
+* Dev - WP tested upto 7.1.3.
+* Dev - WC Compatibility added upto 11.2.1.
 
 = 3.8.1 =
 * Dev - WP tested upto 7.1.

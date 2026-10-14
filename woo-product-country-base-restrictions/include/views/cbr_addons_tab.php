@@ -83,7 +83,12 @@ $more_plugins = array(
 				<p>
 				<?php 
 				echo wp_kses_post(
-					__( 'Stop limiting your store with basic restrictions. Switch from a <strong>basic setup</strong> to a <a href="https://www.zorem.com/product/country-based-restriction-pro/?utm_source=wp-admin&utm_medium=CBRPRO&utm_campaign=go-pro" target="_blank">fully advanced restriction powerhouse</a>.', 'woo-product-country-base-restrictions' )
+					sprintf(
+						/* translators: %1$s: opening anchor tag, %2$s: closing anchor tag */
+						__( 'Stop limiting your store with basic restrictions. Switch from a <strong>basic setup</strong> to a %1$sfully advanced restriction powerhouse%2$s.', 'woo-product-country-base-restrictions' ),
+						'<a href="' . esc_url( cbr_pro_upgrade_url( 'addons-go-pro' ) ) . '" target="_blank">',
+						'</a>'
+					)
 				);
 				?>
 				</p>
@@ -216,7 +221,7 @@ $more_plugins = array(
 
 			<!-- CTA -->
 			<div class="gopro-cta">
-				<a href="https://www.zorem.com/product/country-based-restriction-pro/?utm_source=wp-admin&utm_medium=CBRPRO&utm_campaign=go-pro" class="gopro-cta-btn" target="_blank"><?php esc_html_e( 'GET STARTED WITH PRO', 'woo-product-country-base-restrictions' ); ?></a>
+				<a href="<?php echo esc_url( cbr_pro_upgrade_url( 'addons-go-pro' ) ); ?>" class="gopro-cta-btn" target="_blank"><?php esc_html_e( 'GET STARTED WITH PRO', 'woo-product-country-base-restrictions' ); ?></a>
 				<p class="gopro-cta-sub"><?php esc_html_e( 'Join store owners optimizing their country restrictions', 'woo-product-country-base-restrictions' ); ?></p>
 			</div>
 

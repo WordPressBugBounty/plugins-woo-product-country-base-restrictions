@@ -17,7 +17,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 				<span class="zui-lock-section__badge"><?php esc_html_e( 'PRO', 'woo-product-country-base-restrictions' ); ?></span>
 			</h3>
 			<p class="zui-lock-section__desc"><?php esc_html_e( 'Restrict payment methods based on the customer billing or shipping country. Create rules to include or exclude specific payment gateways for specific countries. Upgrade to PRO to unlock this feature.', 'woo-product-country-base-restrictions' ); ?></p>
-			<a href="https://www.zorem.com/product/country-based-restriction-pro/?utm_source=wp-admin&utm_medium=CBRPRO&utm_campaign=payment-restrictions" class="zui-btn-primary zui-lock-section__cta" target="_blank" rel="noopener noreferrer"><?php esc_html_e( 'Upgrade To PRO', 'woo-product-country-base-restrictions' ); ?></a>
+			<a href="<?php echo esc_url( cbr_pro_upgrade_url( 'payment-restrictions' ) ); ?>" class="zui-btn-primary zui-lock-section__cta" target="_blank" rel="noopener noreferrer"><?php esc_html_e( 'Upgrade To PRO', 'woo-product-country-base-restrictions' ); ?></a>
 		</div>
 
 		<!-- Locked preview of sample rules -->

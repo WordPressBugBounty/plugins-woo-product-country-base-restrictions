@@ -17,7 +17,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 				<span class="zui-lock-section__badge"><?php esc_html_e( 'PRO', 'woo-product-country-base-restrictions' ); ?></span>
 			</h3>
 			<p class="zui-lock-section__desc"><?php esc_html_e( 'Create bulk restriction rules to restrict products by categories, tags, attributes, and shipping classes for specific countries. Upgrade to PRO to unlock this feature.', 'woo-product-country-base-restrictions' ); ?></p>
-			<a href="https://www.zorem.com/product/country-based-restriction-pro/?utm_source=wp-admin&utm_medium=CBRPRO&utm_campaign=catalog-restrictions" class="zui-btn-primary zui-lock-section__cta" target="_blank" rel="noopener noreferrer"><?php esc_html_e( 'Upgrade To PRO', 'woo-product-country-base-restrictions' ); ?></a>
+			<a href="<?php echo esc_url( cbr_pro_upgrade_url( 'catalog-restrictions' ) ); ?>" class="zui-btn-primary zui-lock-section__cta" target="_blank" rel="noopener noreferrer"><?php esc_html_e( 'Upgrade To PRO', 'woo-product-country-base-restrictions' ); ?></a>
 		</div>
 
 		<!-- Locked preview of sample rules -->

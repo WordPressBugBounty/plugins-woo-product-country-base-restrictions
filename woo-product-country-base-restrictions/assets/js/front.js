@@ -10,12 +10,12 @@ jQuery(document).ready(function(){
 	jQuery(document).on("click", ".cbr-country-shortcode", function(){	
 		jQuery('.cbr-shortcode-popup').show();
 	});
-	jQuery(document).on("change", "#calc_shipping_country, #shipping_country", function(){	
+	jQuery(document).on("change", "#calc_shipping_country, #shipping_country", function(){
 		Cookies.set('country', jQuery(this).val());
 		set_customer_country_on_checkout_without_reload();
-	}); 
+	});
 
-}); 
+});
 
 function setCountryCookie(cookieName, cookieValue, nDays) {
 	var today = new Date();

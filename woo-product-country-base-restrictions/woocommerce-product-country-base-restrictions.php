@@ -5,10 +5,10 @@
 * Description: Restrict WooCommerce products in specific countries
 * Author: zorem
 * Author URI: https://www.zorem.com/
-* Version: 3.8.1
+* Version: 3.8.2
 * Text Domain: woo-product-country-base-restrictions
 * WC requires at least: 4.0
-* WC tested up to: 11.1.0
+* WC tested up to: 11.2.1
 * Requires Plugins: woocommerce
 */
 
@@ -27,7 +27,7 @@ class ZH_Product_Country_Restrictions {
 	 * @since 1.0.0
 	 * @var string
 	 */
-	public $version = '3.8.1';
+	public $version = '3.8.2';
 	public $toolbar;
 	public $restriction;
 	public $plugin_path;
@@ -66,7 +66,10 @@ class ZH_Product_Country_Restrictions {
 	 *
 	 */	
 	public function includes() {
-		
+
+		// In-plugin upgrade UTM helper (cbr_utm_url / cbr_pro_upgrade_url).
+		require_once $this->get_plugin_path() . '/include/cbr-helpers.php';
+
 		require_once $this->get_plugin_path() . '/include/admin-settings.php';
 		$this->settings = CBR_Admin_Settings::get_instance();
 		
@@ -187,7 +190,7 @@ class ZH_Product_Country_Restrictions {
 		}
 		
 		$links = array_merge( $links, array(
-			'<a target="_blank" style="color: #45b450; font-weight: bold;" href="' . esc_url( 'https://www.zorem.com/products/country-based-restriction-pro/') . '">' . __( 'Go Pro', 'woocommerce' ) . '</a>'
+			'<a target="_blank" style="color: #45b450; font-weight: bold;" href="' . esc_url( cbr_pro_upgrade_url( 'plugin-row' ) ) . '">' . __( 'Go Pro', 'woocommerce' ) . '</a>'
 		) );
 		
 		return $links;

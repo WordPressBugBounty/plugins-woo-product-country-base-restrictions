@@ -90,7 +90,7 @@ class CBR_Product_Restriction {
 		
 		//callback for cart page
 		add_action( 'woocommerce_calculated_shipping', array( $this, 'update_cart_and_checkout_items'), 10 );
-		
+
 		//callback for checkout page
 		add_action( 'woocommerce_review_order_after_shipping', array( $this, 'update_cart_and_checkout_items' ), 10 );
 		
@@ -319,7 +319,17 @@ class CBR_Product_Restriction {
 		
 		$args = $query->query_vars;
 		$args['fields'] = 'ids';
-		$args['posts_per_page'] = '-1';
+		$args['posts_per_page'] = -1;
+		// Force an unbounded lookup. The copied query_vars carry paging state
+		// (nopaging=false, offset, paged) from the outer query; combined with
+		// posts_per_page=-1 that makes WP_Query emit an invalid "LIMIT 0, -1"
+		// (fatal MySQL syntax error) when another plugin's product query — e.g.
+		// a product filter widget — hands us an already-paged query. Clear the
+		// paging vars so WP skips the LIMIT clause entirely.
+		$args['nopaging'] = true;
+		$args['offset'] = 0;
+		$args['paged'] = 0;
+		$args['no_found_rows'] = true;
 		$loop = new WP_Query( $args );
 		
 		foreach ( $loop->posts as $product_id ) {
@@ -455,7 +465,7 @@ class CBR_Product_Restriction {
 	*
 	* @since 1.0.0
 	*/
-	public function update_cart_and_checkout_items() {	
+	public function update_cart_and_checkout_items() {
 		global $woocommerce;
 		$woocommerce->cart->get_cart_from_session();
 	}

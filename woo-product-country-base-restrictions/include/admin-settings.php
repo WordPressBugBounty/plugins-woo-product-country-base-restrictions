@@ -182,7 +182,7 @@ class CBR_Admin_Settings {
 					</div>
 				</div>
 				<div class="zui-header-actions">
-					<a class="zui-header-action zui-header-action--with-label" href="https://docs.zorem.com/docs/country-based-restrictions-free/?utm_source=wp-admin&utm_medium=CBR&utm_campaign=Docs" target="_blank" rel="noreferrer noopener">
+					<a class="zui-header-action zui-header-action--with-label" href="<?php echo esc_url( cbr_utm_url( 'https://docs.zorem.com/docs/country-based-restrictions-free/', 'docs-header', 'docs' ) ); ?>" target="_blank" rel="noreferrer noopener">
 						<svg class="zui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>
 						<span class="zui-header-action__label"><?php esc_html_e( 'Docs Portal', 'woo-product-country-base-restrictions' ); ?></span>
 					</a>
