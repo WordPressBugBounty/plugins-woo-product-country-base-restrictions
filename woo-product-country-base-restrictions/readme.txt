@@ -1,16 +1,16 @@
 === Country Based Restrictions for WooCommerce ===
 Contributors: zorem,gaurav1092,virendesai
-Tags: country restrictions, product restriction, geo restriction, geolocation, block countries
+Tags: country restrictions, geolocation, woocommerce, product restriction, payment gateway
 Requires at least: 5.3
-Tested up to: 7.1.3
-Stable tag: 3.8.2
+Tested up to: 7.1.5
+Stable tag: 3.8.3
 Requires PHP: 7.0
 WC requires at least: 5.0
-WC tested up to: 11.2.1
+WC tested up to: 11.3.0
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Restrict WooCommerce products by country using geolocation. Hide them, block the purchase or show your own message — per product or variation.
+Restrict WooCommerce products by country using geolocation. Control what customers can see and buy based on their location — per product or in bulk.
 
 == Description ==
 
@@ -36,7 +36,7 @@ Whether you're selling region-specific products, dealing with legal compliance r
 = How It Works =
 
 1. Install and activate the plugin.
-2. Go to **WooCommerce > Country Restrictions** to configure the default visibility settings.
+2. Go to **WooCommerce > Shipment Tracking > Country Restrictions** to configure the default visibility settings.
 3. Open any product and set the country restriction rule — choose include or exclude, and select the countries.
 4. Customers visiting from a restricted country will see the product according to your chosen visibility mode.
 
@@ -67,23 +67,6 @@ CBR Free gives you per-product country restrictions. CBR PRO adds bulk tools, pa
 
 👉 [Get CBR PRO](https://www.zorem.com/product/country-based-restriction-pro/)
 
-= Who Uses Country Based Restrictions =
-
-Any WooCommerce store that cannot, or does not want to, sell everything everywhere:
-
-* **Brands with territory or distribution agreements** — a licence that covers some markets and not others, enforced on the storefront rather than in a spreadsheet.
-* **Alcohol, tobacco and vape retailers** — products that are legal in one market and not in the next.
-* **Supplement and wellness stores** — ingredient rules differ by country, so one SKU may be sellable in a handful of markets only.
-* **Age- or licence-restricted goods** — items that may only be offered where the customer can lawfully receive them.
-* **Digital and licensed media** — regional rights that decide who may buy a title.
-* **Food, fresh and perishable goods** — restricted to the markets you can actually reach in time.
-* **Heavy, bulky or hazardous items** — products your freight carrier will not move across certain borders.
-* **Dropshippers** — suppliers who ship only to specific regions, so the catalogue should match what can be fulfilled.
-* **Wholesale and B2B stores** — different catalogues for different regional buyers.
-* **Stores entering a new market** — open a product range to one country first and expand once it works.
-
-**Please note:** Country Based Restrictions is a merchandising and storefront control tool. It helps you decide what each visitor can see and buy based on their detected country. It is not a legal or sanctions compliance product, and it should not be relied on as one — country detection can be wrong, and determined visitors can work around any geolocation. Where the law decides who you may sell to, treat this plugin as one layer alongside proper compliance checks, not a replacement for them.
-
 = Compatible With =
 
 CBR is tested and compatible with:
@@ -104,10 +87,10 @@ CBR is tested and compatible with:
 
 = More Plugins by Zorem =
 
-* [Advanced Shipment Tracking for WooCommerce](https://www.zorem.com/product/woocommerce-advanced-shipment-tracking/) — The #1 WooCommerce shipment tracking plugin. Trusted by 70,000+ stores.
+* [Advanced Shipment Tracking for WooCommerce](https://www.zorem.com/product/woocommerce-advanced-shipment-tracking/) — The #1 WooCommerce shipment tracking plugin. Trusted by 80,000+ stores.
 * [SMS for WooCommerce](https://www.zorem.com/product/sms-for-woocommerce/) — Automated SMS order and shipping notifications via Twilio, WhatsApp, and 18 other providers.
 * [Customer Email Verification PRO](https://www.zorem.com/product/customer-email-verification/) — Block fake accounts and spam orders with OTP-based email verification.
-* [Advanced Local Pickup PRO](https://www.zorem.com/product/zorem-local-pickup-pro/) — Advanced local pickup with multiple locations, appointment scheduling, and ready-for-pickup notifications.
+* [Local Pickup PRO](https://www.zorem.com/product/zorem-local-pickup-pro/) — Advanced local pickup with multiple locations, appointment scheduling, and ready-for-pickup notifications.
 * [Zorem Returns](https://www.zorem.com/product/zorem-returns/) — Self-service returns, exchanges, and store credit management for WooCommerce.
 
 Explore the full catalog at [zorem.com](https://www.zorem.com/)
@@ -121,13 +104,6 @@ Explore the full catalog at [zorem.com](https://www.zorem.com/)
 5. Edit any product to set per-product country restriction rules.
 
 Alternatively, upload the `woo-product-country-base-restrictions` folder to `/wp-content/plugins/` and activate through the Plugins menu.
-
-== Screenshots ==
-
-1. Set the rule on any product: choose whether the country list means "available to these countries" or "blocked from these countries", then pick the countries. The rule lives on the product itself, in its own Country Restrictions tab.
-2. What a restricted customer sees — the product stays visible, but Add to Cart is replaced by a message you write yourself, so the visitor understands why and what to do next.
-3. Three catalog visibility modes, one active at a time: hide restricted products completely (with an optional redirect), hide them from shop and search while keeping direct links working, or keep them visible but non-purchasable.
-4. Restriction settings — force geolocation, switch on the debug toolbar to test rules as a visitor from any country, and set your restriction message and where it appears on the product page.
 
 == Frequently Asked Questions ==
 
@@ -179,18 +155,19 @@ Yes. CBR is fully compatible with WooCommerce High-Performance Order Storage (cu
 
 Yes. CBR supports WooCommerce Subscriptions, including variation-level restrictions on subscription products.
 
-== Upgrade Notice ==
-
-= 3.8.2 =
-Fixes an SQL error in the catalog restriction query that could conflict with product filter plugins, and requires authentication on the customizer REST routes. Recommended for all stores.
-
 == Changelog ==
 
+= 3.8.3 = 
+* Enhancement – BFCM 2026 — Admin notice + settings page banner.
+* Dev - WP tested upto 7.1.5.
+* Dev - WC Compatibility added upto 11.3.0.
+
 = 3.8.2 =
-* Fix – Invalid "LIMIT 0, -1" SQL error in the catalog restriction query, which conflicted with some product filter plugins.
-* Security – The customizer REST routes now require authentication.
-* Enhancement – Added an in-plugin upgrade panel.
-* Dev – Tested with WooCommerce 11.2.1 and WordPress 7.1.3.
+* Fix -  invalid "LIMIT 0, -1" SQL error in catalog restriction query (conflict with product filter plugins).
+* Improved - [Security] CBR Free: check customizer for unauthenticated REST routes (same as AST PRO).
+* Improved - Add an in-plugin upgrade surface matching the AST pattern.
+* Dev - WP tested upto 7.1.3.
+* Dev - WC Compatibility added upto 11.2.1.
 
 = 3.8.1 =
 * Dev - WP tested upto 7.1.

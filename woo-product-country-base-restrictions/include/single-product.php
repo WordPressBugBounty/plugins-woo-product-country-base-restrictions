@@ -10,6 +10,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+// phpcs:disable WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedClassFound -- Established public class name; renaming breaks existing installs and the CBR Pro bridge.
+// phpcs:disable WordPress.Security.NonceVerification.Missing -- Product meta save handlers run inside WooCommerce's woocommerce_process_product_meta / save_post, which WordPress core has already nonce-verified.
+// phpcs:disable WordPress.Security.ValidatedSanitizedInput.MissingUnslash,WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- Restriction-type and country-code inputs are sanitized via sanitize_text_field()/wc_clean() (WordPressCS does not recognise wc_clean() as a sanitizer).
+
 /**
  * CBR_Single_Product class
  *
@@ -131,7 +135,7 @@ class CBR_Single_Product {
 		<p class="form-field forminp restricted_countries">
 		<label for="_restricted_countries"><?php echo esc_html( 'Select countries', 'woo-product-country-base-restrictions' ); ?></label>
 		<select id="_restricted_countries" multiple="multiple" name="_restricted_countries[]" style="width:100%;max-width: 350px;"
-			data-placeholder="<?php esc_attr_e( 'Choose countries&hellip;', 'woocommerce' ); ?>" title="<?php esc_attr_e( 'Country', 'woocommerce' ); ?>"
+			data-placeholder="<?php esc_attr_e( 'Choose countries&hellip;', 'woo-product-country-base-restrictions' ); ?>" title="<?php esc_attr_e( 'Country', 'woo-product-country-base-restrictions' ); ?>"
 			class="wc-enhanced-select" >
 			<?php
 			if ( ! empty( $countries ) ) {
@@ -186,7 +190,7 @@ class CBR_Single_Product {
 		<p class="form-field forminp restricted_countries">
 		<label for="_restricted_countries[<?php echo esc_html($variation->ID); ?>]"><?php echo esc_html( 'Select countries', 'woo-product-country-base-restrictions' ); ?></label>
 		<select multiple="multiple" name="_restricted_countries[<?php echo esc_html($variation->ID); ?>][]" style="width:100%;max-width: 350px;"
-			data-placeholder="<?php esc_attr_e( 'Choose countries&hellip;', 'woocommerce' ); ?>" title="<?php esc_attr_e( 'Country', 'woocommerce' ); ?>"
+			data-placeholder="<?php esc_attr_e( 'Choose countries&hellip;', 'woo-product-country-base-restrictions' ); ?>" title="<?php esc_attr_e( 'Country', 'woo-product-country-base-restrictions' ); ?>"
 			class="wc-enhanced-select">
 		<?php	
 		if ( ! empty( $countries ) ) {

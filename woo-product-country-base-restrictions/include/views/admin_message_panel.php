@@ -1,3 +1,8 @@
+<?php
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+?>
 <div class="admin-message-panel">
 	<div class="admin-message-row">
 		<h1 class="admin_message_header"><?php esc_html_e('🌍 Expand Your Control with Country Based Restrictions PRO!', 'woo-product-country-base-restrictions'); ?></h1>

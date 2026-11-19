@@ -10,6 +10,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+// phpcs:disable WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedClassFound -- Established public class name; renaming breaks existing installs and the CBR Pro bridge.
+// phpcs:disable WordPress.Security.NonceVerification.Missing -- AJAX country-preview selector; a request only changes the requester's own WooCommerce session shipping country, and the value is sanitized.
+// phpcs:disable WordPress.Security.ValidatedSanitizedInput.MissingUnslash -- Cookie/POST country codes passed through sanitize_text_field().
+
 /**
  * CBR_Admin_Toolbar class
  *
@@ -137,7 +141,8 @@ class CBR_Admin_Toolbar {
 			$wp_admin_bar->add_menu(
 				array(
 					'id'    => 'cbr_item',
-					'title' => __('CBR Country: ' . WC()->countries->countries[$fzpcr->restriction->get_country()], 'fast-user-switching'),
+					/* translators: %s: name of the country currently being simulated in the toolbar. */
+					'title' => sprintf( esc_html__( 'CBR Country: %s', 'woo-product-country-base-restrictions' ), esc_html( WC()->countries->countries[ $fzpcr->restriction->get_country() ] ) ),
 					'href'  => '#',
 				)
 			);

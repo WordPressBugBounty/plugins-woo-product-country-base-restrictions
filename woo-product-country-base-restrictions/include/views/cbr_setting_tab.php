@@ -2,6 +2,10 @@
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
+
+// phpcs:disable WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound -- Presentation variables are local to this included template, not true globals.
+// phpcs:disable WordPress.Security.NonceVerification.Recommended -- Read-only $_GET['section'] sidebar-section selector; value is sanitized via sanitize_key() and validated against an allow-list.
+
 global $fzpcr;
 
 $product_visibility = get_option( 'product_visibility' );

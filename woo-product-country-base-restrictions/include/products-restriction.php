@@ -10,6 +10,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+// phpcs:disable WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedClassFound,WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound -- Established public class name and cbr_* extensibility hooks; renaming breaks existing installs, the CBR Pro bridge, and third-party integrations.
+// phpcs:disable WordPress.Security.ValidatedSanitizedInput.MissingUnslash -- Read-only $_COOKIE['country'] country-code reads passed through sanitize_text_field().
+
 /**
  * CBR_Product_Restriction class
  *
@@ -453,7 +456,7 @@ class CBR_Product_Restriction {
 	public function cart_item_removed_massage( $message, $product ) {
 		if ( $this->is_restricted( $product ) || apply_filters( 'cbr_is_restricted', false, $product ) ) {
 			/* translators: %s: Error Message */
-			$message = sprintf( __( '%s has been removed from your cart because it can no longer be purchased. Please contact us if you need assistance.', 'woocommerce' ), $product->get_name() );     
+			$message = sprintf( __( '%s has been removed from your cart because it can no longer be purchased. Please contact us if you need assistance.', 'woo-product-country-base-restrictions' ), $product->get_name() );
 			$message = apply_filters( 'cbr_cart_message', $message, $product );
 			$message = apply_filters( 'cbr_cart_item_removed_message', $message, $product );
 		}

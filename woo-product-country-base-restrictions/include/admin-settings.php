@@ -10,6 +10,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+// phpcs:disable WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedClassFound,WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound -- Established public class name and cbr_* extensibility hooks; renaming breaks existing installs, the CBR Pro bridge, and third-party integrations.
+// phpcs:disable WordPress.Security.NonceVerification.Recommended -- Read-only $_GET['page']/['tab'] screen checks; the settings save (cbr_setting_form_update_callback) verifies its nonce via check_admin_referer().
+// phpcs:disable WordPress.Security.ValidatedSanitizedInput.MissingUnslash,WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- Settings values are simple toggle/select/country-code inputs sanitized via wc_clean()/sanitize_text_field() (WordPressCS does not recognise wc_clean() as a sanitizer).
+
 /**
  * CBR_Admin_Settings class
  *
@@ -195,6 +199,14 @@ class CBR_Admin_Settings {
 				<a class="zui-tabs__item zui-tabs__item--gopro<?php echo ( 'go-pro' === $active_tab ) ? ' is-active' : ''; ?>" href="<?php echo esc_url( $tab_base_url . '&tab=go-pro' ); ?>" data-tab="go-pro" data-label="<?php esc_attr_e( 'Go Pro', 'woo-product-country-base-restrictions' ); ?>"<?php echo ( 'go-pro' === $active_tab ) ? ' aria-current="page"' : ''; ?>><?php esc_html_e( 'Go Pro', 'woo-product-country-base-restrictions' ); ?> <span class="zui-tabs__sparkle">&#10024;</span></a>
 			</nav>
 		</header>
+
+		<?php
+		// Black Friday CBR PRO banner, shown only while the sale runs (Nov 19 – Dec 1, 2026).
+		if ( class_exists( 'CBR_Admin_Notice' ) && CBR_Admin_Notice::cbr_is_bfcm_running() ) {
+			include 'views/zui-pro-offer-banner.php';
+		}
+		?>
+
 		<div class="woocommerce cbr_admin_layout">
 			<div class="cbr_admin_content">
 				<?php

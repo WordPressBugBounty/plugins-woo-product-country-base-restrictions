@@ -5,10 +5,12 @@
 * Description: Restrict WooCommerce products in specific countries
 * Author: zorem
 * Author URI: https://www.zorem.com/
-* Version: 3.8.2
+* Version: 3.8.3
+* License: GPLv2 or later
+* License URI: https://www.gnu.org/licenses/gpl-2.0.html
 * Text Domain: woo-product-country-base-restrictions
 * WC requires at least: 4.0
-* WC tested up to: 11.2.1
+* WC tested up to: 11.3.0
 * Requires Plugins: woocommerce
 */
 
@@ -16,6 +18,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+// phpcs:disable WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedClassFound,WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound -- Main plugin class (ZH_Product_Country_Restrictions) and the global $fzpcr are the plugin's established public API; renaming breaks existing installs and the CBR Pro bridge.
+// phpcs:disable WordPress.Security.NonceVerification.Recommended,WordPress.Security.ValidatedSanitizedInput.MissingUnslash -- Read-only admin-screen check ($_GET['page']) that only decides which admin assets to enqueue; no form data is processed or persisted.
 
 class ZH_Product_Country_Restrictions {
 	
@@ -27,7 +31,7 @@ class ZH_Product_Country_Restrictions {
 	 * @since 1.0.0
 	 * @var string
 	 */
-	public $version = '3.8.2';
+	public $version = '3.8.3';
 	public $toolbar;
 	public $restriction;
 	public $plugin_path;
@@ -123,6 +127,7 @@ class ZH_Product_Country_Restrictions {
 	public function plugin_init() {
 		
 		$i18n_dir = basename( dirname( __FILE__ ) ) . '/lang/';         
+		// phpcs:ignore PluginCheck.CodeAnalysis.DiscouragedFunctions.load_plugin_textdomainFound -- Plugin bundles its own /lang/ translations, which still require this call (just-in-time loading only covers translate.wordpress.org packs).
 		load_plugin_textdomain( 'woo-product-country-base-restrictions', false, $i18n_dir );
 		
 		//hooks in admin plugin page	
@@ -190,7 +195,7 @@ class ZH_Product_Country_Restrictions {
 		}
 		
 		$links = array_merge( $links, array(
-			'<a target="_blank" style="color: #45b450; font-weight: bold;" href="' . esc_url( cbr_pro_upgrade_url( 'plugin-row' ) ) . '">' . __( 'Go Pro', 'woocommerce' ) . '</a>'
+			'<a target="_blank" style="color: #45b450; font-weight: bold;" href="' . esc_url( cbr_pro_upgrade_url( 'plugin-row' ) ) . '">' . __( 'Go Pro', 'woo-product-country-base-restrictions' ) . '</a>'
 		) );
 		
 		return $links;
@@ -285,12 +290,12 @@ class ZH_Product_Country_Restrictions {
 		// Add tiptip js and css file
 		wp_register_script( 'wc-jquery-tiptip', WC()->plugin_url() . '/assets/js/jquery-tiptip/jquery.tipTip.min.js', array( 'jquery', 'dompurify' ), WC_VERSION, true );
 		wp_enqueue_script( 'cbr-admin-js', plugin_dir_url(__FILE__) . 'assets/js/admin.js', array('jquery', 'wp-util', 'wp-color-picker', 'wc-jquery-tiptip'), $this->version, true );
-		wp_enqueue_script( 'cbr-material-min-js', plugin_dir_url(__FILE__) . 'assets/js/material.min.js', array(), $this->version );
+		wp_enqueue_script( 'cbr-material-min-js', plugin_dir_url(__FILE__) . 'assets/js/material.min.js', array(), $this->version, false );
 		wp_enqueue_style( 'cbr-admin-css', plugin_dir_url(__FILE__) . 'assets/css/admin.css', array(), $this->version );
 		wp_enqueue_style( 'cbr-material-css', plugin_dir_url(__FILE__) . 'assets/css/material.css', array(), $this->version );
 			
 		wp_enqueue_style('select2-cbr', plugins_url('assets/css/select2.min.css', __FILE__ ), array(), $this->version );
-		wp_enqueue_script('select2-cbr', plugins_url('assets/js/select2.min.js', __FILE__), array(), $this->version);
+		wp_enqueue_script('select2-cbr', plugins_url('assets/js/select2.min.js', __FILE__), array(), $this->version, false);
 
 		wp_register_style( 'woocommerce_admin_styles', WC()->plugin_url() . '/assets/css/admin.css', array(), WC_VERSION );
 		wp_enqueue_style( 'woocommerce_admin_styles' );
@@ -302,7 +307,12 @@ class ZH_Product_Country_Restrictions {
 			$cbr_zui_version = $this->version;
 		}
 		wp_enqueue_style( 'cbr-zui', plugin_dir_url( __FILE__ ) . 'assets/zui/css/zui.css', array(), $cbr_zui_version );
-		wp_enqueue_style( 'cbr-zui-overrides', plugin_dir_url( __FILE__ ) . 'assets/zui/css/cbr-overrides.css', array( 'cbr-zui' ), $cbr_zui_version );
+		// filemtime() so cbr-overrides.css edits cache-bust automatically — the
+		// VERSION file only bumps on a full ZUI library sync, which would leave
+		// local override edits (e.g. the Black Friday banner) serving a stale copy.
+		$cbr_overrides_css_path = $this->get_plugin_path() . '/assets/zui/css/cbr-overrides.css';
+		$cbr_overrides_ver      = file_exists( $cbr_overrides_css_path ) ? filemtime( $cbr_overrides_css_path ) : $cbr_zui_version;
+		wp_enqueue_style( 'cbr-zui-overrides', plugin_dir_url( __FILE__ ) . 'assets/zui/css/cbr-overrides.css', array( 'cbr-zui' ), $cbr_overrides_ver );
 		wp_enqueue_script( 'cbr-zui', plugin_dir_url( __FILE__ ) . 'assets/zui/js/zui.js', array(), $cbr_zui_version, true );
 		wp_enqueue_script( 'cbr-zui-app', plugin_dir_url( __FILE__ ) . 'assets/zui/js/zui-app.js', array( 'jquery', 'cbr-zui' ), $cbr_zui_version, true );
 	}

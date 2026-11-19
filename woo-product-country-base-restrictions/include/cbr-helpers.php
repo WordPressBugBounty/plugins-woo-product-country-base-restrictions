@@ -14,6 +14,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+// phpcs:disable WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedFunctionFound -- Established `cbr_` public helper names used across the plugin and the CBR Pro bridge; renaming would break backward compatibility with existing installs.
+
 /**
  * Add the in-plugin UTM convention to a zorem.com link.
  *

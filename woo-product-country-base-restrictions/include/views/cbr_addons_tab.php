@@ -3,6 +3,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+// phpcs:disable WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound -- Presentation variables are local to this included template, not true globals.
+
 global $fzpcr;
 
 // Per-slug emblem icons (lucide path data) come from the library's icon

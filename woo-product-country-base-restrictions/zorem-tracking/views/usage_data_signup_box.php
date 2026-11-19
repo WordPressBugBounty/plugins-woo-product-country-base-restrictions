@@ -1,3 +1,18 @@
+<?php
+/**
+ * Usage-data opt-in box.
+ *
+ * @package Zorem_Tracking
+ *
+ * Expected variables, supplied by the including scope:
+ *
+ * @var WC_Trackers $this The tracking object that included this template.
+ */
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+?>
 <div class="zorem-layout popupwrapper" style="text-align: left !important;">
 	<div id="ast_usagedata_connect" class="ud-box-container">
 		<div class="ud-content">

@@ -1409,3 +1409,148 @@
 	box-sizing: border-box;
 	text-decoration: none;
 }
+
+/* ============================================================
+   Black Friday PRO offer banner (settings page, all tabs).
+   Rendered between the header and the tab panels while the sale
+   runs; the PHP caller removes it once the sale ends. The 24px
+   gutter matches the header bar and the tab-panel padding.
+   ============================================================ */
+.zui-scope .cbr-offer {
+	display: flex;
+	align-items: stretch;
+	margin: 24px 24px 0;
+	background: var(--zui-surface, #ffffff);
+	border: 1px solid var(--zui-border, #e2e8f0);
+	border-radius: var(--zui-radius-xl, 12px);
+	box-shadow: var(--zui-shadow-xs, 0 1px 2px rgba(15, 23, 42, 0.04));
+	overflow: hidden;
+}
+.zui-scope .cbr-offer[hidden] {
+	display: none;
+}
+.zui-scope .cbr-offer__badge {
+	flex: 0 0 132px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: 2px;
+	padding: 20px 12px;
+	color: #ffffff;
+	text-align: center;
+}
+.zui-scope .cbr-offer__save {
+	font-size: 11px;
+	font-weight: 700;
+	letter-spacing: 0.14em;
+	text-transform: uppercase;
+	opacity: 0.9;
+}
+.zui-scope .cbr-offer__pct {
+	font-size: 34px;
+	font-weight: 800;
+	line-height: 1.1;
+}
+.zui-scope .cbr-offer__pct small {
+	font-size: 18px;
+	font-weight: 700;
+	margin-inline-start: 2px;
+}
+.zui-scope .cbr-offer__on {
+	font-size: 12px;
+	font-weight: 600;
+}
+.zui-scope .cbr-offer__body {
+	flex: 1 1 auto;
+	min-width: 0;
+	padding: 20px 24px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+.zui-scope .cbr-offer__title {
+	margin: 0 0 6px;
+	font-size: 15px;
+	font-weight: 700;
+	line-height: 1.4;
+	color: var(--zui-text-strong, #0f172a);
+}
+.zui-scope .cbr-offer__action {
+	flex: 0 0 auto;
+	display: flex;
+	align-items: center;
+	padding: 20px 24px 20px 0;
+}
+.zui-scope .cbr-offer__cta {
+	flex: 0 0 auto;
+	width: auto;
+	padding-inline: 20px;
+	text-decoration: none;
+	white-space: nowrap;
+}
+/* Black Friday variant: dark badge. */
+.zui-scope .cbr-offer--bfcm .cbr-offer__badge {
+	background: linear-gradient(160deg, #1e293b 0%, #020617 100%);
+}
+
+/* Offer line (coupon, price, terms, end date) — shared with the admin notice. */
+.zui-scope .cbr-bfcm-meta {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	column-gap: 6px;
+	row-gap: 4px;
+	font-size: 13px;
+	line-height: 1.6;
+	color: var(--zui-text-muted, #64748b);
+}
+.zui-scope .cbr-bfcm-meta__item {
+	display: inline-flex;
+	align-items: center;
+	gap: 5px;
+}
+.zui-scope .cbr-bfcm-meta__item + .cbr-bfcm-meta__item::before {
+	content: "\00b7";
+	margin-inline-end: 6px;
+	color: var(--zui-text-muted, #94a3b8);
+}
+.zui-scope .cbr-bfcm-meta__code {
+	display: inline-block;
+	margin: 0;
+	padding: 1px 8px;
+	background: var(--zui-bg, #f8fafc);
+	border: 1px dashed var(--zui-border-strong, #cbd5e1);
+	border-radius: 4px;
+	color: var(--zui-text-strong, #0f172a);
+	font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+	font-size: 12px;
+	font-weight: 700;
+	letter-spacing: 0.06em;
+	user-select: all;
+}
+.zui-scope .cbr-bfcm-meta__was {
+	color: var(--zui-text-muted, #94a3b8);
+}
+.zui-scope .cbr-bfcm-meta__now {
+	color: var(--zui-text-strong, #0f172a);
+	font-weight: 700;
+}
+@media (max-width: 782px) {
+	.zui-scope .cbr-offer {
+		flex-direction: column;
+		margin: 16px 16px 0;
+	}
+	.zui-scope .cbr-offer__badge {
+		flex-basis: auto;
+		flex-direction: row;
+		gap: 8px;
+		padding: 12px;
+	}
+	.zui-scope .cbr-offer__pct {
+		font-size: 24px;
+	}
+	.zui-scope .cbr-offer__action {
+		padding: 0 24px 20px;
+	}
+}
